@@ -40,12 +40,19 @@
   height: 700px;
   perspective: 1000px;
   border-radius: 25px;
-  &.card--flipped{
-    animation: cardFlip .275s forwards linear;
-  }
-  &.card--unflip {
-    animation: cardUnFlip .275s forwards linear;
-  }
+}
+
+.flip-card-inner {
+  border-radius: 25px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  &.card--flipped { animation: cardFlip .275s forwards linear }
+  &.card--unflip { animation: cardUnFlip .275s forwards linear }
 }
 
 @keyframes cardFlip {
@@ -70,17 +77,6 @@
   100% {
     transform: rotateZ(0deg) rotateY(180deg);
   }
-}
-
-.flip-card-inner {
-  border-radius: 25px;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 1s;
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .flip-card:hover .flip-card-inner {
@@ -142,8 +138,8 @@
 
     </div>
     <br>
-    <div class="flip-card" id="flip-card">
-        <div class="flip-card-inner">
+    <div class="flip-card">
+        <div class="flip-card-inner" id="flip-card">
             <div class="flip-card-front">
                 <img src="images/pmon_adam.JPG" style="width:509px;height:700px;">
             </div>
