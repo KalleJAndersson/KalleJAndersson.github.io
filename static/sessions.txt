@@ -1,0 +1,89 @@
+const wods = [
+    {
+        title: "song1",
+        wod: "",
+        description:"beskrivning"
+    },
+    {
+        title: "Team of 2, split anyhow:",
+        wod: "Round 1:
+                1000m row
+                100/80 cal bike
+                200 DU/SU
+
+                Round 2:
+                750m row
+                75/60 cal bike
+                150 DU/SU
+
+                Round 3:
+                500m row
+                50/40 cal bike
+                100 DU/SU
+
+                Round 4:
+                250m row
+                25/20 cal Bike
+                50 DU/SU
+
+
+                Round 1 TC: 16 min
+                Round 2 TC: 12 min
+                Round 3 TC: 8 min
+                Round 4 TC: 4 min",
+        description:"40 min running clock, time left each round is resting.
+                    Give each team at least 1min rest between the rounds if the time caps are too difficult. And/or decrease reps."
+    }
+
+];
+
+Onsdag vecka 49
+Team of 2, split anyhow:
+
+Round 1:
+1000m row
+100/80 cal bike
+200 DU/SU
+
+Round 2:
+750m row
+75/60 cal bike
+150 DU/SU
+
+Round 3:
+500m row
+50/40 cal bike
+100 DU/SU
+
+Round 4:
+250m row
+25/20 cal Bike
+50 DU/SU
+
+
+Round 1 TC: 16 min
+Round 2 TC: 12 min
+Round 3 TC: 8 min
+Round 4 TC: 4 min
+
+40 min running clock, time left each round is resting.
+Give each team at least 1min rest between the rounds if the time caps are too difficult. And/or decrease reps.
+
+
+Onsdag vecka 48
+A. TC: 20min
+4min x 5 (20min)
+2 min Row 400/300m
+1 min burpees 4-5-6-7-8 eller 6-8-10-12-14
+1 min vila
+
+
+
+Part 2 - team of 2
+Partner death by E2M, split anyhow
+200m run
+X thrusters 40/30 kg
+
+*On every second minute. Starting the first 2min with 6 thrusters, add two reps every second minute. 6-8-10-12-14…… No time cap.
+It is ok to start on the thrusters before both athletes are in.
+(If the running takes more than 60 seconds, increase the thrusters by one rep instead of two. Target for every team is to make at least 5 rounds.)

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+
+    <h1>Endurance</h1>
+        <!-- <div class="jumbotron text-center"
+            style="background-image: url(/static/albin.png); height: 900px; width: 600px; background-position: center;">
+        </div> -->
+<div class="search-container">
+        <input type="text" placeholder="Search workout" name="search">
+        <button type="button" onclick="readFile()">
+            Random workout</button>
+</div>
+
+<p id="demo">demo</p>
+
+<script>
+    function readFile(){
+        document.getElementById("demo").innerHTML = 'data';
+        const fs = require('fs')
+        fs.readFile('wod1.txt', 'utf8', (err, data) => {
+            if (err) {
+                console.error(err);
+                document.getElementById("demo").innerHTML = 'data';
+                return
+            }
+            document.getElementById("demo").innerHTML = data;
+        })
+    }
+
+
+</script>
+<!-- <script src="js/script.js"></script> -->
+</body>
+</html>
