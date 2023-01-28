@@ -15,12 +15,26 @@
             <a href="games">Lekar</a>
             <a href="team_green">Lag Grön</a>
             <a href="team_blue">Lag Blå</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
 
         </div>
 
     </div>
 
 </nav>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
 
 <head>
     <meta charset="UTF-8">
