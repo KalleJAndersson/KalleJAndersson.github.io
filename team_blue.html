@@ -39,9 +39,11 @@
   width: 509px;
   height: 700px;
   perspective: 1000px;
+  border-radius: 25px;
 }
 
 .flip-card-inner {
+  border-radius: 25px;
   position: relative;
   width: 100%;
   height: 100%;
@@ -64,11 +66,13 @@
 }
 
 .flip-card-front {
+  border-radius: 25px;
   background-color: #bbb;
   color: black;
 }
 
 .flip-card-back {
+  border-radius: 25px;
   background-color: #2980b9;
   color: white;
   transform: rotateY(180deg);
@@ -78,8 +82,22 @@
 
 <body>
 
-    <h1>Lag Blå</h1>
+    <!-- <h1>Lag Blå</h1> -->
 
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <img src="images/pmon_adam.JPG" style="width:509px;height:700px;">
+            </div>
+            <div class="flip-card-back">
+                <h1>Adam</h1>
+                <br>
+                <p></p>
+            </div>
+        </div>
+
+    </div>
+    <br>
     <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
