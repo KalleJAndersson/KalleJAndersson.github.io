@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +16,7 @@
 
         .mobile-container {
             /* max-width: 480px; */
-            margin: auto;
+            /* margin: auto; */
             /* background-color: #555; */
             /* height: 500px; */
             color: white;
@@ -27,7 +25,7 @@
 
         .topnav {
             overflow: hidden;
-            background-color: #333;
+            background-color: #d8ecd3;
             position: relative;
         }
 
@@ -44,7 +42,7 @@
         }
 
         .topnav a.icon {
-            background: rgb(122, 156, 113);
+            background: rgba(174, 221, 161, 255);
             display: block;
             position: absolute;
             right: 0;
@@ -57,45 +55,43 @@
         }
 
         .active {
-            background-color: #b9d3c9;
+            background-color: rgba(127, 215, 165, 255);
             color: white;
+        }
+
+        .responsive {
+            width: 100%;
+            height: auto;
         }
     </style>
     <div class="mobile-container">
 
         <!-- Top Navigation Menu -->
         <div class="topnav">
-            <a class="active">Ballong</a>
+            <a href="" class="active">Ballong</a>
             <div id="myLinks">
                 <a href="index">Lekar</a>
-                <a href="team_green">Lag Grön</a>
-                <a href="team_blue">Lag Blå</a>
+                <a href="team_green">Gröna laget</a>
+                <a href="team_blue">Blåa laget</a>
             </div>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i>
             </a>
         </div>
 
-
         <!-- End smartphone / tablet look -->
     </div>
 
-    <style>
-        body {
-            background-image: url('images/pmon_adam.JPG');
-        }
-    </style>
-</head>
-
 <body>
-
+    <img src="images/ghost.JPG" alt="Nature" class="responsive">
+    <img src="images/smyg.JPG" alt="Nature" class="responsive">
+    <img src="images/stafett1.JPG" alt="Nature" class="responsive">
+    <img src="images/stafett2.JPG" alt="Nature" class="responsive">
+    <img src="images/ballong.JPG" alt="Nature" class="responsive">
 </body>
-
-
 
 <script>
     function myFunction() {
-        console.log('hhhh')
         var x = document.getElementById("myLinks");
         if (x.style.display === "block") {
             x.style.display = "none";
@@ -104,5 +100,3 @@
         }
     }
 </script>
-
-</html>
