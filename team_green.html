@@ -32,11 +32,12 @@
 <style>
 
 .scene {
-  width: 509px;
-  height: 700px;
+  max-width: 100%;
+  height: auto;
   perspective: 600px;
   animation: cardAppear 1.4s forwards;
   border-radius: 25px;
+
 }
 
 @keyframes cardAppear {
@@ -63,6 +64,8 @@
   transform-origin: center right;
   transition: transform 1s;
   border-radius: 25px;
+  max-width: 100%;
+  height: auto;
 }
 
 .card.is-flipped {
@@ -92,10 +95,10 @@
   border-radius: 25px;
 }
 
-img {
+/* img {
     max-width: 100%;
     height: auto;
-}
+} */
 
 </style>
 </head>
