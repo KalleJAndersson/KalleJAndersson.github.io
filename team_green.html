@@ -110,7 +110,7 @@ body { font-family: sans-serif; }
   display: inline-block;
   width: 390px;
   height: 513px;
-  margin: 0px 0;
+  /* margin: 0px 0; */
   perspective: 600px;
   animation: cardAppear 1.4s forwards;
   /* padding-left: 20px; */
@@ -125,6 +125,7 @@ body { font-family: sans-serif; }
   transform-style: preserve-3d;
   transform-origin: center right;
   transition: transform 1s;
+  border-radius: 20px;
 }
 
 .card.is-flipped {
@@ -141,15 +142,18 @@ body { font-family: sans-serif; }
   font-weight: bold;
   font-size: 40px;
   backface-visibility: hidden;
+  border-radius: 20px;
 }
 
 .card__face--front {
   background: rgb(255, 255, 255);
+  border-radius: 20px;
 }
 
 .card__face--back {
   background:  rgb(158, 206, 158);
   transform: rotateY(180deg);
+  border-radius: 20px;
 }
 
 img {
