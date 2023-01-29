@@ -40,8 +40,8 @@
 
 .flip-card {
   background-color: transparent;
-  width: 509px;
-  height: 700px;
+  width: 100%;
+  height: auto;
   perspective: 1000px;
   border-radius: 25px;
   animation: cardAppear 1.4s forwards;
@@ -125,10 +125,6 @@
   transform: rotateY(180deg);
 }
 
-.img {
-    max-width: 100%;
-    height: auto;
-}
     </style>
 </head>
 
@@ -139,7 +135,7 @@
     <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img src="images/pmon_adam.JPG" class="img">
+                <img src="images/pmon_adam.JPG" style="width:80%;height:80%;">
             </div>
             <div class="flip-card-back">
                 <h1>Adam</h1>
