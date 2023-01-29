@@ -68,7 +68,7 @@
 
         <!-- Top Navigation Menu -->
         <div class="topnav">
-            <a href="" class="active">Ballong</a>
+            <a href="games" class="active">Kalas</a>
             <div id="myLinks">
                 <a href="games">Lekar</a>
                 <a href="team_green">Lag Grön</a>
@@ -93,9 +93,9 @@
                 transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0);
             }
 
-            65% {
+            /* 65% {
                 transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0) scale3d(1, 1, 1);
-            }
+            } */
 
             /* 80% {
                 transform: rotate3d(0, 0, 1, -5deg) scale3d(1.05, 1.05, 1);
@@ -108,8 +108,8 @@
 
      .scene {
         display: inline-block;
-        width: 390px;
-        height: 520px;
+        width: 380px;
+        height: 527.5px;
         margin: 0px 0;
         perspective: 600px;
         animation: cardAppear 1.4s forwards;
@@ -156,10 +156,9 @@
         }
 
         img {
-            width: 390px; /* måste anges */
-            height: 520px;
-            object-fit: contain;
-            border-radius: 20px;
+            width: 100%; /* måste anges */
+            height: 100%;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -169,7 +168,7 @@
     <div class="scene scene--card">
         <div class="card">
             <div class="card__face card__face--front">
-                <img src="images/pmon_adam.JPG">
+                <img src="images/pmon_ellen.JPG">
             </div>
             <div class="card__face card__face--back">
                 <h1>Adam</h1>
