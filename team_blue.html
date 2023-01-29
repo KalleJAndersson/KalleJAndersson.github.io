@@ -58,193 +58,141 @@
             background-color: #b9d3c9;
             color: white;
         }
-</style>
-<style>
-    @viewport {
-        width: device-width ;
-        zoom: 1.0 ;
-    }
-        body {
-            font-family: Arial, Helvetica, sans-serif;
+    </style>
+    <div class="mobile-container">
+
+        <!-- Top Navigation Menu -->
+        <div class="topnav">
+            <a href="" class="active">Ballong</a>
+            <div id="myLinks">
+                <a href="games">Lekar</a>
+                <a href="team_green">Lag Grön</a>
+                <a href="team_blue">Lag Blå</a>
+            </div>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <br>
+
+        <!-- End smartphone / tablet look -->
+    </div>
+
+    <style>
+        @keyframes cardAppear {
+            0% {
+                transform: rotate3d(0, 0, 1, 15deg) translate3d(0, -100vh, 0);
+            }
+
+            30% {
+                transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0);
+            }
+
+            65% {
+                transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0) scale3d(1, 1, 1);
+            }
+
+            80% {
+                transform: rotate3d(0, 0, 1, -5deg) scale3d(1.05, 1.05, 1);
+            }
         }
 
-.flip-card {
-  background-color: transparent;
-  width: 100%;
-  height: auto;
-  perspective: 1000px;
-  border-radius: 25px;
-  animation: cardAppear 1.4s forwards;
-}
+        body {
+            font-family: sans-serif;
+        }
 
-@keyframes cardAppear {
-  0% {
-    transform: rotate3d(0,0,1,15deg) translate3d(0,-100vh,0);
-  }
-  30% {
-    transform: rotate3d(0,0,0,0deg) translate3d(0,0,0);
-  }
-  65% {
-    transform: rotate3d(0,0,0,0deg) translate3d(0,0,0) scale3d(1,1,1);
-  }
-  80% {
-    transform: rotate3d(0,0,1,-5deg) scale3d(1.05,1.05,1);
-  }
-}
+     .scene {
+        display: inline-block;
+        width: 390px;
+        height: 520px;
+        margin: 0px 0;
+        perspective: 600px;
+        animation: cardAppear 1.4s forwards;
+        padding-left: 10px;
+        border-radius: 10px;
+        }
 
-.flip-card-inner {
-  border-radius: 25px;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 1s;
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  &.card--flipped { animation: cardFlip .275s forwards linear }
-  &.card--unflip { animation: cardUnFlip .275s forwards linear }
-}
+        .card {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transform-origin: center right;
+            transition: transform 1s;
+        }
 
-@keyframes cardFlip {
-  0% {
-    transform: rotateZ(0deg) rotateY(180deg);
-  }
-  50% {
-    transform: rotateZ(-10deg) rotateY(90deg);
-  }
-  100% {
-    transform: rotateZ(0deg) rotateY(0deg);
-  }
-}
+        .card.is-flipped {
+            transform: translateX(-100%) rotateY(-180deg);
+        }
 
-@keyframes cardUnFlip {
-  0% {
-    transform: rotateZ(0deg) rotateY(0deg);
-  }
-  50% {
-    transform: rotateZ(-10deg) rotateY(90deg);
-  }
-  100% {
-    transform: rotateZ(0deg) rotateY(180deg);
-  }
-}
+        .card__face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            line-height: 260px;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            font-size: 40px;
+            backface-visibility: hidden;
+        }
 
-.flip-card:active .flip-card-inner {
-  transform: rotateY(180deg);
-}
+        .card__face--front {
+            background: rgb(255, 255, 255);
+        }
 
-.flip-card-front, .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
+        .card__face--back {
+            background: rgb(145, 187, 221);
+            transform: rotateY(180deg);
+        }
 
-.flip-card-front {
-  border-radius: 25px;
-  background-color: white;
-  color: black;
-  /* backface-visibility: hidden; */
-}
-
-.flip-card-back {
-  border-radius: 25px;
-  background-color: #2980b9;
-  color: white;
-  transform: rotateY(180deg);
-}
-
+        img {
+            object-fit: contain;
+        }
     </style>
-
-        <div class="mobile-container">
-
-            <!-- Top Navigation Menu -->
-            <div class="topnav">
-                <a class="active">Ballong</a>
-                <div id="myLinks">
-                    <a href="index">Lekar</a>
-                    <a href="team_green">Lag Grön</a>
-                    <a href="team_blue">Lag Blå</a>
-                </div>
-                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                    <i class="fa fa-bars"></i>
-                </a>
-            </div>
-
-            <div style="padding-left:16px">
-                <h3>Vertical Mobile Navbar</h3>
-            </div>
-
-            <!-- End smartphone / tablet look -->
-        </div>
 </head>
 
 <body>
 
-
-
-    <!-- <h1>Lag Blå</h1> -->
-
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/pmon_adam.JPG" style="width:80%;height:80%;">
+    <div class="scene scene--card">
+        <div class="card">
+            <div class="card__face card__face--front">
+                <img src="images/pmon_adam.JPG">
             </div>
-            <div class="flip-card-back">
+            <div class="card__face card__face--back">
                 <h1>Adam</h1>
                 <br>
-                <p></p>
+                <p>sddsknlvldsn</p>
             </div>
+
         </div>
-
-    </div>
-    <!-- <br>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/pmon_adam.JPG" style="width:509px;height:700px;">
-            </div>
-            <div class="flip-card-back">
-                <h1>Adam</h1>
-                <br>
-                <p></p>
-            </div>
-        </div> -->
-
     </div>
     <br>
-    <div class="flip-card" ontouchstart="">
-        <div class="flip-card-inner" id="flip-card">
-            <div class="flip-card-front">
-                <img src="images/pmon_adam.JPG" style="width:509px;height:700px;">
+
+    <div class="scene scene--card">
+        <div class="card">
+            <div class="card__face card__face--front">
+                <img src="images/pmon_adam.JPG">
             </div>
-            <div class="flip-card-back">
-                <h1>Adam</h1>
+            <div class="card__face card__face--back">
+                <h1>Ellen</h1>
                 <br>
                 <p></p>
             </div>
         </div>
-
     </div>
 
+</body>
 
 <script>
-    let card = document.getElementById("flip-card");
+    var cards = document.querySelectorAll('.card');
 
-    card.addEventListener('click', function (e) {
-        console.log('log')
-            e.stopPropagation();
-            if (card.classList.contains('card--flipped')) {
-                card.classList.add('card--unflip');
-                setTimeout(function () {
-                    card.classList.remove('card--flipped', 'card--unflip');
-                }, 500);
-            }
-            else {
-                card.classList.add("card--flipped");
-            }
+    [...cards].forEach((card) => {
+        card.addEventListener('click', function () {
+            card.classList.toggle('is-flipped');
         });
+    });
 </script>
 
 <script>
@@ -258,7 +206,5 @@
         }
     }
 </script>
-
-</body>
 
 </html>
