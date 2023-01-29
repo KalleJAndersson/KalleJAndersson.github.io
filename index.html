@@ -1,69 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
 
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-        background-color: #d0e0da;
-    }
 
-    .mobile-container {
-        /* max-width: 480px; */
-        /* margin: auto; */
-        /* background-color: #555; */
-        /* height: 500px; */
-        color: white;
-        border-radius: 10px;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <title>Home</title>
 
-    .topnav {
-        overflow: hidden;
-        background-color: #333;
-        position: relative;
-    }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: white;
+        }
 
-    .topnav #myLinks {
-        display: none;
-    }
+        .mobile-container {
+            /* max-width: 480px; */
+            margin: auto;
+            /* background-color: #555; */
+            /* height: 500px; */
+            color: white;
+            border-radius: 10px;
+        }
 
-    .topnav a {
-        color: white;
-        padding: 32px 48px;
-        text-decoration: none;
-        font-size: 17px;
-        display: block;
-    }
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+            position: relative;
+        }
 
-    .topnav a.icon {
-        background: black;
-        display: block;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
+        .topnav #myLinks {
+            display: none;
+        }
 
-    .topnav a:hover {
-        background-color: #ddd;
-        color: black;
-    }
+        .topnav a {
+            color: white;
+            padding: 32px 48px;
+            text-decoration: none;
+            font-size: 17px;
+            display: block;
+        }
 
-    .active {
-        background-color: #04AA6D;
-        color: white;
-    }
-</style>
-</head>
+        .topnav a.icon {
+            background: rgb(122, 156, 113);
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
 
-<body>
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
 
-    <!-- Simulate a smartphone / tablet -->
+        .active {
+            background-color: #b9d3c9;
+            color: white;
+        }
+    </style>
     <div class="mobile-container">
 
         <!-- Top Navigation Menu -->
         <div class="topnav">
-            <a href="#home" class="active">Logo</a>
+            <a class="active">Ballong</a>
             <div id="myLinks">
                 <a href="index">Lekar</a>
                 <a href="team_green">Lag Grön</a>
@@ -74,24 +76,33 @@
             </a>
         </div>
 
-        <div style="padding-left:16px">
-            <h3>Vertical Mobile Navbar</h3>
-        </div>
 
         <!-- End smartphone / tablet look -->
     </div>
 
-    <script>
-        function myFunction() {
-            var x = document.getElementById("myLinks");
-            if (x.style.display === "block") {
-                x.style.display = "none";
-            } else {
-                x.style.display = "block";
-            }
+    <style>
+        body {
+            background-image: url('images/pmon_adam.JPG');
         }
-    </script>
+    </style>
+</head>
+
+<body>
 
 </body>
+
+
+
+<script>
+    function myFunction() {
+        console.log('hhhh')
+        var x = document.getElementById("myLinks");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+</script>
 
 </html>
