@@ -93,7 +93,7 @@
                 transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0);
             }
 
-            /* 65% {
+            /* 65%
                 transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0) scale3d(1, 1, 1);
             } */
 
@@ -108,10 +108,8 @@
 
      .scene {
         display: inline-block;
-        /* width: 380px;
-        height: 527.5px; */
-             width: 100%;
-            height: 72%;
+        width: 380px;
+        height: 527.5px;
         margin: 0px 0;
         perspective: 600px;
         animation: cardAppear 1.4s forwards;
@@ -120,6 +118,8 @@
 
         .card {
             position: relative;
+            width: 100%;
+            height: 100%;
             cursor: pointer;
             transform-style: preserve-3d;
             transform-origin: center right;
@@ -154,15 +154,20 @@
         }
 
         img {
-           width: 100%;
-            height: 72%;
+            width: 100%; /* måste anges */
+            height: 100%;
             object-fit: cover;
         }
 
         .txt {
             padding-left: 10px;
             padding-bottom: 10px;
-            font-family: "helvetica", "arial", "cursive"
+            font-family: "papurys", "arial""cursive"
+        }
+
+        .responsive {
+            width: 100%;
+            height: auto;
         }
 
     </style>
@@ -176,7 +181,7 @@
 
     </div>
 
-    <div class="scene scene--card">
+    <div class="responsive scene scene--card">
         <div class="card">
             <div class="card__face card__face--front">
                 <img src="images/pmon_adam.png">
