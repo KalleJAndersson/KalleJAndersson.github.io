@@ -107,9 +107,11 @@
         }
 
      .scene {
-        display: absolute;
-        width: 380px;
-        height: 527.5px;
+        display: relative;
+        /* width: 380px; */
+        width: 'device-width';
+        padding-bottom: 138.815789474%;
+        /* height: 527.5px; */
         margin: 0px 0;
         perspective: 600px;
         animation: cardAppear 1.4s forwards;
@@ -163,11 +165,6 @@
             padding-left: 10px;
             padding-bottom: 10px;
             font-family: "papurys", "arial""cursive"
-        }
-
-        .responsive {
-            width: 100%;
-            height: auto;
         }
 
     </style>
