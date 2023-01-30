@@ -183,7 +183,37 @@
 </style>
 </head>
 
-<body>
+<style type="text/css">
+  .mobileShow {
+    display: none;
+  }
+
+  /* Smartphone Portrait and Landscape */
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .mobileShow {
+      display: inline;
+    }
+  }
+</style>
+
+<style type="text/css">
+  .mobileHide {
+    display: inline;
+  }
+
+  /* Smartphone Portrait and Landscape */
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .mobileHide {
+      display: none;
+    }
+  }
+</style>
+
+<body class="mobileHide">
+  Jag skulle använda mobilen istället
+</body>
+
+<body class="mobileShow">
 
     <div class="txt">
       Det uppenbart vassare laget. <br>
