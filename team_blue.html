@@ -186,7 +186,20 @@
     </style>
 </head>
 
-<body>
+<style type="text/css">
+    .mobileShow {
+        display: none;
+    }
+
+    /* Smartphone Portrait and Landscape */
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        .mobileShow {
+            display: inline;
+        }
+    }
+</style>
+
+<body class="mobileShow">
 
     <div
     class="txt">
@@ -284,7 +297,10 @@
                     <div class="font">
                         <h1>Anna</h1>
                         <br>
-                        <p>Myror i brallan. </p>
+                        <p>
+                            Atleten som ger myror i brallan ett ansikte.
+                            Tävlar idag på absoluta hemmaplan. Uppvuxen med gymnastik och rörelse och är en oljad blixt i skidbacken.
+                            Framtida hobby är fiske. </p>
                     </div>
                 </div>
             </div>
@@ -344,7 +360,11 @@
                         <h1>Filip</h1>
                         <br>
                         <p>
-                            Oj oj</p>
+                            En framgångsrik elitatlet instängd i en långsmal lastbilschaufför.
+                            Gjorde sitt senaste seriösa träningspass sent 90-tal.
+                            En storebror i motståndarlaget och två barn i hejarklacken.
+                            Är beredd att riskera hus och hem för vinst.
+                        </p>
                         </p>
                     </div>
                 </div>
