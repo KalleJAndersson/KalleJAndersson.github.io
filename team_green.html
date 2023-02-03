@@ -65,22 +65,12 @@
             font-family: "PHW00-900WideCaps", "cursive"
         }
 
-        .responsive {
-        width: 100%;
-        height: auto;
-        }
-
-        .sticky {
-          position: fixed;
-          top: 0;
-          width: 100%;
-        }
         </style>
                 <div class="mobile-container">
 
                   <!-- Top Navigation Menu -->
-                <div class="topnav" id="navbar">
-                  <a href="" class="active"><i class="fa fa-gift"></i></a>
+                <div class="topnav">
+                  <a href="" class="active">Ballong</a>
                   <div id="myLinks"class="active">
                     <a href="index">Lekar</a>
                     <a href="team_green">Gröna laget</a>
@@ -197,7 +187,7 @@
   }
 </style>
 
-<body class="">
+<body class="mobileShow">
 
     <div class="txt">
       Det uppenbart vassare laget. <br>
@@ -427,20 +417,6 @@
         }
     }
 
-
-    window.onscroll = function () { myFunction() };
-
-    var navbar = document.getElementById("navbar");
-    var sticky = navbar.offsetTop;
-
-    // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-    function myFunction() {
-      if (window.pageYOffset >= sticky) {
-        navbar.classList.add("sticky")
-      } else {
-        navbar.classList.remove("sticky");
-      }
-    }
 </script>
 
 
