@@ -66,21 +66,20 @@
       background-color: rgba(127, 215, 165, 255);
       color: white;
       font-family: "PHW00-900WideCaps", "cursive";
-      padding: 320px 48px;
     }
   </style>
   <div class="mobile-container">
 
     <!-- Top Navigation Menu -->
     <div class="topnav">
-      <a href="" class="active"><i class="fa fa-gift"></i></a>
+      <a href="" class="active"><p id="demo"></p></a>
       <div id="myLinks" class="active">
         <a href="index">Lekar</a>
         <a href="team_green">Gröna laget</a>
         <a href="team_blue">Blåa laget</a>
       </div>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="fa fa-bars"></i>
+        <i class="fa fa-gift"></i>
       </a>
     </div>
     <br>
@@ -428,6 +427,37 @@
     }
 
 </script>
+
+    <script>
+      // Set the date we're counting down to
+      var countDownDate = new Date("Feb 11, 2023 15:00:00").getTime();
+
+      // Update the count down every 1 second
+      var x = setInterval(function () {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+          + minutes + "m " + seconds + "s ";
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+      }, 1000);
+    </script>
 
 
 
