@@ -6,16 +6,6 @@
     src: url("//db.onlinewebfonts.com/t/ff4e5c74af05cfbee4b427dc537e16f9.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/ff4e5c74af05cfbee4b427dc537e16f9.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/ff4e5c74af05cfbee4b427dc537e16f9.woff") format("woff"), url("//db.onlinewebfonts.com/t/ff4e5c74af05cfbee4b427dc537e16f9.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/ff4e5c74af05cfbee4b427dc537e16f9.svg#PHW00-900WideCaps") format("svg");
 }
 
-@keyframes cardAppear {
-    0% {
-        transform: rotate3d(0, 0, 1, 15deg) translate3d(0, -100vh, 0);
-    }
-
-    30% {
-        transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0);
-    }
-}
-
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: white;

@@ -41,9 +41,19 @@
       display: inline;
     }
   }
+
+  @keyframes cardAppear {
+    0% {
+        transform: rotate3d(0, 0, 1, 15deg) translate3d(0, -100vh, 0);
+    }
+
+    30% {
+        transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0);
+    }
+}
 </style>
 
-<body class="mobileShow">
+<body class="">
 
     <div class="txt">
       Det uppenbart vassare laget. <br>
