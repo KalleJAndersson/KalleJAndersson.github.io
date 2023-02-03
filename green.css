@@ -1,0 +1,144 @@
+@import url(//db.onlinewebfonts.com/c/ff4e5c74af05cfbee4b427dc537e16f9?family=PHW00-900WideCaps);
+
+@font-face {
+    font-family: "PHW00-900WideCaps";
+    src: url("//db.onlinewebfonts.com/t/ff4e5c74af05cfbee4b427dc537e16f9.eot");
+    src: url("//db.onlinewebfonts.com/t/ff4e5c74af05cfbee4b427dc537e16f9.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/ff4e5c74af05cfbee4b427dc537e16f9.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/ff4e5c74af05cfbee4b427dc537e16f9.woff") format("woff"), url("//db.onlinewebfonts.com/t/ff4e5c74af05cfbee4b427dc537e16f9.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/ff4e5c74af05cfbee4b427dc537e16f9.svg#PHW00-900WideCaps") format("svg");
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+.mobile-container {
+    /* max-width: 480px; */
+    /* margin: auto; */
+    /* background-color: #555; */
+    /* height: 500px; */
+    color: white;
+    border-radius: 10px;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #d8ecd3;
+    position: relative;
+}
+
+.topnav #myLinks {
+    display: none;
+}
+
+.topnav a {
+    color: white;
+    padding: 32px 48px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+}
+
+.topnav a.icon {
+    background: rgba(174, 221, 161, 255);
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.active {
+    background-color: rgba(127, 215, 165, 255);
+    color: white;
+    font-family: "PHW00-900WideCaps", "cursive";
+}
+
+body {
+    font-family: sans-serif;
+}
+
+.scene {
+    display: relative;
+    /* width: 380px; */
+    width: 'device-width';
+    padding-bottom: 138.815789474%;
+    /* height: 527.5px; */
+    margin: 0px 0;
+    perspective: 600px;
+    animation: cardAppear 1.4s forwards;
+    border-radius: 20px;
+}
+
+.card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform-origin: center right;
+    transition: transform 1s;
+    border-radius: 20px;
+}
+
+.card.is-flipped {
+    transform: translateX(-100%) rotateY(-180deg);
+}
+
+.card__face {
+    position: absolute;
+    color: white;
+    text-align: center;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    width: 'device-width';
+    /* padding-bottom: 138.815789474%; */
+}
+
+.card__face--front {
+    background: rgb(255, 255, 255);
+    border-radius: 20px;
+    /* width: 100%;
+        height: 100%; */
+}
+
+.card__face--back {
+    background: rgb(158, 206, 158);
+    transform: rotateY(180deg);
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+img {
+    width: 100%;
+    /* måste anges */
+    height: 100%;
+    object-fit: cover;
+}
+
+.txt {
+    padding-left: 10px;
+    padding-bottom: 10px;
+    font-family: "PHW00-900WideCaps", "cursive"
+}
+
+.font {
+    font-family: "PHW00-900WideCaps", "cursive";
+    /* font-weight: bold; */
+    font-size: 30px;
+}
+
+.mobileShow {
+    display: none;
+}
+
+/* Smartphone Portrait and Landscape */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .mobileShow {
+        display: inline;
+    }
+}
