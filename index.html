@@ -14,7 +14,6 @@
         var countDownDate = new Date("Feb 11, 2023 15:00:00").getTime();
         var x = setInterval(
             function () {
-                document.getElementById("demo").innerHTML = " ";
                 var now = new Date().getTime();
                 var distance = countDownDate - now;
                 var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -37,7 +36,7 @@
     <div class="mobile-container mobileShow">
 
             <div class="topnav">
-                <a href="" class="active" id="demo"></a>
+                <a href="" class="active" id="demo">kalas om</a>
                 <div id="myLinks" class="active">
                     <a href="index">Lekar</a>
                     <a href="team_green">Gröna laget</a>
