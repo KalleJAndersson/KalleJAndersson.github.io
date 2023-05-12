@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Kalas!!</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+        function setTime(){
+        var countDownDate = new Date("Feb 11, 2023 15:00:00").getTime();
+        var x = setInterval(
+            function () {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                    + minutes + "m " + seconds + "s ";
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "KALAS!!";
+                }
+            }, 1000);
+            }
+        // window.onbeforeprint() = setTime()
+    </script>
+
+    <div class="mobile-container mobileShow">
+
+            <div class="topnav">
+                <a href="" class="active" id="demo">kalas om</a>
+                <div id="myLinks" class="active">
+                    <a href="index">Lekar</a>
+                    <a href="team_green">Gröna laget</a>
+                    <a href="team_blue">Blåa laget</a>
+                </div>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-gift"></i>
+                </a>
+            </div>
+    </div>
+</head>
+
+<body onpageshow="setTime()">
+    <img src="images/ghost.JPG" alt="Nature" class="responsive">
+    <img src="images/smyg.JPG" alt="Nature" class="responsive">
+    <img src="images/stafett1.JPG" alt="Nature" class="responsive">
+    <img src="images/stafett2.JPG" alt="Nature" class="responsive">
+    <img src="images/ballong.JPG" alt="Nature" class="responsive">
+</body>
+
+<!-- <script>
+    // function setTime(){
+        var countDownDate = new Date("Feb 11, 2023 15:00:00").getTime();
+        var x = setInterval(
+            function () {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "KALAS!!";
+            }
+        }, 1000);
+        // }
+    // window.onPaint() = setTime()
+</script> -->
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myLinks");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+</script>
