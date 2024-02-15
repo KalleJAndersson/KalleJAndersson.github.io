@@ -19,14 +19,14 @@
         }
 
         .card {
-            background-color: #ff9b58;;
+            background-color: #ff9b58;
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 20px;
             text-align: center;
             cursor: pointer;
             transition: transform 0.3s ease;
-            min-height: 140px;
+            min-height: 150px;
         }
 
         .card:hover {
@@ -42,12 +42,16 @@
 
         .card.flipped img {
             display: block;
-            max-height: 160px;
-            text-align: center;
+            max-height: 150px;
         }
 
         .card.flipped span {
             display: none; /* Hide the number when the card is flipped */
+        }
+
+        .thetext {
+            text-align: center;
+
         }
     </style>
 </head>
@@ -81,6 +85,11 @@
         <div class="card" onclick="flipCard(this)"><span><br><br><br><br>22</span><img src="images/black4.JPG" alt="Image 22"></div>
         <div class="card" onclick="flipCard(this)"><span><br><br><br><br>23</span><img src="images/red3.JPG" alt="Image 23"></div>
         <div class="card" onclick="flipCard(this)"><span><br><br><br><br>24</span><img src="images/yellow3.JPG" alt="Image 24"></div>
+    </div>
+
+    <div>
+        <h2 class="thetext"
+        >Hobby - Träning - Skönhet - Kläder - Snax - Choklad </h2>
     </div>
 
 
