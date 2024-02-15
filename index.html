@@ -116,10 +116,11 @@
     <script>
         function flipCard(card) {
             card.classList.toggle('flipped');
-            addConfetti()
+            addConfetti();
         }
 
         function addConfetti() {
+            console.log('confetti')
             const confettiContainer = document.getElementById('confetti-container');
             const confetti = document.createElement('div');
             confetti.classList.add('confetti');
