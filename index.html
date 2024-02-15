@@ -14,8 +14,15 @@
         .container {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 10px;
+            gap: 15px;
             padding: 20px;
+        }
+
+        .background {
+            background-image: url('images/beach.jpg'); /* Replace 'background-image.jpg' with your actual image path */
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Adjust as needed */
         }
 
         .card {
@@ -23,7 +30,7 @@
             flex-direction: column; /* Stack items vertically */
             justify-content: center; /* Center items vertically */
             align-items: center; /* Center items horizontally */
-            background-color: #ff9b58;
+            background-color: #58e6ff;
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 20px;
@@ -70,10 +77,34 @@
             text-align: center;
         }
 
+
+
+    .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background-color: #ffcc00;
+        /* You can change the color */
+        border-radius: 50%;
+        animation: confettiAnimation 3s ease-out infinite;
+    }
+
+    @keyframes confettiAnimation {
+        0% {
+            transform: translate(0, 0) rotate(0deg);
+        }
+
+        100% {
+            transform: translate(calc(100vw - 20px), calc(100vh - 20px)) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
     </style>
 </head>
 
 <body>
+<div class="background">
 <h1 class="fargfemman-heading">🎉🎈 Färgfemman 🎈🎉</h1>
     <div class="container">
 
@@ -111,7 +142,7 @@
 
     <div id="confetti-container"></div>
 
-
+    </div>
 
     <script>
         function flipCard(card) {
