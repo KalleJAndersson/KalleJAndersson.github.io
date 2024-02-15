@@ -13,7 +13,7 @@
 
         .container {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             gap: 10px;
             padding: 20px;
         }
@@ -34,7 +34,7 @@
         }
 
         .card img {
-            display: none;
+            /* display: none; */
             max-width: 100%;
             height: auto;
 
@@ -43,7 +43,8 @@
         .card.flipped img {
             display: block;
             background-color: #990bc4;
-            max-height: 180px;
+            max-height: 160px;
+            text-align: center;
         }
 
         .card.flipped span {
@@ -81,7 +82,6 @@
         <div class="card" onclick="flipCard(this)"><span><br><br><br><br>22</span><img src="image_22.jpg" alt="Image 22"></div>
         <div class="card" onclick="flipCard(this)"><span><br><br><br><br>23</span><img src="image_23.jpg" alt="Image 23"></div>
         <div class="card" onclick="flipCard(this)"><span><br><br><br><br>24</span><img src="image_24.jpg" alt="Image 24"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>25</span><img src="image_25.jpg" alt="Image 25"></div>
     </div>
 
 
