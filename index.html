@@ -4,38 +4,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Kalas!!</title>
+    <title>Card Grid</title>
+    <link rel="stylesheet" href="ffstyles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        .container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            padding: 20px;
+        }
 
-    <div class="mobile-container mobileShow">
+        .card {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
 
-        <!-- <div class="topnav">
-            <a href="" class="active" id="demo">kalas om</a>
-            <div id="myLinks" class="active">
-                <a href="index">Lekar</a>
-            </div>
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                <i class="fa fa-gift"></i>
-            </a>
-        </div> -->
-    </div>
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            display: none;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .card.flipped img {
+            display: block;
+        }
+    </style>
 </head>
 
-<body >
-    <img src="images/ghost.JPG" alt="Nature" class="responsive">
+<body>
+<h1 class="fargfemman-heading">Färgfemman</h1>
+    <div class="container">
+        <!-- Cards -->
+        <div class="card" onclick="flipCard(this)">1<img src="image_1.jpg" alt="Image 1"></div>
+        <div class="card" onclick="flipCard(this)">2<img src="image_2.jpg" alt="Image 2"></div>
+        <div class="card" onclick="flipCard(this)">3<img src="image_3.jpg" alt="Image 3"></div>
+        <div class="card" onclick="flipCard(this)">4<img src="image_4.jpg" alt="Image 4"></div>
+        <div class="card" onclick="flipCard(this)">5<img src="image_5.jpg" alt="Image 5"></div>
+        <div class="card" onclick="flipCard(this)">6<img src="image_6.jpg" alt="Image 6"></div>
+        <div class="card" onclick="flipCard(this)">7<img src="image_7.jpg" alt="Image 7"></div>
+        <div class="card" onclick="flipCard(this)">8<img src="image_8.jpg" alt="Image 8"></div>
+        <div class="card" onclick="flipCard(this)">9<img src="image_9.jpg" alt="Image 9"></div>
+        <div class="card" onclick="flipCard(this)">10<img src="image_10.jpg" alt="Image 10"></div>
+        <div class="card" onclick="flipCard(this)">11<img src="image_11.jpg" alt="Image 11"></div>
+        <div class="card" onclick="flipCard(this)">12<img src="image_12.jpg" alt="Image 12"></div>
+        <div class="card" onclick="flipCard(this)">13<img src="image_13.jpg" alt="Image 13"></div>
+        <div class="card" onclick="flipCard(this)">14<img src="image_14.jpg" alt="Image 14"></div>
+        <div class="card" onclick="flipCard(this)">15<img src="image_15.jpg" alt="Image 15"></div>
+        <div class="card" onclick="flipCard(this)">16<img src="image_16.jpg" alt="Image 16"></div>
+        <div class="card" onclick="flipCard(this)">17<img src="image_17.jpg" alt="Image 17"></div>
+        <div class="card" onclick="flipCard(this)">18<img src="image_18.jpg" alt="Image 18"></div>
+        <div class="card" onclick="flipCard(this)">19<img src="image_19.jpg" alt="Image 19"></div>
+        <div class="card" onclick="flipCard(this)">20<img src="image_20.jpg" alt="Image 20"></div>
+        <div class="card" onclick="flipCard(this)">21<img src="image_21.jpg" alt="Image 21"></div>
+        <div class="card" onclick="flipCard(this)">22<img src="image_22.jpg" alt="Image 22"></div>
+        <div class="card" onclick="flipCard(this)">23<img src="image_23.jpg" alt="Image 23"></div>
+        <div class="card" onclick="flipCard(this)">24<img src="image_24.jpg" alt="Image 24"></div>
+        <div class="card" onclick="flipCard(this)">25<img src="image_25.jpg" alt="Image 25"></div>
+    </div>
+
+    <script>
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+    </script>
 </body>
 
-
-<script>
-    function myFunction() {
-        var x = document.getElementById("myLinks");
-        if (x.style.display === "block") {
-            x.style.display = "none";
-        } else {
-            x.style.display = "block";
-        }
-    }
-</script>
+</html>

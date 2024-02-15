@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+.fargfemman-heading {
+    font-family: 'Roboto', sans-serif;
+    /* Use a similar font */
+    font-size: 36px;
+    /* Adjust font size as needed */
+    color: #ff6600;
+    /* Adjust color to match the segment */
+    text-transform: uppercase;
+    /* Convert text to uppercase */
+    letter-spacing: 2px;
+    /* Adjust letter spacing for better appearance */
+    text-align: center;
+    /* Center the heading */
+}
