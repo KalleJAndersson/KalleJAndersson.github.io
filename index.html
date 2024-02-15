@@ -19,6 +19,10 @@
         }
 
         .card {
+            display: flex; /* Use flexbox */
+            flex-direction: column; /* Stack items vertically */
+            justify-content: center; /* Center items vertically */
+            align-items: center; /* Center items horizontally */
             background-color: #ff9b58;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -27,6 +31,11 @@
             cursor: pointer;
             transition: transform 0.3s ease;
             min-height: 150px;
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
         }
 
         .card:hover {
@@ -64,30 +73,30 @@
     <div class="container">
 
         <!-- Cards -->
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>1</span><img src="images/blue1.JPG" alt="Image 1"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>2</span><img src="images/yellow1.JPG" alt="Image 2"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>3</span><img src="images/green1.JPG" alt="Image 3"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>4</span><img src="images/blue2.JPG" alt="Image 4"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>5</span><img src="images/red1.JPG" alt="Image 5"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>6</span><img src="images/purple1.JPG" alt="Image 6"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>7</span><img src="images/yellow2.JPG" alt="Image 7"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>8</span><img src="images/red2.JPG" alt="Image 8"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>9</span><img src="images/purple2.JPG" alt="Image 9"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>10</span><img src="images/green2.JPG" alt="Image 10"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>11</span><img src="images/black2.JPG" alt="Image 11"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>12</span><img src="images/green3.JPG" alt="Image 12"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>13</span><img src="images/blue4.JPG" alt="Image 13"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>14</span><img src="images/black1.JPG" alt="Image 14"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>15</span><img src="images/purple4.JPG" alt="Image 15"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>16</span><img src="images/purple3.JPG" alt="Image 16"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>17</span><img src="images/red4.JPG" alt="Image 17"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>18</span><img src="images/green4.JPG" alt="Image 18"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>19</span><img src="images/black3.JPG" alt="Image 19"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>20</span><img src="images/yellow4.JPG" alt="Image 20"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>21</span><img src="images/blue3.JPG" alt="Image 21"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>22</span><img src="images/black4.JPG" alt="Image 22"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>23</span><img src="images/red3.JPG" alt="Image 23"></div>
-        <div class="card" onclick="flipCard(this)"><span><br><br><br><br>24</span><img src="images/yellow3.JPG" alt="Image 24"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>1</span><img src="images/blue1.JPG" alt="Image 1"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>2</span><img src="images/yellow1.JPG" alt="Image 2"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>3</span><img src="images/green1.JPG" alt="Image 3"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>4</span><img src="images/blue2.JPG" alt="Image 4"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>5</span><img src="images/red1.JPG" alt="Image 5"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>6</span><img src="images/purple1.JPG" alt="Image 6"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>7</span><img src="images/yellow2.JPG" alt="Image 7"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>8</span><img src="images/red2.JPG" alt="Image 8"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>9</span><img src="images/purple2.JPG" alt="Image 9"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>10</span><img src="images/green2.JPG" alt="Image 10"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>11</span><img src="images/black2.JPG" alt="Image 11"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>12</span><img src="images/green3.JPG" alt="Image 12"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>13</span><img src="images/blue4.JPG" alt="Image 13"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>14</span><img src="images/black1.JPG" alt="Image 14"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>15</span><img src="images/purple4.JPG" alt="Image 15"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>16</span><img src="images/purple3.JPG" alt="Image 16"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>17</span><img src="images/red4.JPG" alt="Image 17"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>18</span><img src="images/green4.JPG" alt="Image 18"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>19</span><img src="images/black3.JPG" alt="Image 19"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>20</span><img src="images/yellow4.JPG" alt="Image 20"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>21</span><img src="images/blue3.JPG" alt="Image 21"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>22</span><img src="images/black4.JPG" alt="Image 22"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>23</span><img src="images/red3.JPG" alt="Image 23"></div>
+        <div class="card" onclick="flipCard(this)"><span><br>24</span><img src="images/yellow3.JPG" alt="Image 24"></div>
     </div>
 
     <div>
