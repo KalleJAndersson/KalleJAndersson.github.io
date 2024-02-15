@@ -26,7 +26,7 @@
             text-align: center;
             cursor: pointer;
             transition: transform 0.3s ease;
-            min-height: 80px;
+            min-height: 140px;
         }
 
         .card:hover {
@@ -42,6 +42,8 @@
 
         .card.flipped img {
             display: block;
+            background-color: #990bc4;
+            max-height: 180px;
         }
     </style>
 </head>
@@ -75,7 +77,11 @@
         <div class="card" onclick="flipCard(this)"><br><br>23<img src="image_23.jpg" alt="Image 23"></div>
         <div class="card" onclick="flipCard(this)"><br><br>24<img src="image_24.jpg" alt="Image 24"></div>
         <div class="card" onclick="flipCard(this)"><br><br>25<img src="image_25.jpg" alt="Image 25"></div>
+
+        <h2>Kläder</h2>
     </div>
+
+
 
     <script>
         function flipCard(card) {
