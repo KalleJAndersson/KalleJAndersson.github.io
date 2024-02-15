@@ -61,7 +61,21 @@
             max-width: 100%;
             height: auto;
             text-align: center;
+        }
 
+        .card.flipped {
+            display: flex; /* Use flexbox */
+            flex-direction: column; /* Stack items vertically */
+            justify-content: center; /* Center items vertically */
+            align-items: center; /* Center items horizontally */
+            background-color: #585bff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            min-height: 150px;
         }
 
        .numbers {
