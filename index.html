@@ -109,11 +109,27 @@
         >Hobby - Träning - Skönhet - Kläder - Snax - Choklad </h2>
     </div>
 
+    <div id="confetti-container"></div>
+
 
 
     <script>
         function flipCard(card) {
             card.classList.toggle('flipped');
+            addConfetti()
+        }
+
+        function addConfetti() {
+            const confettiContainer = document.getElementById('confetti-container');
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confettiContainer.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }
+
+                , 3000); // Remove confetti after 3 seconds
         }
     </script>
 </body>
