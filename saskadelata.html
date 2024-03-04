@@ -298,14 +298,17 @@
 
             let number = 1
             data = cardData[songNbr].split(', ')
+            // YT link
             if (data.length >= 6) {
                 songLink = data[5];
                 data.splice(5, 1);
+                // song start
+                if (data.length >= 6) {
+                    songStart = data[5];
+                    data.splice(5, 1);
+                }
             }
-            if (data.length >= 7) {
-                songStart = data[6];
-                data.splice(6, 1);
-            }
+
             data.forEach(item => {
                 const card = document.createElement("div");
                 card.classList.add("card");
