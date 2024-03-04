@@ -276,7 +276,7 @@
 
         function nextSong() {
             songNbr += 1;
-            if(songTexts[songNbr].split(",").length != 5){
+            if(songTexts[songNbr].split(",").length < 5){
                 songNbr -= 1;
             } else {
                 generateCards(songTexts);
@@ -297,9 +297,13 @@
 
             let number = 1
             data = cardData[songNbr].split(', ')
-              if (data.length >= 6) {
+            if (data.length >= 6) {
                 songLink = data[5];
                 data.splice(5, 1);
+            }
+            if (data.length >= 7) {
+                songStart = data[6];
+                data.splice(6, 1);
             }
             data.forEach(item => {
                 const card = document.createElement("div");
