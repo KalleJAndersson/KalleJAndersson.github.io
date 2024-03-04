@@ -170,7 +170,7 @@
             <div class="buttons">
 
                     <button class="circle-min" onclick="minPoint(this, 1)"></button>
-                    <button class="circle-button"></button>
+                    <div id="pointTeam2"></div>
                     <button class="circle-max" onclick="maxPoint(this, 1)"></button>
 
                 <div class="play">
@@ -202,32 +202,38 @@
             }
         }
 
-        function getPoint(team) {
+        function setPoint(team) {
             console.log(team, 'team')
-            const resultDiv = document.getElementById('pointTeam2');
-            resultDiv.innerHTML = "<p>" + '10' + "</p>";
-            // if (team == 1) {
-            //     return teamOnePoints.toString();
-            // } else {
-            //     return teamOnePoints.toString();
-            // }
+            if(team == 1){
+                let resultDiv = document.getElementById('pointTeam1');
+                resultDiv.innerHTML = "<p>" + teamOnePoints + "</p>";
+            } else {
+                let resultDiv = document.getElementById('pointTeam2');
+                resultDiv.innerHTML = "<p>" + teamTwoPoints + "</p>";
+            }
+
         }
 
         function minPoint(team) {
-            if(team == 1){
-                console.log('min point for team 1')
+            if (team == 1) {
+                teamOnePoints -= 1
+                setPoint(1)
             } else {
-              console.log('min point for team 2')
+                teamTwoPoints -= 1
+                setPoint(2)
             }
         }
 
         function maxPoint(team) {
-                if (team == 1) {
-                    console.log('max point for team 1')
-                    getPoint()
-                } else {
-                    console.log('max point for team 2')
-                }
+            if (team == 1) {
+                console.log('max point for team 1')
+                teamOnePoints +=1
+                setPoint(1)
+            } else {
+                console.log('max point for team 2')
+                teamTwoPoints += 1
+                setPoint(2)
+            }
         }
 
         function nextSong() {
@@ -284,6 +290,8 @@
                 generateCards(dataLines);
             })
             .catch(error => console.error('Error fetching data:', error));
+        setPoint(1)
+        setPoint(2)
     </script>
 </body>
 
