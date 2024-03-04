@@ -170,7 +170,7 @@
             <div class="buttons">
 
                     <button class="circle-min" onclick="minPoint(this, 1)"></button>
-                    <div id="pointTeam2"></div>
+                    <div id="pointTeam1"></div>
                     <button class="circle-max" onclick="maxPoint(this, 1)"></button>
 
                 <div class="play">
@@ -269,6 +269,8 @@
                 container.appendChild(card);
                 number +=1;
             });
+            setPoint(1)
+            setPoint(2)
         }
 
         function getRandomColor() {
@@ -290,8 +292,6 @@
                 generateCards(dataLines);
             })
             .catch(error => console.error('Error fetching data:', error));
-        setPoint(1)
-        setPoint(2)
     </script>
 </body>
 
