@@ -19,12 +19,6 @@
 
         }
 
-        .video {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
 
         #videoContainer {
             display: none; /* Hide the video container by default */
@@ -242,24 +236,17 @@
             const videoContainer = document.getElementById('videoContainer');
             videoContainer.innerHTML = ''; // Clear previous content
             videoContainer.appendChild(iframe);
+            videoContainer.style.display = 'none';
         }
 
         // Function to toggle the visibility of the YouTube video
         function toggleYouTubeVideo() {
-            const videoContainer = document.getElementById('videoContainer');
-            if (videoContainer.style.display === 'none') {
-                // Show the video container
-                videoContainer.style.display = 'block';
-
-                // Embed the YouTube video (if not already embedded)
-                if (!videoContainer.querySelector('iframe')) {
-                    playSong(1);
-                }
-            } else {
-                // Hide the video container
-                videoContainer.style.display = 'none';
-                playSong(0)
+            if (songPlaying){
+                playSong('0')
+            }else{
+                playSong('1');
             }
+            songPlaying = !songPlaying
         }
 
         function minPoint(team) {
