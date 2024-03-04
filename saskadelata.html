@@ -188,7 +188,7 @@
 
     <script>
         let songNbr = 0
-        let dataLines;
+        let songTexts;
         let teamOnePoints = 0;
         let teamTwoPoints = 0;
 
@@ -202,7 +202,6 @@
         }
 
         function setPoint(team) {
-            console.log(team, 'team')
             if(team == 1){
                 let resultDiv = document.getElementById('pointTeam1');
                 resultDiv.innerHTML = "<p>" + teamOnePoints + "</p>";
@@ -235,19 +234,17 @@
 
         function nextSong() {
             songNbr += 1;
-            console.log(songNbr, 'song')
-            if(dataLines[songNbr].split(",").length != 5){
-
+            if(songTexts[songNbr].split(",").length != 5){
+                songNbr +- 1;
             } else {
-                generateCards(dataLines);
+                generateCards(songTexts);
             }
-
         }
 
         function prevSong() {
             if (songNbr > 0){
                 songNbr -= 1;
-                generateCards(dataLines);
+                generateCards(songTexts);
             }
         }
 
@@ -286,10 +283,8 @@
         fetch('cardData.txt')
             .then(response => response.text())
             .then(data => {
-                // Split the data into an array of lines
-                dataLines = data.trim().split('\n');
-                // Call the function to generate the cards with the data from the file
-                generateCards(dataLines);
+                songTexts = data.trim().split('\n');
+                generateCards(songTexts);
             })
             .catch(error => console.error('Error fetching data:', error));
     </script>
