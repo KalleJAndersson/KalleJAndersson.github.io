@@ -116,10 +116,12 @@
 
         function generateCards(cardData) {
             container.innerHTML = "";
+            console.log(cardData)
 
             // Loop through the card data and create a card for each item
+            let number = 1
             cardData.forEach(item => {
-                number = 1
+                console.log(item, 'item')
                 const [content] = item.split(',');
                 const card = document.createElement("div");
                 card.classList.add("card");
@@ -128,7 +130,7 @@
                     flipCard(this);
                 });
                 container.appendChild(card);
-                index +=1;
+                number +=1;
             });
         }
 
