@@ -95,7 +95,6 @@
             justify-content: center;
             align-items: center;
             background-color: #3a3efc;
-            border: 1px solid #3a3efc;
             border-radius: 5px;
             padding: 20px;
             text-align: center;
@@ -215,12 +214,12 @@
         }
 
         function getRandomColor() {
-                const letters = '0123456789ABCDEF';
-                let color = '#';
-                for (let i = 0; i < 6; i++) {
-                    color += letters[Math.floor(Math.random() * 16)];
-                }
-                return color;
+            const randomNumber = Math.floor(Math.random() * 100);
+            if (randomNumber < 80) {
+                return '#288538'; // Green color
+            } else {
+                return '#df5a42'; // Red color
+            }
             }
 
         // Fetch the content of the text file
