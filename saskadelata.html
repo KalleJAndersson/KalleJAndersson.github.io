@@ -169,16 +169,18 @@
     <script>
         let songNbr = 0
         let dataLines;
-        const flipped = document.getElementsByClassName('card.flipped');
+        const flipped = document.getElementsByClassName('card');
         function flipCard(card) {
             // Generate a random number between 0 and 99
             const randomNumber = Math.floor(Math.random() * 100);
 
             // If the random number is less than 80, apply green color, otherwise apply red color
             if (randomNumber < 80) {
-                flipped.backgroundColor = '#288538'; // Green color
+                console.log('green')
+                flipped.flipped.backgroundColor ='#288538'; // Green color
             } else {
-                flipped.backgroundColor = '#ff0000'; // Red color
+                console.log('red')
+                flipped.flipped.backgroundColor = '#ff0000'; // Red color
             }
             card.classList.toggle('flipped');
         }
