@@ -36,14 +36,25 @@
             height: 100%;
         }
 
-        .buttons {
+        .buttons  {
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        .buttons  p {
+            font-weight: bold;
+            font-size: 50px;
+            color: #f8f7f7;
+        }
+
+        .play {
+           margin-left: 20%;
+           margin-right: 20%;
 
         }
 
-        .circle-button, .circle-prev, .circle-next {
+        .circle-button, .circle-prev, .circle-next, .circle-min, .circle-max  {
             width: 50px; /* Adjust size as needed */
             height: 50px; /* Adjust size as needed */
             border-radius: 50%;
@@ -53,40 +64,39 @@
         }
 
         /* Add hover effect */
-        .circle-button:hover, .circle-prev:hover, .circle-next:hover {
+        .circle-button:hover, .circle-prev:hover, .circle-next:hover, .circle-min:hover, .circle-max:hover {
             background-color: #638dce; /* Lighter green color */
             cursor: pointer;
             /* display: flex; */
         }
 
-        .circle-button::after {
-            content: "";
-            display: block;
-            height:35px;
-            background-image: url("icons/play.svg"); /* Add path to icon image */
-            background-size: cover;
-            background-position: center;
-        }
-
-        /* Add icon or content inside the button */
-        .circle-next::after {
+        .circle-button::after, .circle-next::after, .circle-prev::after, .circle-min::after, .circle-max::after {
             content: "";
             display: block;
             width: 35px;
             height: 30px;
-            background-image: url("icons/next.svg"); /* Add path to icon image */
             background-size: cover;
             background-position: center;
         }
 
+        .circle-button::after {
+            background-image: url("icons/play.svg");
+        }
+
+        .circle-next::after {
+            background-image: url("icons/next.svg");
+        }
+
         .circle-prev::after {
-            content: "";
-            display: block;
-            width: 35px;
-            height:30px;
-            background-image: url("icons/previous.svg"); /* Add path to icon image */
-            background-size: cover;
-            background-position: center;
+            background-image: url("icons/previous.svg");
+        }
+
+        .circle-min::after {
+            background-image: url("icons/minus.png");
+        }
+
+        .circle-max::after {
+            background-image: url("icons/plus2.svg");
         }
 
         .card {
@@ -156,17 +166,32 @@
     <div class="background">
         <div class="content">
             <div class="container", id="container"></div>
+
             <div class="buttons">
-                <button class="circle-prev" onclick="prevSong(this)"></button>
-                <button class="circle-button"></button>
-                <button class="circle-next" onclick="nextSong(this)"></button>
+
+                    <button class="circle-min" onclick="minPoint(this, 1)"></button>
+                    <button class="circle-button"></button>
+                    <button class="circle-max" onclick="maxPoint(this, 1)"></button>
+
+                <div class="play">
+                    <button class="circle-prev" onclick="prevSong(this)"></button>
+                    <button class="circle-button"></button>
+                    <button class="circle-next" onclick="nextSong(this)"></button>
+                </div>
+
+                    <button class="circle-min" onclick="minPoint(this, 2)"></button>
+                    <div id="pointTeam2"></div>
+                    <button class="circle-max" onclick="maxPoint(this, 2)"></button>
             </div>
+
         </div>
     </div>
 
     <script>
         let songNbr = 0
         let dataLines;
+        let teamOnePoints = 0;
+        let teamTwoPoints = 0;
 
         function flipCard(card) {
             card.classList.toggle('flipped');
@@ -177,9 +202,36 @@
             }
         }
 
+        function getPoint(team) {
+            console.log(team, 'team')
+            const resultDiv = document.getElementById('pointTeam2');
+            resultDiv.innerHTML = "<p>" + '10' + "</p>";
+            // if (team == 1) {
+            //     return teamOnePoints.toString();
+            // } else {
+            //     return teamOnePoints.toString();
+            // }
+        }
+
+        function minPoint(team) {
+            if(team == 1){
+                console.log('min point for team 1')
+            } else {
+              console.log('min point for team 2')
+            }
+        }
+
+        function maxPoint(team) {
+                if (team == 1) {
+                    console.log('max point for team 1')
+                    getPoint()
+                } else {
+                    console.log('max point for team 2')
+                }
+        }
+
         function nextSong() {
             // TODO add check if no dataLines. // last song.
-            console.log('next song')
             songNbr += 1;
             console.log(dataLines)
             generateCards(dataLines);
@@ -220,7 +272,7 @@
             } else {
                 return '#df5a42'; // Red color
             }
-            }
+        }
 
         // Fetch the content of the text file
         fetch('cardData.txt')
