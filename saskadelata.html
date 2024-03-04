@@ -215,7 +215,9 @@
         function playSong() {
             const videoId = 'J06yQb4lbPk';
             const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-            window.open(embedUrl, '_blank');
+            const newTab = window.open(embedUrl, '_blank');
+            newTab.blur();
+            window.focus();
         }
 
         function minPoint(team) {
