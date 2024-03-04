@@ -149,9 +149,9 @@
         <div class="container", id="container">
         </div>
             <div class="buttons">
-                <button class="circle-prev" onclick="nextSong(this)"></button>
+                <button class="circle-prev" onclick="prevSong(this)"></button>
                 <button class="circle-button"></button>
-                <button class="circle-next"></button>
+                <button class="circle-next" onclick="nextSong(this)"></button>
 
                 <!-- <button class="circle-button"></button>
                 <button class="circle-button"></button> -->
@@ -165,7 +165,17 @@
         }
 
         function nextSong() {
-            songNbr += 1
+            console.log('next song')
+            songNbr += 1;
+            generateCards(lines);
+        }
+
+        function prevSong() {
+            console.log('prev song')
+            if (songNbr > 0){
+                songNbr -= 1;
+                generateCards(lines);
+            }
         }
 
         const container = document.getElementById("container");
