@@ -131,7 +131,6 @@
             justify-content: center;
             align-items: center;
             background-color: #288538;
-            border: 1px solid #288538;
             border-radius: 5px;
             padding: 20px;
             text-align: center;
@@ -139,7 +138,7 @@
             transition: transform 0.3s ease;
             min-height: 200px;
         }
-        .card.flipped:nth-child(5n+5) {
+        .card.flipped:nth-child() {
             background-color: #ff0000; /* Red color */
         }
 
@@ -216,14 +215,23 @@
                 const card = document.createElement("div");
                 card.classList.add("card");
                 card.innerHTML = `<span class="numbers">${number.toString()}</span><p>${content}</p>`;
+                card.style.backgroundColor = getRandomColor();
                 card.addEventListener("click", function () {
-                    // TODO green/red 08/02
                     flipCard(this);
                 });
                 container.appendChild(card);
                 number +=1;
             });
         }
+
+        function getRandomColor() {
+                const letters = '0123456789ABCDEF';
+                let color = '#';
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
 
         // Fetch the content of the text file
         fetch('cardData.txt')
