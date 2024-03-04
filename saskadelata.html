@@ -21,6 +21,56 @@
             height: 100%;
         }
 
+        .buttons {
+            display: flex;
+            justify-content: center;
+        }
+
+        .circle-button, .circle-prev, .circle-next {
+            width: 50px; /* Adjust size as needed */
+            height: 50px; /* Adjust size as needed */
+            border-radius: 50%;
+            border: none;
+            background-color: #4e83d1; /* Green color used in Spotify */
+            margin: 0 10px; /* Adjust spacing between buttons */
+        }
+
+        /* Add hover effect */
+        .circle-button:hover, .circle-prev:hover, .circle-next:hover {
+            background-color: #638dce; /* Lighter green color */
+            cursor: pointer;
+        }
+
+        .circle-button::after {
+            content: "";
+            display: block;
+            height:35px;
+            background-image: url("icons/play.svg"); /* Add path to icon image */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Add icon or content inside the button */
+        .circle-next::after {
+            content: "";
+            display: block;
+            width: 35px;
+            height: 30px;
+            background-image: url("icons/next.svg"); /* Add path to icon image */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .circle-prev::after {
+            content: "";
+            display: block;
+            width: 35px;
+            height:30px;
+            background-image: url("icons/previous.svg"); /* Add path to icon image */
+            background-size: cover;
+            background-position: center;
+        }
+
         .background {
             background-image: url('images/ssdl_background.jpg');
             background-size: cover;
@@ -89,9 +139,6 @@
             display: none;
         }
 
-        .thetext {
-            text-align: center;
-        }
     </style>
 </head>
 
@@ -103,13 +150,20 @@
         </div>
 
         <div>
-            <button class="next" onclick="nextSong(this)">Next</button>
-            <!-- <h2 class="thetext">Hobby - Träning - Skönhet - Kläder - Snax - Choklad </h2> -->
+            <div class="buttons">
+                <button class="circle-prev"></button>
+                <button class="circle-button"></button>
+                <button class="circle-next"></button>
+
+                <!-- <button class="circle-button"></button>
+                <button class="circle-button"></button> -->
+            </div>
+            <button class="next" onclick="nextSong(this)">Nästa låt</button>
         </div>
     </div>
 
     <script>
-        const songNbr = 0
+        let songNbr = 0
         function flipCard(card) {
             card.classList.toggle('flipped');
         }
@@ -122,13 +176,10 @@
 
         function generateCards(cardData) {
             container.innerHTML = "";
-            console.log(cardData[0]);
 
-            // Loop through the card data and create a card for each item
             let number = 1
             data = cardData[songNbr].split(', ')
             data.forEach(item => {
-                console.log(item, 'item')
                 const [content] = item.split(',');
                 const card = document.createElement("div");
                 card.classList.add("card");
