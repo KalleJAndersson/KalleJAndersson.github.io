@@ -224,8 +224,7 @@
         }
 
         function playSong(play) {
-            const videoId = 'J06yQb4lbPk';
-            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=${play}`;
+            const embedUrl = `https://www.youtube.com/embed/${songLinks[songNbr]}?autoplay=${play}`;
 
             // Create an iframe element
             const iframe = document.createElement('iframe');
@@ -308,6 +307,7 @@
                 container.appendChild(card);
                 number +=1;
             });
+            console.log(songLinks, "links")
             setPoint(1)
             setPoint(2)
         }
