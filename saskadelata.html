@@ -11,6 +11,14 @@
             font-family: Arial, sans-serif;
         }
 
+        .background {
+            background-image: url('images/ssdl_background.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+
+        }
+
         .container {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -18,7 +26,14 @@
             padding: 20px;
             align-items: center;
             justify-content: center;
-            /* height: 100%; */
+            vertical-align: center;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: repeat(1, 2fr);
+            padding: 20px;
+            height: 100%;
         }
 
         .buttons {
@@ -74,13 +89,6 @@
             background-position: center;
         }
 
-        .background {
-            background-image: url('images/ssdl_background.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-        }
-
         .card {
             display: flex;
             flex-direction: column;
@@ -107,7 +115,6 @@
         }
 
         .card.flipped p {
-            display: block;
             max-height: 150px;
             max-width: 100%;
             height: auto;
@@ -148,11 +155,13 @@
 
 <body>
     <div class="background">
-        <div class="container", id="container"></div>
-        <div class="buttons">
-            <button class="circle-prev" onclick="prevSong(this)"></button>
-            <button class="circle-button"></button>
-            <button class="circle-next" onclick="nextSong(this)"></button>
+        <div class="content">
+            <div class="container", id="container"></div>
+            <div class="buttons">
+                <button class="circle-prev" onclick="prevSong(this)"></button>
+                <button class="circle-button"></button>
+                <button class="circle-next" onclick="nextSong(this)"></button>
+            </div>
         </div>
     </div>
 
