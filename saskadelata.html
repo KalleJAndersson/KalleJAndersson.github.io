@@ -164,6 +164,7 @@
 <body>
     <div class="background">
         <div class="content">
+            <div id="videoContainer"></div>
             <div class="container", id="container"></div>
 
             <div class="buttons">
@@ -215,9 +216,15 @@
         function playSong() {
             const videoId = 'J06yQb4lbPk';
             const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-            const newTab = window.open(embedUrl, '_blank');
-            newTab.blur();
-            window.focus();
+            const iframe = document.createElement('iframe');
+            iframe.src = embedUrl;
+            iframe.width = '560'; // Set the width of the iframe
+            iframe.height = '315'; // Set the height of the iframe
+
+            // Append the iframe to the video container
+            const videoContainer = document.getElementById('videoContainer');
+            videoContainer.innerHTML = ''; // Clear previous content
+            videoContainer.appendChild(iframe);
         }
 
         function minPoint(team) {
