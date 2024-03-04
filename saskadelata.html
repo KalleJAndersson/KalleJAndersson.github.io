@@ -62,7 +62,7 @@
 
         }
 
-        .circle-button, .circle-prev, .circle-next, .circle-min, .circle-max  {
+        .playbutton, .circle-prev, .circle-next, .circle-min, .circle-max  {
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -72,12 +72,12 @@
         }
 
         /* Add hover effect */
-        .circle-button:hover, .circle-prev:hover, .circle-next:hover, .circle-min:hover, .circle-max:hover {
+        .playbutton:hover, .circle-prev:hover, .circle-next:hover, .circle-min:hover, .circle-max:hover {
             background-color: #638dce;
             cursor: pointer;
         }
 
-        .circle-button::after, .circle-next::after, .circle-prev::after, .circle-min::after, .circle-max::after {
+        .playbutton::after, .circle-next::after, .circle-prev::after, .circle-min::after, .circle-max::after {
             content: "";
             display: block;
             width: 40px;
@@ -86,8 +86,12 @@
             background-position: center;
         }
 
-        .circle-button::after {
+        .playbutton::after {
             background-image: url("icons/play.svg");
+        }
+
+        .playbutton.playing::after {
+            background-image: url("icons/pause.svg");
         }
 
         .circle-next::after {
@@ -183,7 +187,7 @@
 
                 <div class="play">
                     <button class="circle-prev" onclick="prevSong(this)"></button>
-                    <button class="circle-button" onclick="toggleYouTubeVideo()"></button>
+                    <button class="playbutton" onclick="toggleYouTubeVideo(this)"></button>
                     <button class="circle-next" onclick="nextSong(this)"></button>
                 </div>
 
@@ -239,10 +243,11 @@
             videoContainer.style.display = 'none';
         }
 
-        function toggleYouTubeVideo() {
+        function toggleYouTubeVideo(play) {
             if (!songPlaying){
                 playSong('1')
                 songPlaying = true
+                play.classList.toggle('playing');
             }else{
                 playSong('0');
                 songPlaying = false
