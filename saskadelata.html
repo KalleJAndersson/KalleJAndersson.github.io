@@ -26,6 +26,10 @@
             align-items: center;
         }
 
+        #videoContainer {
+            display: none; /* Hide the video container by default */
+        }
+
         .container {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -182,7 +186,7 @@
 
                 <div class="play">
                     <button class="circle-prev" onclick="prevSong(this)"></button>
-                    <button class="circle-button" onclick="playSong()"></button>
+                    <button class="circle-button" onclick="toggleYouTubeVideo()"></button>
                     <button class="circle-next" onclick="nextSong(this)"></button>
                 </div>
 
@@ -221,25 +225,37 @@
 
         }
 
-        function playSong(songPlaying) {
-            if(!songPlaying){
-                const videoId = 'J06yQb4lbPk';
-                const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-                const iframe = document.createElement('iframe');
-                iframe.src = embedUrl;
-                iframe.width = '560'; // Set the width of the iframe
-                iframe.height = '315'; // Set the height of the iframe
+        function playSong() {
+            const videoId = 'J06yQb4lbPk';
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
 
-                const videoContainer = document.getElementById('videoContainer');
-                videoContainer.innerHTML = ''; // Clear previous content
-                videoContainer.appendChild(iframe);
+            // Create an iframe element
+            const iframe = document.createElement('iframe');
+            iframe.src = embedUrl;
+            iframe.width = '560'; // Set the width of the iframe
+            iframe.height = '315'; // Set the height of the iframe
+
+            // Append the iframe to the video container
+            const videoContainer = document.getElementById('videoContainer');
+            videoContainer.innerHTML = ''; // Clear previous content
+            videoContainer.appendChild(iframe);
+        }
+
+        // Function to toggle the visibility of the YouTube video
+        function toggleYouTubeVideo() {
+            const videoContainer = document.getElementById('videoContainer');
+            if (videoContainer.style.display === 'none') {
+                // Show the video container
+                videoContainer.style.display = 'block';
+
+                // Embed the YouTube video (if not already embedded)
+                if (!videoContainer.querySelector('iframe')) {
+                    playSong();
+                }
             } else {
-                const videoContainer = document.getElementById('videoContainer');
-                videoContainer.innerHTML = ''; // Clear previous content
+                // Hide the video container
                 videoContainer.style.display = 'none';
-
             }
-            songPlaying = !songPlaying
         }
 
         function minPoint(team) {
