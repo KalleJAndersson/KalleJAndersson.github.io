@@ -55,26 +55,25 @@
         }
 
         .circle-button, .circle-prev, .circle-next, .circle-min, .circle-max  {
-            width: 50px; /* Adjust size as needed */
-            height: 50px; /* Adjust size as needed */
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             border: none;
-            background-color: #4e83d1; /* Green color used in Spotify */
-            margin: 0 10px; /* Adjust spacing between buttons */
+            background-color: #4e83d1;
+            margin: 0 10px;
         }
 
         /* Add hover effect */
         .circle-button:hover, .circle-prev:hover, .circle-next:hover, .circle-min:hover, .circle-max:hover {
-            background-color: #638dce; /* Lighter green color */
+            background-color: #638dce;
             cursor: pointer;
-            /* display: flex; */
         }
 
         .circle-button::after, .circle-next::after, .circle-prev::after, .circle-min::after, .circle-max::after {
             content: "";
             display: block;
-            width: 35px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             background-size: cover;
             background-position: center;
         }
@@ -237,9 +236,10 @@
         }
 
         function nextSong() {
-            // TODO add check if no dataLines. // last song.
             songNbr += 1;
-            console.log(dataLines)
+            if(dataLines[songNbr-1].split(",").length != 5){
+                alert('Sista låten!')
+            }
             generateCards(dataLines);
         }
 
