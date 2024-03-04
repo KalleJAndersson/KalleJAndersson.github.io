@@ -293,21 +293,21 @@
             let number = 1
             data = cardData[songNbr].split(', ')
             data.forEach(item => {
-                const [content] = item.split(',');
-                if (item.length >= 6) {
-                    const songLink = item[5].trim(); // Get the 6th element (index 5)
-                    songLinks.push(songLink); // Add the 6th element to the array
+                if (data.length >= 6) {
+                    const songLink = data[5];
+                    songLinks.push(songLink);
+
+                }else{
+                    const card = document.createElement("div");
+                    card.classList.add("card");
+                    card.innerHTML = `<span class="numbers">${number.toString()}</span><p>${item}</p>`;
+                    card.addEventListener("click", function () {
+                        flipCard(this);
+                    });
+                    container.appendChild(card);
+                    number += 1;
                 }
-                const card = document.createElement("div");
-                card.classList.add("card");
-                card.innerHTML = `<span class="numbers">${number.toString()}</span><p>${content}</p>`;
-                card.addEventListener("click", function () {
-                    flipCard(this);
-                });
-                container.appendChild(card);
-                number +=1;
             });
-            console.log(songLinks, "links")
             setPoint(1)
             setPoint(2)
         }
