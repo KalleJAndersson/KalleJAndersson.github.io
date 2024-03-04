@@ -174,7 +174,7 @@
 
                 <div class="play">
                     <button class="circle-prev" onclick="prevSong(this)"></button>
-                    <button class="circle-button"></button>
+                    <button class="circle-button" onclick="playSong()"></button>
                     <button class="circle-next" onclick="nextSong(this)"></button>
                 </div>
 
@@ -212,6 +212,12 @@
 
         }
 
+        function playSong() {
+            const videoId = 'J06yQb4lbPk';
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            window.open(embedUrl, '_blank');
+        }
+
         function minPoint(team) {
             if (team == 1) {
                 teamOnePoints -= 1
@@ -235,7 +241,7 @@
         function nextSong() {
             songNbr += 1;
             if(songTexts[songNbr].split(",").length != 5){
-                songNbr +- 1;
+                songNbr -= 1;
             } else {
                 generateCards(songTexts);
             }
