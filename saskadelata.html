@@ -119,14 +119,16 @@
 
             // Loop through the card data and create a card for each item
             cardData.forEach(item => {
-                const [number, content] = item.split(',');
+                number = 1
+                const [content] = item.split(',');
                 const card = document.createElement("div");
                 card.classList.add("card");
-                card.innerHTML = `<span class="numbers">${number}</span><p>${content}</p>`;
+                card.innerHTML = `<span class="numbers">${number.toString()}</span><p>${content}</p>`;
                 card.addEventListener("click", function () {
                     flipCard(this);
                 });
                 container.appendChild(card);
+                index +=1;
             });
         }
 
