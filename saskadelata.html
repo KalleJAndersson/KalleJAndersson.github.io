@@ -47,20 +47,6 @@
             transform: scale(1.05);
         }
 
-        /* .card img {
-            display: none;
-            max-width: 100%;
-            height: auto;
-        }
-
-        .card.flipped img {
-            display: block;
-            max-height: 150px;
-            max-width: 100%;
-            height: auto;
-            text-align: center;
-        } */
-
         .card p {
             display: none;
             max-width: 100%;
@@ -90,7 +76,7 @@
             text-align: center;
             cursor: pointer;
             transition: transform 0.3s ease;
-            min-height: 150px;
+            min-height: 200px;
         }
 
         .numbers {
@@ -126,28 +112,34 @@
             card.classList.toggle('flipped');
         }
 
-        const cardData = [
-            { number: 1, content: "l" },
-            { number: 2, content: "HAllå" },
-            { number: 3, content: "hetrej" },
-            { number: 4, content: "tre" },
-            { number: 5, content: "fem fyra" }
-        ];
         const container = document.getElementById("container");
 
-        function generateCards() {
+        function generateCards(cardData) {
             container.innerHTML = "";
+
+            // Loop through the card data and create a card for each item
             cardData.forEach(item => {
-            const card = document.createElement("div");
-            card.classList.add("card");
-            card.innerHTML = `<span class="numbers">${item.number}</span><p>${item.content}</p>`;
-            card.addEventListener("click", function () {
-                flipCard(this);
-            });
-            container.appendChild(card);
+                const [number, content] = item.split(',');
+                const card = document.createElement("div");
+                card.classList.add("card");
+                card.innerHTML = `<span class="numbers">${number}</span><p>${content}</p>`;
+                card.addEventListener("click", function () {
+                    flipCard(this);
+                });
+                container.appendChild(card);
             });
         }
-        generateCards();
+
+        // Fetch the content of the text file
+        fetch('cardData.txt')
+            .then(response => response.text())
+            .then(data => {
+                // Split the data into an array of lines
+                const lines = data.trim().split('\n');
+                // Call the function to generate the cards with the data from the file
+                generateCards(lines);
+            })
+            .catch(error => console.error('Error fetching data:', error));
     </script>
 </body>
 
