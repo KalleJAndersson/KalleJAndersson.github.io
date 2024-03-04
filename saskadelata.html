@@ -169,9 +169,8 @@
     <script>
         let songNbr = 0
         let dataLines;
+        const flipped = document.getElementsByClassName('card.flipped');
         function flipCard(card) {
-            const flipped = document.getElementById('card.flipped');
-
             // Generate a random number between 0 and 99
             const randomNumber = Math.floor(Math.random() * 100);
 
