@@ -203,6 +203,7 @@
         let songNbr = 0
         let songTexts;
         let songLink = ''
+        let songStart = ''
         let teamOnePoints = 0;
         let teamTwoPoints = 0;
         let songPlaying = false;
@@ -228,7 +229,7 @@
         }
 
         function playSong(play) {
-            const embedUrl = `https://www.youtube.com/embed/${songLink}?autoplay=${play}`;
+            const embedUrl = `https://www.youtube.com/embed/${songLink}?autoplay=${play}&start${songStart}`;
 
             // Create an iframe element
             const iframe = document.createElement('iframe');
