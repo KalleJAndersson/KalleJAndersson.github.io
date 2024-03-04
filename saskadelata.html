@@ -28,6 +28,9 @@
 
         #videoContainer {
             display: none; /* Hide the video container by default */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .container {
@@ -225,9 +228,9 @@
 
         }
 
-        function playSong() {
+        function playSong(play) {
             const videoId = 'J06yQb4lbPk';
-            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=${play}`;
 
             // Create an iframe element
             const iframe = document.createElement('iframe');
@@ -250,11 +253,12 @@
 
                 // Embed the YouTube video (if not already embedded)
                 if (!videoContainer.querySelector('iframe')) {
-                    playSong();
+                    playSong(1);
                 }
             } else {
                 // Hide the video container
                 videoContainer.style.display = 'none';
+                playSong(0)
             }
         }
 
