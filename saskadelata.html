@@ -22,7 +22,7 @@
         }
 
         .background {
-            background-image: url('images/ssdl_background.JPG');
+            background-image: url('images/ssdl_background.jpg');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -67,6 +67,17 @@
             height: auto;
         }
 
+        .card.flipped p {
+            display: block;
+            max-height: 150px;
+            max-width: 100%;
+            height: auto;
+            text-align: center;
+            font-weight: bold;
+            font-size: 40px;
+            color: #f8f7f7;
+        }
+
         .card.flipped {
             display: flex;
             flex-direction: column;
@@ -80,10 +91,6 @@
             cursor: pointer;
             transition: transform 0.3s ease;
             min-height: 150px;
-        }
-
-        .card.flipped {
-            background-color: #513bf3;
         }
 
         .numbers {
@@ -106,14 +113,7 @@
 <body>
     <div class="background">
         <!-- <h1 class="ssdl-heading">Så ska det låta</h1> -->
-        <div class="container">
-
-            <!-- Cards -->
-            <div class="card" onclick="flipCard(this)"><span class="numbers">1</span><p>Ord 1</p></div>
-            <div class="card" onclick="flipCard(this)"><span class="numbers">2</span><p>HAllå</p></div>
-            <div class="card" onclick="flipCard(this)"><span class="numbers">3</span><p>hetrej</p></div>
-            <div class="card" onclick="flipCard(this)"><span class="numbers">4</span><p>tre</p></div>
-            <div class="card" onclick="flipCard(this)"><span class="numbers">5</span><p>fem fyra</p></div>
+        <div class="container", id="container">
         </div>
 
         <div>
@@ -124,8 +124,30 @@
     <script>
         function flipCard(card) {
             card.classList.toggle('flipped');
-            addConfetti();
         }
+
+        const cardData = [
+            { number: 1, content: "l" },
+            { number: 2, content: "HAllå" },
+            { number: 3, content: "hetrej" },
+            { number: 4, content: "tre" },
+            { number: 5, content: "fem fyra" }
+        ];
+        const container = document.getElementById("container");
+
+        function generateCards() {
+            container.innerHTML = "";
+            cardData.forEach(item => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.innerHTML = `<span class="numbers">${item.number}</span><p>${item.content}</p>`;
+            card.addEventListener("click", function () {
+                flipCard(this);
+            });
+            container.appendChild(card);
+            });
+        }
+        generateCards();
     </script>
 </body>
 
