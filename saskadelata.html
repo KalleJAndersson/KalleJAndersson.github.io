@@ -139,6 +139,9 @@
             transition: transform 0.3s ease;
             min-height: 200px;
         }
+        .card.flipped:nth-child(5n+5) {
+            background-color: #ff0000; /* Red color */
+        }
 
         .numbers {
             font-weight: bold;
@@ -169,8 +172,8 @@
     <script>
         let songNbr = 0
         let dataLines;
-        const flipped = document.getElementsByClassName('card');
         function flipCard(card) {
+            let flipped = document.getElementsByClassName('card');
             // Generate a random number between 0 and 99
             const randomNumber = Math.floor(Math.random() * 100);
 
