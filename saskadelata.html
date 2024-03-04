@@ -239,14 +239,14 @@
             videoContainer.style.display = 'none';
         }
 
-        // Function to toggle the visibility of the YouTube video
         function toggleYouTubeVideo() {
             if (songPlaying){
                 playSong('0')
+                songPlaying = true
             }else{
                 playSong('1');
+                songPlaying = false
             }
-            songPlaying = !songPlaying
         }
 
         function minPoint(team) {
@@ -316,7 +316,6 @@
             }
         }
 
-        // Fetch the content of the text file
         fetch('cardData.txt')
             .then(response => response.text())
             .then(data => {
