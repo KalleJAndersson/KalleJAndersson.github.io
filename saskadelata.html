@@ -225,11 +225,9 @@
 
         function maxPoint(team) {
             if (team == 1) {
-                console.log('max point for team 1')
                 teamOnePoints +=1
                 setPoint(1)
             } else {
-                console.log('max point for team 2')
                 teamTwoPoints += 1
                 setPoint(2)
             }
@@ -237,14 +235,16 @@
 
         function nextSong() {
             songNbr += 1;
-            if(dataLines[songNbr-1].split(",").length != 5){
-                alert('Sista låten!')
+            console.log(songNbr, 'song')
+            if(dataLines[songNbr].split(",").length != 5){
+
+            } else {
+                generateCards(dataLines);
             }
-            generateCards(dataLines);
+
         }
 
         function prevSong() {
-            console.log('prev song')
             if (songNbr > 0){
                 songNbr -= 1;
                 generateCards(dataLines);
