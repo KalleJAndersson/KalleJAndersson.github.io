@@ -24,6 +24,7 @@
         .buttons {
             display: flex;
             justify-content: center;
+            align-items: center;
         }
 
         .circle-button, .circle-prev, .circle-next {
@@ -39,6 +40,7 @@
         .circle-button:hover, .circle-prev:hover, .circle-next:hover {
             background-color: #638dce; /* Lighter green color */
             cursor: pointer;
+            /* display: flex; */
         }
 
         .circle-button::after {
@@ -146,8 +148,8 @@
 <body>
     <div class="background">
         <!-- <h1 class="ssdl-heading">Så ska det låta</h1> -->
-        <div class="container", id="container">
-        </div>
+        <!-- <div class="container", id="container">
+        </div> -->
             <div class="buttons">
                 <button class="circle-prev" onclick="prevSong(this)"></button>
                 <button class="circle-button"></button>
@@ -160,6 +162,7 @@
 
     <script>
         let songNbr = 0
+        let dataLines;
         function flipCard(card) {
             card.classList.toggle('flipped');
         }
@@ -167,14 +170,14 @@
         function nextSong() {
             console.log('next song')
             songNbr += 1;
-            generateCards(lines);
+            generateCards(dataLines);
         }
 
         function prevSong() {
             console.log('prev song')
             if (songNbr > 0){
                 songNbr -= 1;
-                generateCards(lines);
+                generateCards(dataLines);
             }
         }
 
@@ -203,9 +206,9 @@
             .then(response => response.text())
             .then(data => {
                 // Split the data into an array of lines
-                const lines = data.trim().split('\n');
+                dataLines = data.trim().split('\n');
                 // Call the function to generate the cards with the data from the file
-                generateCards(lines);
+                generateCards(dataLines);
             })
             .catch(error => console.error('Error fetching data:', error));
     </script>
