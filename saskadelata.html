@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Så ska det låta</title>
+    <link rel="stylesheet" href="ssdlstyle.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            padding: 20px;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .background {
+            background-image: url('images/ssdl_background.JPG');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #3a3efc;
+            border: 1px solid #3a3efc;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            min-height: 200px;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        /* .card img {
+            display: none;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .card.flipped img {
+            display: block;
+            max-height: 150px;
+            max-width: 100%;
+            height: auto;
+            text-align: center;
+        } */
+
+        .card p {
+            display: none;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .card.flipped {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #288538;
+            border: 1px solid #288538;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            min-height: 150px;
+        }
+
+        .card.flipped {
+            background-color: #513bf3;
+        }
+
+        .numbers {
+            font-weight: bold;
+            font-size: 50px;
+            color: #f8f7f7;
+        }
+
+        .card.flipped span {
+            display: none;
+        }
+
+        .thetext {
+            text-align: center;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="background">
+        <!-- <h1 class="ssdl-heading">Så ska det låta</h1> -->
+        <div class="container">
+
+            <!-- Cards -->
+            <div class="card" onclick="flipCard(this)"><span class="numbers">1</span><p>Ord 1</p></div>
+            <div class="card" onclick="flipCard(this)"><span class="numbers">2</span><p>HAllå</p></div>
+            <div class="card" onclick="flipCard(this)"><span class="numbers">3</span><p>hetrej</p></div>
+            <div class="card" onclick="flipCard(this)"><span class="numbers">4</span><p>tre</p></div>
+            <div class="card" onclick="flipCard(this)"><span class="numbers">5</span><p>fem fyra</p></div>
+        </div>
+
+        <div>
+            <!-- <h2 class="thetext">Hobby - Träning - Skönhet - Kläder - Snax - Choklad </h2> -->
+        </div>
+    </div>
+
+    <script>
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+            addConfetti();
+        }
+    </script>
+</body>
+
+</html>
