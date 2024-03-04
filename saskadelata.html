@@ -198,6 +198,7 @@
     <script>
         let songNbr = 0
         let songTexts;
+        let songLinks = []
         let teamOnePoints = 0;
         let teamTwoPoints = 0;
         let songPlaying = false;
@@ -240,11 +241,11 @@
         }
 
         function toggleYouTubeVideo() {
-            if (songPlaying){
-                playSong('0')
+            if (!songPlaying){
+                playSong('1')
                 songPlaying = true
             }else{
-                playSong('1');
+                playSong('0');
                 songPlaying = false
             }
         }
@@ -294,6 +295,10 @@
             data = cardData[songNbr].split(', ')
             data.forEach(item => {
                 const [content] = item.split(',');
+                if (item.length >= 6) {
+                    const songLink = item[5].trim(); // Get the 6th element (index 5)
+                    songlinks.push(songLink); // Add the 6th element to the array
+                }
                 const card = document.createElement("div");
                 card.classList.add("card");
                 card.innerHTML = `<span class="numbers">${number.toString()}</span><p>${content}</p>`;
