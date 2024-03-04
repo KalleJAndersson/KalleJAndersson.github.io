@@ -212,7 +212,7 @@
                 const card = document.createElement("div");
                 card.classList.add("card");
                 card.innerHTML = `<span class="numbers">${number.toString()}</span><p>${content}</p>`;
-                card.style.backgroundColor = getRandomColor();
+                card.flipped.style.backgroundColor = getRandomColor();
                 card.addEventListener("click", function () {
                     flipCard(this);
                 });
