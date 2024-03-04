@@ -103,24 +103,30 @@
         </div>
 
         <div>
+            <button class="next" onclick="nextSong(this)">Next</button>
             <!-- <h2 class="thetext">Hobby - Träning - Skönhet - Kläder - Snax - Choklad </h2> -->
         </div>
     </div>
 
     <script>
+        const songNbr = 0
         function flipCard(card) {
             card.classList.toggle('flipped');
+        }
+
+        function nextSong() {
+            songNbr += 1
         }
 
         const container = document.getElementById("container");
 
         function generateCards(cardData) {
             container.innerHTML = "";
-            console.log(cardData)
+            console.log(cardData);
 
             // Loop through the card data and create a card for each item
             let number = 1
-            cardData.forEach(item => {
+            cardData[songNbr].forEach(item => {
                 console.log(item, 'item')
                 const [content] = item.split(',');
                 const card = document.createElement("div");
