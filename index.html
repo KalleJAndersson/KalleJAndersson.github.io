@@ -11,6 +11,27 @@
             font-family: Arial, sans-serif;
         }
 
+    .outer {
+        display: grid;
+        grid-template-columns: 9fr 1fr;
+        height: 100%;
+        padding: 0.5rem;
+        overflow: hidden;
+
+    }
+        /* .aside,
+        .content {
+            height: 100%;
+            min-height: 0;
+            overflow-y: auto;
+        } */
+        /* .aside {
+            background-color: rgb(var(--contrast-400));
+            padding: 1rem 0.25rem 1rem 0;
+            border-top-left-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+        } */
+
         .container {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -74,7 +95,7 @@
             padding: 20px;
             text-align: center;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 1.3s ease;
             min-height: 150px;
         }
 
@@ -115,16 +136,6 @@
             text-align: center;
         }
 
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: #ffcc00;
-            /* You can change the color */
-            border-radius: 50%;
-            animation: confettiAnimation 3s ease-out infinite;
-        }
-
         @keyframes confettiAnimation {
             0% {
                 transform: translate(0, 0) rotate(0deg);
@@ -136,6 +147,16 @@
             }
         }
 
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #ffcc00;
+            /* You can change the color */
+            border-radius: 50%;
+            animation: confettiAnimation 3s ease-out infinite;
+        }
+
     </style>
 </head>
 
@@ -143,6 +164,7 @@
 <body>
 <div class="background">
 <h1 class="fargfemman-heading">🎉🎈 Färgfemman 🎈🎉</h1>
+    <div class="outer">
     <div class="container">
 
         <!-- Cards -->
@@ -171,13 +193,15 @@
         <div class="card-r" onclick="flipCard(this)"><span class="numbers">23</span><img src="images/red3.JPG" alt="Image 23"></div>
         <div class="card-y" onclick="flipCard(this)"><span class="numbers">24</span><img src="images/yellow3.JPG" alt="Image 24"></div>
     </div>
+    <aside class="aside">List of prices</aside>
+    </div>
 
     <div>
         <h2 class="thetext"
         >Hobby - Träning - Skönhet - Kläder - Snax - Choklad </h2>
     </div>
+    </div>
 
-    <div id="confetti-container"></div>
 
     </div>
 
