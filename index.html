@@ -97,7 +97,7 @@
         }
 
         .card-b.flipped {
-            background: linear-gradient(to bottom right, blue, yellow);
+            background: linear-gradient(to bottom right, blue, rgb(9, 24, 236));
         }
 
         .card-r.flipped {
@@ -193,6 +193,8 @@
             const confettiContainer = document.getElementById('confetti-container');
             const confetti = document.createElement('div');
             confetti.classList.add('confetti');
+            confetti.classList.add('confetti--large');
+            confetti.classList.add('confetti--small');
             confettiContainer.appendChild(confetti);
 
             setTimeout(() => {
