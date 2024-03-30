@@ -170,7 +170,9 @@
         <div class="card-r" onclick="flipCard(this)"><span class="numbers">23</span><img src="images/red3.JPG" alt="Image 23"></div>
         <div class="card-y" onclick="flipCard(this)"><span class="numbers">24</span><img src="images/yellow3.JPG" alt="Image 24"></div>
     </div>
-    <aside class="aside">List of prices</aside>
+    <aside class="aside">List of prices
+        <div class="card-y"></div>
+    </aside>
     </div>
 
     <!-- <div>
@@ -185,24 +187,26 @@
     <script>
         function flipCard(card) {
             card.classList.toggle('flipped');
-            addConfetti();
+            burstConfetti();
         }
 
-        function addConfetti() {
-            console.log('confetti')
-            const confettiContainer = document.getElementById('confetti-container');
+   function burstConfetti() {
+        console.log('burst')
+        const container = document.getElementById('confetti-container');
+        const colors = ['#ffcc00', '#ff6666', '#66ff66', '#6699ff']; // Define different confetti colors
+        const fragments = 100; // Number of confetti fragments
+
+        for (let i = 0; i < fragments; i++) {
             const confetti = document.createElement('div');
             confetti.classList.add('confetti');
-            confetti.classList.add('confetti--large');
-            confetti.classList.add('confetti--small');
-            confettiContainer.appendChild(confetti);
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's'; // Randomize animation duration
+            confetti.style.animationDelay = (Math.random() * 2) + 's'; // Randomize animation delay
 
-            setTimeout(() => {
-                confetti.remove();
-            }
-
-                , 3000); // Remove confetti after 3 seconds
+            container.appendChild(confetti);
         }
+    }
     </script>
 </body>
 
