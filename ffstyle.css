@@ -16,3 +16,24 @@
     text-align: center;
     /* Center the heading */
 }
+
+@keyframes confettiAnimation {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(calc(100vw - 20px), calc(100vh - 20px)) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: #ffcc00;
+    /* You can change the color */
+    border-radius: 50%;
+    animation: confettiAnimation 3s ease-out infinite;
+}
