@@ -18,12 +18,11 @@
 }
 .confetti {
     position: fixed;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 10px solid #ffcc00;
+    width: 10px;
+    height: 10px;
+    background-color: #ffcc00;
     /* Default confetti color */
+    border-radius: 50%;
     animation: confettiAnimation 3s ease-out forwards;
 }
 
