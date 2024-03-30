@@ -19,11 +19,12 @@
 
 @keyframes confettiAnimation {
     0% {
-        transform: translate(0, 0) rotate(0deg);
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
     }
 
     100% {
-        transform: translate(calc(100vw - 20px), calc(100vh - 20px)) rotate(360deg);
+        transform: translateY(calc(100vh + 20px)) rotate(360deg);
         opacity: 0;
     }
 }
@@ -36,4 +37,34 @@
     /* You can change the color */
     border-radius: 50%;
     animation: confettiAnimation 3s ease-out infinite;
+    animation-delay: calc(-3s * var(--delay));
+}
+
+/* Define different classes for different sizes of confetti */
+.confetti--small {
+    width: 5px;
+    height: 5px;
+}
+
+.confetti--large {
+    width: 15px;
+    height: 15px;
+}
+
+/* Additional classes for different colors */
+.confetti--blue {
+    background-color: #007bff;
+}
+
+.confetti--green {
+    background-color: #28a745;
+}
+
+/* Define different animation durations for more variety */
+.confetti--fast {
+    animation-duration: 2s;
+}
+
+.confetti--slow {
+    animation-duration: 4s;
 }
