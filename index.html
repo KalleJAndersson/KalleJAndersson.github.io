@@ -186,8 +186,11 @@
 
     <script>
         function flipCard(card) {
+            if (!card.classList.contains('flipped')) {
+                burstConfetti();
+            }
             card.classList.toggle('flipped');
-            burstConfetti();
+
         }
 
    function burstConfetti() {
@@ -204,9 +207,15 @@
             confetti.style.animationDuration = (Math.random() * 3 + 2) + 's'; // Randomize animation duration
             confetti.style.animationDelay = (Math.random() * 2) + 's'; // Randomize animation delay
 
+            // Random horizontal and vertical translations
+            const translateX = (Math.random() - 0.5) * 2 * window.innerWidth; // Random value between -window.innerWidth to window.innerWidth
+            const translateY = (Math.random() - 0.5) * 2 * window.innerHeight; // Random value between -window.innerHeight to window.innerHeight
+            confetti.style.transform = `translate(${translateX}px, ${translateY}px)`;
+
             container.appendChild(confetti);
         }
     }
+
     </script>
 </body>
 
