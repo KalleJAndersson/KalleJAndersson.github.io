@@ -38,6 +38,13 @@
     }
 }
 
+.carousel {
+    display: flex;
+    flex-direction: column;
+    animation: carouselAnimation 20s linear infinite;
+    /* Adjust animation duration as needed */
+}
+
 
 @keyframes carouselAnimation {
     0% {
@@ -45,7 +52,7 @@
     }
 
     100% {
-        transform: translateY(-100%);
+        transform: translateY(calc(100%));
         /* Adjust the percentage based on the height of each carousel item */
     }
 }
