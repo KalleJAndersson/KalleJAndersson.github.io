@@ -410,13 +410,10 @@
                 tempDiv.innerHTML = cardHTML;
                 var imgElement = tempDiv.querySelector('img');
                 var imageUrl = imgElement.getAttribute('src');
-                var color = imgElement.getAttribute('class');
-                console.log(color)
-
 
                 popupImage.src = imageUrl
                 popupCard.style.display = "block";
-                popupCard.style.background = "linear-gradient(to bottom right, rgb(99, 70, 204), rgb(161, 145, 204))";
+                popupCard.style.background = this.getColor(card);
                 popupSlot.style.zIndex = 9999;
                 latestAction = 'closed'
             } else if (latestAction == 'popup') {
@@ -426,6 +423,26 @@
                 card.classList.toggle('flipped');
             }
         }
+
+        function getColor(card){
+            switch (true) {
+                case card.classList.contains('card-b'):
+                    return "linear-gradient(to bottom right, rgb(11, 15, 15), rgb(88, 88, 94));";
+                case card.classList.contains('card-y'):
+                    return "linear-gradient(to bottom right, rgb(233, 236, 23), rgb(196, 206, 154))";
+                case card.classList.contains('card-g'):
+                    return "linear-gradient(to bottom right, rgb(23, 172, 60), rgb(158, 206, 172))";
+                case card.classList.contains('card-r'):
+                    return "linear-gradient(to bottom right, rgb(182, 24, 24), rgb(235, 124, 124))";
+                case card.classList.contains('card-bl'):
+                    return "linear-gradient(to bottom right, rgb(10, 209, 209), rgb(226, 226, 233))";
+                case card.classList.contains('card-p'):
+                    return "linear-gradient(to bottom right, rgb(169, 39, 196), rgb(187, 187, 233))";
+                default:
+                    return "linear-gradient(to bottom right, rgb(99, 70, 204), rgb(161, 145, 204));";
+            }
+        }
+
 
         function closePopup() {
             var popupCard = document.getElementById("popupCard");
