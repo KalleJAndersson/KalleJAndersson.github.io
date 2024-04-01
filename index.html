@@ -209,7 +209,7 @@
     <div class="container">
 
         <!-- Cards -->
-        <div class="card-b" onclick="flipCard(this)"><span class="numbers">1</span><img src="images/albin/rtx4060.png" alt="Image 1"></div>
+        <div class="card-b" id="1" onclick="flipCard(this)"><span class="numbers">1</span><img src="images/albin/rtx4060.png" alt="Image 1"></div>
         <div class="card-y" onclick="flipCard(this)"><span class="numbers">2</span><img src="images/albin/rtx4060ti.png" alt="Image 2"></div>
         <div class="card-g" onclick="flipCard(this)"><span class="numbers">3</span><img src="images/albin/batteries.png" alt="Image 3"></div>
         <div class="card-b" onclick="flipCard(this)"><span class="numbers">4</span><img src="images/albin/fidgetspinner.png" alt="Image 4"></div>
@@ -268,6 +268,8 @@
     </div>
 
     <script>
+        const POPUP = false;
+
         function flipCard(card) {
             if (card.classList.contains('flipped')) {
 
@@ -275,7 +277,8 @@
                 var popupSlot = document.getElementById("popupSlot");
                 var popupImage = document.getElementById("popupImage");
 
-                var parentDiv = document.getElementsByClassName("card-b");
+                var parentDiv = document.getElementById("1");
+                console.log(parentDiv)
 
                 var imgElement = parentDiv.querySelector("img");
 
@@ -285,9 +288,11 @@
                 console.log(card.classList)
                 console.log(card.classList.imgElement.src)
 
-                console.log(popupCard)
-            } else {
+                this.POPUP = true
                 card.classList.toggle('flipped');
+
+            } else if(this.POPUP) {
+
             }
 
         }
@@ -297,30 +302,8 @@
             var popupSlot = document.getElementById("popupSlot");
             popupCard.style.display = "none";
             popupSlot.style.zIndex = 0;
+            this.POPUP = false
         }
-
-   function burstConfetti() {
-        console.log('burst')
-        const container = document.getElementById('confetti-container');
-        const colors = ['#ffcc00', '#ff6666', '#66ff66', '#6699ff']; // Define different confetti colors
-        const fragments = 100; // Number of confetti fragments
-
-        for (let i = 0; i < fragments; i++) {
-            const confetti = document.createElement('div');
-            confetti.classList.add('confetti');
-            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            confetti.style.left = Math.random() * 100 + 'vw';
-            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's'; // Randomize animation duration
-            confetti.style.animationDelay = (Math.random() * 2) + 's'; // Randomize animation delay
-
-            // Random horizontal and vertical translations
-            const translateX = (Math.random() - 0.5) * 2 * window.innerWidth; // Random value between -window.innerWidth to window.innerWidth
-            const translateY = (Math.random() - 0.5) * 2 * window.innerHeight; // Random value between -window.innerHeight to window.innerHeight
-            confetti.style.transform = `translate(${translateX}px, ${translateY}px)`;
-
-            container.appendChild(confetti);
-        }
-    }
 
     </script>
 </body>
