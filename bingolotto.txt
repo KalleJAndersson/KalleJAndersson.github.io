@@ -1,8 +1,8 @@
 
 
 Teknik:
-- RTX 4070
-- RTX 4060
+- RTX 4060 ti - 5000:-
+- RTX 4060: 4000:-
 - USB-fläkt
 - 2st AA batterier
 
