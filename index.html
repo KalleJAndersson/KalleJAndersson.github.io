@@ -59,13 +59,6 @@
             max-width: 100%;
             max-height: 100%;
             position: absolute;
-            backface-visibility: hidden; /* Hide backface of elements */
-        }
-
-        .card-b.flipped img, .card-y.flipped img, .card-bl.flipped img, .card-p.flipped img, .card-g.flipped img, .card-r.flipped img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover;
         }
 
         .card-b.flipped {
@@ -78,6 +71,12 @@
             text-align: center;
             cursor: pointer;
             transition: transform 1.3s ease;
+        }
+
+        .card-b.flipped img, .card-y.flipped img, .card-bl.flipped img, .card-p.flipped img, .card-g.flipped img, .card-r.flipped img {
+            max-width: 100%;
+            max-height: 100%;
+            position: absolute;
         }
 
         /* .card-b.flipped {

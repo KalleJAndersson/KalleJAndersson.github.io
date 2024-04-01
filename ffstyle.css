@@ -37,3 +37,15 @@
         opacity: 0;
     }
 }
+
+
+@keyframes carouselAnimation {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-100%);
+        /* Adjust the percentage based on the height of each carousel item */
+    }
+}
