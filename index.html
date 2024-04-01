@@ -283,12 +283,12 @@
                 var imageUrl = imgElement.getAttribute('src');
 
                 popupImage.src = imageUrl
-                popupCard.style.display = "block"; // Show the popup card
+                popupCard.style.display = "block";
                 popupSlot.style.zIndex = 9999;
                 latestAction = 'closed'
             } else if (latestAction == 'popup') {
                 card.classList.toggle('flipped');
-                latestAction == 'closed';
+                latestAction = 'closed';
             } else {
                 card.classList.toggle('flipped');
             }
@@ -299,7 +299,6 @@
             var popupSlot = document.getElementById("popupSlot");
             popupCard.style.display = "none";
             popupSlot.style.zIndex = 0;
-            this.POPUP = false;
             latestAction = 'popup'
         }
 
