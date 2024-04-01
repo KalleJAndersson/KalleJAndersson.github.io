@@ -44,7 +44,9 @@
             padding: 20px;
             text-align: center;
             cursor: pointer;
-            transition: transform 1.3s ease;
+            transition: transform 0.6s; /* Add transition for smooth flip effect */
+            transform-style: preserve-3d;
+            perspective: 1000px;
 
         }
 
@@ -56,17 +58,17 @@
             display: none;
             max-width: 100%;
             max-height: 100%;
+            position: absolute;
+            backface-visibility: hidden; /* Hide backface of elements */
         }
 
         .card-b.flipped img, .card-y.flipped img, .card-bl.flipped img, .card-p.flipped img, .card-g.flipped img, .card-r.flipped img {
-            display: block;
-            text-align: center;
             max-width: 100%;
             max-height: 100%;
-            overflow: hidden;
+            object-fit: cover;
         }
 
-        .card.flipped {
+        .card-b.flipped {
             display: block; /* Use flexbox */
             flex-direction: column; /* Stack items vertically */
             justify-content: center; /* Center items vertically */
@@ -76,11 +78,11 @@
             text-align: center;
             cursor: pointer;
             transition: transform 1.3s ease;
-            overflow: hidden;
+            background: linear-gradient(to bottom right, blue, rgb(29, 29, 31));
         }
 
         .card-b.flipped {
-            background: linear-gradient(to bottom right, blue, rgb(9, 24, 236));
+            background: linear-gradient(to bottom right, blue, rgb(29, 29, 31));
         }
 
         .card-r.flipped {
