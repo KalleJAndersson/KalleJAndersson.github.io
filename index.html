@@ -149,17 +149,18 @@
         .popup-content {
             display: none;
             text-align: center;
-            max-width: 100%;
+            min-width: 40%;
+            max-width: 60%;
+            min-height: 40%;
+            max-height: 60%;
             background: linear-gradient(to bottom right, rgb(99, 70, 204), rgb(161, 145, 204));
             border-radius: 5px;
             padding: 20px;
             cursor: pointer;
-            opacity: 0.9;
         }
 
         .popup-content img {
-            max-width: 80%; /* Limit the maximum width of the image */
-            max-height: 80vh; /* Limit the maximum height of the image */
+            max-width: 70%;
         }
 
     </style>
@@ -265,8 +266,10 @@
 
     <script>
 
+        latestAction = 'closed'
+
         function flipCard(card) {
-            if (card.classList.contains('flipped')) {
+            if (card.classList.contains('flipped') && latestAction == 'closed') {
 
                 var popupCard = document.getElementById("popupCard");
                 var popupSlot = document.getElementById("popupSlot");
@@ -282,8 +285,10 @@
                 popupImage.src = imageUrl
                 popupCard.style.display = "block"; // Show the popup card
                 popupSlot.style.zIndex = 9999;
-            } else {
+                latestAction = 'closed'
+            } else if (latestAction == 'popup') {
                 card.classList.toggle('flipped');
+                latestAction == 'closed';
             }
         }
 
@@ -293,6 +298,7 @@
             popupCard.style.display = "none";
             popupSlot.style.zIndex = 0;
             this.POPUP = false;
+            latestAction = 'popup'
         }
 
     </script>
