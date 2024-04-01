@@ -32,7 +32,7 @@
             background-image: url('images/bingo1200x628.jpg');
             background-size: cover;
             background-position: center;
-            height: 100vh; /* Adjust as needed */
+            height: 100vh;
         }
 
         .card-b, .card-y, .card-bl, .card-p, .card-g, .card-r {
@@ -41,11 +41,11 @@
             justify-content: center; /* Center items vertically */
             align-items: center; /* Center items horizontally */
             background: linear-gradient(to bottom right, rgb(99, 70, 204), rgb(161, 145, 204));
+            border-radius: 5px;
             padding: 20px;
             text-align: center;
             cursor: pointer;
             transition: transform 0.3s ease;
-            min-height: 120px;
         }
 
         .card-b img, .card-y img, .card-bl img, .card-p img, .card-g img, .card-r img {
@@ -76,11 +76,11 @@
             flex-direction: column; /* Stack items vertically */
             justify-content: center; /* Center items vertically */
             align-items: center; /* Center items horizontally */
+            border-radius: 5px;
             padding: 20px;
             text-align: center;
             cursor: pointer;
             transition: transform 1.3s ease;
-            min-height: 120px;
         }
 
         .card-b.flipped {
@@ -135,7 +135,6 @@
             max-width: 100%; /* Ensure the container doesn't exceed the width of its parent */
             max-height: 100%; /* Ensure the container doesn't exceed the height of its parent */
             overflow: hidden;
-
         }
 
         #priceimage {
