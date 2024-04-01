@@ -22,7 +22,7 @@
         .container {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            grid-template-rows: repeat(4, 1fr);
+            grid-template-rows: repeat(5, 1fr);
             gap: 1.5rem;
             padding: 20px;
         }
@@ -45,6 +45,7 @@
             text-align: center;
             cursor: pointer;
             transition: transform 0.3s ease;
+
         }
 
         .card-b:hover, .card-y:hover, .card-bl:hover, .card-p:hover, .card-g:hover, .card-r:hover {
@@ -54,12 +55,10 @@
         .card-b img, .card-y img, .card-bl img, .card-p img, .card-g img, .card-r img {
             display: none;
             max-width: 100%;
-            height: auto;
         }
 
         .card-b.flipped img, .card-y.flipped img, .card-bl.flipped img, .card-p.flipped img, .card-g.flipped img, .card-r.flipped img {
             display: block;
-            height: auto;
             text-align: center;
         }
 
