@@ -268,7 +268,7 @@
     </div>
 
     <script>
-        const POPUP = false;
+        // const POPUP = false;
 
         function flipCard(card) {
             if (card.classList.contains('flipped')) {
@@ -289,11 +289,11 @@
                 console.log(card.classList.imgElement.src)
 
                 this.POPUP = true
+
+            } else {
                 card.classList.toggle('flipped');
-
-            } else if(this.POPUP) {
-
             }
+
 
         }
 
@@ -302,7 +302,7 @@
             var popupSlot = document.getElementById("popupSlot");
             popupCard.style.display = "none";
             popupSlot.style.zIndex = 0;
-            this.POPUP = false
+            this.POPUP = false;
         }
 
     </script>
