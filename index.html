@@ -149,7 +149,7 @@
         .popup-content {
             display: none;
             text-align: center;
-            background: linear-gradient(to bottom right, rgb(99, 70, 204), rgb(161, 145, 204));
+            background: linear-gradient(to bottom right, rgb(5, 1, 19), rgb(6, 223, 60));
             border-radius: 5px;
             padding: 40px;
             cursor: pointer;
@@ -219,12 +219,57 @@
                     <img src="images/albin/zalle.png" id="priceimage">
                 </div>
 
+                            <div class="p-image">
+                                <img src="images/albin/rtx4060ti.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/kroatien.JPG" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/eket.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/nk.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/bosch.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/rtx4060.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/zalle.png" id="priceimage">
+                            </div>
+
+
+                            <div class="p-image">
+                                <img src="images/albin/rtx4060ti.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/kroatien.JPG" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/eket.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/nk.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/bosch.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/rtx4060.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/zalle.png" id="priceimage">
+                            </div>
+
             </div>
         </aside>
     <div class="container">
 
         <!-- Cards -->
-        <div class="card-b" onclick="flipCard(this)"><span class="numbers">1</span><img src="images/albin/rtx4060.png" alt="Image 1"></div>
+        <div class="card-b" onclick="flipCard(this)"><span class="numbers">1</span><img src="images/albin/rtx4060.png" alt="Image 1" class="blue"></div>
         <div class="card-y" onclick="flipCard(this)"><span class="numbers">2</span><img src="images/albin/rtx4060ti.png" alt="Image 2"></div>
         <div class="card-g" onclick="flipCard(this)"><span class="numbers">3</span><img src="images/albin/batteries.png" alt="Image 3"></div>
         <div class="card-b" onclick="flipCard(this)"><span class="numbers">4</span><img src="images/albin/fidgetspinner.png" alt="Image 4"></div>
@@ -295,6 +340,50 @@
                     <img src="images/albin/pasklamma.png" id="priceimage">
                 </div>
 
+                            <div class="p-image">
+                                <img src="images/albin/slirre.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/batteries.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/fidgetspinner.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/galgen.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/tassar.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/sock.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/pasklamma.png" id="priceimage">
+                            </div>
+
+                            <div class="p-image">
+                                <img src="images/albin/slirre.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/batteries.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/fidgetspinner.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/galgen.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/tassar.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/sock.png" id="priceimage">
+                            </div>
+                            <div class="p-image">
+                                <img src="images/albin/pasklamma.png" id="priceimage">
+                            </div>
+
             </div>
         </aside>
     </div>
@@ -321,9 +410,13 @@
                 tempDiv.innerHTML = cardHTML;
                 var imgElement = tempDiv.querySelector('img');
                 var imageUrl = imgElement.getAttribute('src');
+                var color = imgElement.getAttribute('class');
+                console.log(color)
+
 
                 popupImage.src = imageUrl
                 popupCard.style.display = "block";
+                popupCard.style.background = "linear-gradient(to bottom right, rgb(99, 70, 204), rgb(161, 145, 204))";
                 popupSlot.style.zIndex = 9999;
                 latestAction = 'closed'
             } else if (latestAction == 'popup') {
