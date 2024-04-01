@@ -52,7 +52,7 @@
     }
 
     100% {
-        transform: translateY(calc(-100% - 20px));
+        transform: translateY(calc(-50% - 200px));
         /* Adjust the percentage based on the height of each carousel item */
     }
 }
