@@ -41,7 +41,7 @@
 .carousel {
     display: flex;
     flex-direction: column;
-    animation: carouselAnimation 20s linear infinite;
+    animation: carouselAnimation 10s linear infinite;
     /* Adjust animation duration as needed */
 }
 
@@ -52,7 +52,7 @@
     }
 
     100% {
-        transform: translateY(calc(100%));
+        transform: translateY(calc(-100% - 20px));
         /* Adjust the percentage based on the height of each carousel item */
     }
 }
