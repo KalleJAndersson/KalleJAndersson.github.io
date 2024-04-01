@@ -275,9 +275,9 @@
                 var popupSlot = document.getElementById("popupSlot");
                 var popupImage = document.getElementById("popupImage");
 
-                var imgElement = parentDiv.querySelector("img");
+                var parentDiv = document.getElementsByClassName("card-b");
 
-                var imageUrl =
+                var imgElement = parentDiv.querySelector("img");
 
                 popupImage.src = "images/albin/pasklamma.png"
                 popupCard.style.display = "block"; // Show the popup card
@@ -286,8 +286,10 @@
                 console.log(card.classList.imgElement.src)
 
                 console.log(popupCard)
+            } else {
+                card.classList.toggle('flipped');
             }
-            card.classList.toggle('flipped');
+
         }
 
         function closePopup() {
