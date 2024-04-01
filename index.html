@@ -174,11 +174,7 @@
     </div>
 </div>
 <div class="background" >
-<!-- <h1 class="fargfemman-heading">🎉🎈 Färgfemman 🎈🎉</h1> -->
     <div class="outer">
-
-
-
 
         <aside class="aside">
             <div class="carousel">
@@ -268,7 +264,6 @@
     </div>
 
     <script>
-        // const POPUP = false;
 
         function flipCard(card) {
             if (card.classList.contains('flipped')) {
@@ -287,9 +282,8 @@
                 popupImage.src = imageUrl
                 popupCard.style.display = "block"; // Show the popup card
                 popupSlot.style.zIndex = 9999;
-
+            } else {
                 card.classList.toggle('flipped');
-
             }
         }
 
