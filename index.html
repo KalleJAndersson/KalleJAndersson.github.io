@@ -169,7 +169,7 @@
 <body>
 <div class="popup-card" id="popupSlot" >
     <div class="popup-content" onclick="closePopup(this)" id="popupCard">
-        <img src="images/albin/rtx4060ti.png">
+        <img src="" id="popupImage">
         <span>TEKNIK</span>
     </div>
 </div>
@@ -272,9 +272,11 @@
             if (card.classList.contains('flipped')) {
                 var popupCard = document.getElementById("popupCard");
                 var popupSlot = document.getElementById("popupSlot");
+                var popupImage = document.getElementById("popupImage");
+                popupImage = "images/albin/pasklamma.png"
                 popupCard.style.display = "block"; // Show the popup card
                 popupSlot.style.zIndex = 9999;
-                popupCard
+                console.log(card.classList)
 
                 console.log(popupCard)
             }
@@ -283,7 +285,9 @@
 
         function closePopup() {
             var popupCard = document.getElementById("popupCard");
-            popupCard.style.display = "none"; // Show the popup card
+            var popupSlot = document.getElementById("popupSlot");
+            popupCard.style.display = "none";
+            popupSlot.style.zIndex = 0;
         }
 
    function burstConfetti() {
