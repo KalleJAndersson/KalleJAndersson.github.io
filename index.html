@@ -270,13 +270,20 @@
     <script>
         function flipCard(card) {
             if (card.classList.contains('flipped')) {
+
                 var popupCard = document.getElementById("popupCard");
                 var popupSlot = document.getElementById("popupSlot");
                 var popupImage = document.getElementById("popupImage");
-                popupImage = "images/albin/pasklamma.png"
+
+                var imgElement = parentDiv.querySelector("img");
+
+                var imageUrl =
+
+                popupImage.src = "images/albin/pasklamma.png"
                 popupCard.style.display = "block"; // Show the popup card
                 popupSlot.style.zIndex = 9999;
                 console.log(card.classList)
+                console.log(card.classList.imgElement.src)
 
                 console.log(popupCard)
             }
