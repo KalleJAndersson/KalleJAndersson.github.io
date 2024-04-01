@@ -23,7 +23,7 @@
         .content {
             height: 100%;
             min-height: 0;
-            overflow-y: auto;
+            grid-template-rows: repeat(8, 1fr);
         }
         .aside {
             background-color: rgb(var(--contrast-400));
@@ -142,6 +142,10 @@
             text-align: center;
         }
 
+        .p-image {
+            size: 20%;
+        }
+
         #priceimage {
             opacity: 0.5; /* Adjust the opacity value as needed (from 0 to 1) */
         }
@@ -155,8 +159,14 @@
 <!-- <h1 class="fargfemman-heading">🎉🎈 Färgfemman 🎈🎉</h1> -->
     <div class="outer" id="confetti-container">
         <aside class="aside">
-            <div class="pr">
-                <img src="images/albin/rtx4060.png" id="priceimage">
+            <div class="p-imag">
+                <img src="images/albin/rtx4060.png" id="priceimage" class="p-image">
+            </div>
+            <div class="p-imag">
+                <img src="images/albin/rtx4060.png" id="priceimage" class="p-image">
+            </div>
+            <div class="p-imag">
+                <img src="images/albin/rtx4060.png" id="priceimage" class="p-image">
             </div>
         </aside>
     <div class="container">
@@ -188,8 +198,8 @@
         <div class="card-y" onclick="flipCard(this)"><span class="numbers">24</span><img src="images/yellow3.JPG" alt="Image 24"></div>
     </div>
     <aside class="aside">
-        <div class="pr">
-            <img src="images/albin/rtx4060.png" id="priceimage">
+        <div class="p-imag">
+            <img src="images/albin/rtx4060.png" id="priceimage" class="p-image">
         </div>
     </aside>
     </div>
