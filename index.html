@@ -44,7 +44,7 @@
             padding: 20px;
             text-align: center;
             cursor: pointer;
-            transition: transform 6s; /* Add transition for smooth flip effect */
+            transition: transform 0.3s; /* Add transition for smooth flip effect */
             transform-style: preserve-3d;
             perspective: 1000px;
 
@@ -70,10 +70,11 @@
             padding: 20px;
             text-align: center;
             cursor: pointer;
-            transition: transform 1.3s ease;
+            transition: transform 0.3s ease;
         }
 
         .card-b.flipped img, .card-y.flipped img, .card-bl.flipped img, .card-p.flipped img, .card-g.flipped img, .card-r.flipped img {
+            display: block;
             max-width: 100%;
             max-height: 100%;
             position: absolute;
