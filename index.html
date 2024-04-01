@@ -20,10 +20,14 @@
 
         }
         .aside {
+            display: grid; /* Use flexbox */
+            flex-direction: column; /* Stack items vertically */
+            justify-content: center; /* Center items vertically */
             grid-template-rows: repeat(8, 1fr);
             padding: 1rem 0.25rem 1rem 0;
             border-top-left-radius: 0.5rem;
             border-bottom-left-radius: 0.5rem;
+
         }
 
         .container {
@@ -44,7 +48,6 @@
             display: flex; /* Use flexbox */
             flex-direction: column; /* Stack items vertically */
             justify-content: center; /* Center items vertically */
-            background: linear-gradient(to bottom right, rgb(99, 70, 204), rgb(161, 145, 204));
             min-height: 150px;
         }
 
