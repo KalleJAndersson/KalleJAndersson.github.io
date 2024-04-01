@@ -34,7 +34,7 @@
             height: 100vh;
         }
 
-        .card-b, .card-y, .card-bl, .card-p, .card-g, .card-r {
+        .card-b, .card-y, .card-s, .card-p, .card-g, .card-r {
             display: flex; /* Use flexbox */
             flex-direction: column;
             justify-content: center; /* Center items vertically */
@@ -50,18 +50,18 @@
 
         }
 
-        .card-b:hover, .card-y:hover, .card-bl:hover, .card-p:hover, .card-g:hover, .card-r:hover {
+        .card-b:hover, .card-y:hover, .card-s:hover, .card-p:hover, .card-g:hover, .card-r:hover {
             transform: scale(1.05);
         }
 
-        .card-b img, .card-y img, .card-bl img, .card-p img, .card-g img, .card-r img {
+        .card-b img, .card-y img, .card-s img, .card-p img, .card-g img, .card-r img {
             display: none;
             max-width: 85%;
             max-height: 85%;
             position: absolute;
         }
 
-        .card-b.flipped img, .card-y.flipped img, .card-bl.flipped img, .card-p.flipped img, .card-g.flipped img, .card-r.flipped img {
+        .card-b.flipped img, .card-y.flipped img, .card-s.flipped img, .card-p.flipped img, .card-g.flipped img, .card-r.flipped img {
             display: block;
             max-width: 85%;
             max-height: 85%;
@@ -76,7 +76,7 @@
             background: linear-gradient(to bottom right, rgb(182, 24, 24), rgb(235, 124, 124));
         }
 
-        .card-bl.flipped {
+        .card-s.flipped {
             background: linear-gradient(to bottom right, rgb(10, 209, 209), rgb(226, 226, 233));
         }
 
@@ -98,7 +98,7 @@
             color: white;
         }
 
-        .card-b.flipped span, .card-y.flipped span, .card-bl.flipped span, .card-p.flipped span, .card-g.flipped span, .card-r.flipped span {
+        .card-b.flipped span, .card-y.flipped span, .card-s.flipped span, .card-p.flipped span, .card-g.flipped span, .card-r.flipped span {
             display: none; /* Hide the number when the card is flipped */
         }
 
@@ -269,7 +269,7 @@
     <div class="container">
 
         <!-- Cards -->
-        <div class="card-b" onclick="flipCard(this)"><span class="numbers">1</span><img src="images/albin/rtx4060.png" alt="Image 1" class="blue"></div>
+        <div class="card-b" onclick="flipCard(this)"><span class="numbers">1</span><img src="images/albin/rtx4060.png" alt="Image 1"></div>
         <div class="card-y" onclick="flipCard(this)"><span class="numbers">2</span><img src="images/albin/rtx4060ti.png" alt="Image 2"></div>
         <div class="card-g" onclick="flipCard(this)"><span class="numbers">3</span><img src="images/albin/batteries.png" alt="Image 3"></div>
         <div class="card-b" onclick="flipCard(this)"><span class="numbers">4</span><img src="images/albin/fidgetspinner.png" alt="Image 4"></div>
@@ -279,18 +279,18 @@
         <div class="card-r" onclick="flipCard(this)"><span class="numbers">8</span><img src="images/albin/slirre.png" alt="Image 8"></div>
         <div class="card-p" onclick="flipCard(this)"><span class="numbers">9</span><img src="images/albin/pasklamma.png" alt="Image 9"></div>
         <div class="card-g" onclick="flipCard(this)"><span class="numbers">10</span><img src="images/albin/galgen.png" alt="Image 10"></div>
-        <div class="card-bl" onclick="flipCard(this)"><span class="numbers">11</span><img src="images/albin/sock.png" alt="Image 11"></div>
+        <div class="card-s" onclick="flipCard(this)"><span class="numbers">11</span><img src="images/albin/sock.png" alt="Image 11"></div>
         <div class="card-g" onclick="flipCard(this)"><span class="numbers">12</span><img src="images/albin/zalle.png" alt="Image 12"></div>
         <div class="card-b" onclick="flipCard(this)"><span class="numbers">13</span><img src="images/albin/kroatien.JPG" alt="Image 13"></div>
-        <div class="card-bl" onclick="flipCard(this)"><span class="numbers">14</span><img src="images/albin/nk.png" alt="Image 14"></div>
+        <div class="card-s" onclick="flipCard(this)"><span class="numbers">14</span><img src="images/albin/nk.png" alt="Image 14"></div>
         <div class="card-p" onclick="flipCard(this)"><span class="numbers">15</span><img src="images/albin/rtx4060.png" alt="Image 15"></div>
         <div class="card-p" onclick="flipCard(this)"><span class="numbers">16</span><img src="images/albin/rtx4060.png" alt="Image 16"></div>
         <div class="card-r" onclick="flipCard(this)"><span class="numbers">17</span><img src="images/albin/rtx4060.png" alt="Image 17"></div>
         <div class="card-g" onclick="flipCard(this)"><span class="numbers">18</span><img src="images/albin/rtx4060.png" alt="Image 18"></div>
-        <div class="card-bl" onclick="flipCard(this)"><span class="numbers">19</span><img src="images/albin/rtx4060.png" alt="Image 19"></div>
+        <div class="card-s" onclick="flipCard(this)"><span class="numbers">19</span><img src="images/albin/rtx4060.png" alt="Image 19"></div>
         <div class="card-y" onclick="flipCard(this)"><span class="numbers">20</span><img src="images/albin/rtx4060.png" alt="Image 20"></div>
         <div class="card-b" onclick="flipCard(this)"><span class="numbers">21</span><img src="images/albin/rtx4060.png" alt="Image 21"></div>
-        <div class="card-bl" onclick="flipCard(this)"><span class="numbers">22</span><img src="images/albin/rtx4060.png" alt="Image 22"></div>
+        <div class="card-s" onclick="flipCard(this)"><span class="numbers">22</span><img src="images/albin/rtx4060.png" alt="Image 22"></div>
         <div class="card-r" onclick="flipCard(this)"><span class="numbers">23</span><img src="images/albin/rtx4060.png" alt="Image 23"></div>
         <div class="card-y" onclick="flipCard(this)"><span class="numbers">24</span><img src="images/albin/rtx4060.png" alt="Image 24"></div>
     </div>
@@ -427,19 +427,19 @@
         function getColor(card){
             switch (true) {
                 case card.classList.contains('card-b'):
-                    return "linear-gradient(to bottom right, rgb(11, 15, 15), rgb(88, 88, 94));";
+                    return "linear-gradient(to bottom right, rgb(11, 15, 15), rgb(88, 88, 94))";
                 case card.classList.contains('card-y'):
                     return "linear-gradient(to bottom right, rgb(233, 236, 23), rgb(196, 206, 154))";
                 case card.classList.contains('card-g'):
                     return "linear-gradient(to bottom right, rgb(23, 172, 60), rgb(158, 206, 172))";
                 case card.classList.contains('card-r'):
                     return "linear-gradient(to bottom right, rgb(182, 24, 24), rgb(235, 124, 124))";
-                case card.classList.contains('card-bl'):
+                case card.classList.contains('card-s'):
                     return "linear-gradient(to bottom right, rgb(10, 209, 209), rgb(226, 226, 233))";
                 case card.classList.contains('card-p'):
                     return "linear-gradient(to bottom right, rgb(169, 39, 196), rgb(187, 187, 233))";
                 default:
-                    return "linear-gradient(to bottom right, rgb(99, 70, 204), rgb(161, 145, 204));";
+                    return "linear-gradient(to bottom right, rgb(99, 70, 204), rgb(161, 145, 204))";
             }
         }
 
