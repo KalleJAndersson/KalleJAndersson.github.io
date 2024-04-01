@@ -125,7 +125,7 @@
         }
 
         #priceimage {
-            opacity: 1; /* Adjust the opacity value as needed (from 0 to 1) */
+            opacity: 0.7; /* Adjust the opacity value as needed (from 0 to 1) */
             width: auto; /* Let the image adjust its width according to its aspect ratio */
             height: auto; /* Let the image adjust its height according to its aspect ratio */
             max-width: 100%; /* Ensure the image doesn't exceed the width of its parent */
@@ -134,14 +134,52 @@
             margin: auto;
         }
 
+        .popup-card {
+            display: none;
+            position: fixed;
+            top: 30;
+            left: 30;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            /* display: none; */
+            text-align: center;
+            max-width: 100%;
+            background: linear-gradient(to bottom right, rgb(99, 70, 204), rgb(161, 145, 204));
+            border-radius: 5px;
+            padding: 20px;
+            cursor: pointer;/
+        }
+
+        .popup-content img {
+            max-width: 80%; /* Limit the maximum width of the image */
+            max-height: 80vh; /* Limit the maximum height of the image */
+        }
+
     </style>
 </head>
 
 
 <body>
+<div class="popup-card" >
+    <div class="popup-content" onclick="closePopup(this)" id="popupCard">
+        <img src="images/albin/rtx4060ti.png">
+        <span>TEKNIK</span>
+    </div>
+</div>
 <div class="background" >
 <!-- <h1 class="fargfemman-heading">🎉🎈 Färgfemman 🎈🎉</h1> -->
     <div class="outer">
+
+
+
+
         <aside class="aside">
             <div class="carousel">
                 <div class="p-image">
@@ -151,12 +189,14 @@
                     <img src="images/albin/kroatien.JPG" id="priceimage">
                 </div>
                 <div class="p-image">
-                    <img src="images/albin/eket.JPG" id="priceimage">
+                    <img src="images/albin/eket.png" id="priceimage">
+                </div>
+                <div class="p-image">
+                    <img src="images/albin/nk.png" id="priceimage">
                 </div>
                 <div class="p-image">
                     <img src="images/albin/bosch.png" id="priceimage">
                 </div>
-
                 <div class="p-image">
                     <img src="images/albin/rtx4060.png" id="priceimage">
                 </div>
@@ -182,7 +222,7 @@
         <div class="card-bl" onclick="flipCard(this)"><span class="numbers">11</span><img src="images/albin/sock.png" alt="Image 11"></div>
         <div class="card-g" onclick="flipCard(this)"><span class="numbers">12</span><img src="images/albin/zalle.png" alt="Image 12"></div>
         <div class="card-b" onclick="flipCard(this)"><span class="numbers">13</span><img src="images/albin/kroatien.JPG" alt="Image 13"></div>
-        <div class="card-bl" onclick="flipCard(this)"><span class="numbers">14</span><img src="images/albin/rtx4060.png" alt="Image 14"></div>
+        <div class="card-bl" onclick="flipCard(this)"><span class="numbers">14</span><img src="images/albin/nk.png" alt="Image 14"></div>
         <div class="card-p" onclick="flipCard(this)"><span class="numbers">15</span><img src="images/albin/rtx4060.png" alt="Image 15"></div>
         <div class="card-p" onclick="flipCard(this)"><span class="numbers">16</span><img src="images/albin/rtx4060.png" alt="Image 16"></div>
         <div class="card-r" onclick="flipCard(this)"><span class="numbers">17</span><img src="images/albin/rtx4060.png" alt="Image 17"></div>
@@ -229,10 +269,18 @@
 
     <script>
         function flipCard(card) {
-            // if (!card.classList.contains('flipped')) {
-            // }
-            card.classList.toggle('flipped');
+            if (!card.classList.contains('flipped')) {
+                var popupCard = document.getElementById("popupCard");
+                popupCard.style.display = "block"; // Show the popup card
 
+                console.log('flipped')
+            }
+            card.classList.toggle('flipped');
+        }
+
+        function closePopup() {
+            var popupCard = document.getElementById("popupCard");
+            popupCard.style.display = "none"; // Show the popup card
         }
 
    function burstConfetti() {
