@@ -1,35 +1,38 @@
 
 
-Teknik: SVART
+Teknik: card-b
 - RTX 4060 ti - 5000:-
 - RTX 4060: 4000:-
 - Fidget spinner
 - 2st AA batterier
 
 
-Inredning: VIT
+Inredning:  card-p
 - Hyllan EKET från IKEA: 1000:-
 -
 - Självhäftande möbeltassar
 -
 
 
-Mat och Kök: RÖD
-- Bosch VitaPower Blender  1000:-
+Mat och Kök: card-r
+- Bosch VitaPower Blender 1000:-
 - Årsförbrukning kaffe i valfritt märke
 - Slickepotten Bakglad från IKEA
 - 10 pack färgglada påsklämmor från IKEA
 
 
-Upplevelser: BLÅ
+Upplevelser: card-s
 - Resa till Kroatien (med förädrar)
 - Lund
 -
 -
 
 
-Kläder: GRÖN
+Kläder: card-g
 - Zalando värt 1000:-
 - Naturkompaniet 1000:-
 - 8-pack Galgen Bumerang från IKEA
 - Ett par strumpor från Adidas
+
+
+NÅNTING: card-y
