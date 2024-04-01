@@ -277,24 +277,20 @@
                 var popupSlot = document.getElementById("popupSlot");
                 var popupImage = document.getElementById("popupImage");
 
-                var parentDiv = document.getElementById("1");
-                console.log(parentDiv)
+                // get image url from card
+                var cardHTML = card.innerHTML;
+                var tempDiv = document.createElement('div');
+                tempDiv.innerHTML = cardHTML;
+                var imgElement = tempDiv.querySelector('img');
+                var imageUrl = imgElement.getAttribute('src');
 
-                var imgElement = parentDiv.querySelector("img");
-
-                popupImage.src = "images/albin/pasklamma.png"
+                popupImage.src = imageUrl
                 popupCard.style.display = "block"; // Show the popup card
                 popupSlot.style.zIndex = 9999;
-                console.log(card.classList)
-                console.log(card.classList.imgElement.src)
 
-                this.POPUP = true
-
-            } else {
                 card.classList.toggle('flipped');
+
             }
-
-
         }
 
         function closePopup() {
