@@ -135,13 +135,12 @@
         }
 
         .popup-card {
-            display: none;
             position: fixed;
-            top: 30;
-            left: 30;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            z-index: 9999;
+            z-index: 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -154,7 +153,8 @@
             background: linear-gradient(to bottom right, rgb(99, 70, 204), rgb(161, 145, 204));
             border-radius: 5px;
             padding: 20px;
-            cursor: pointer;/
+            cursor: pointer;
+            opacity: 0.9;
         }
 
         .popup-content img {
@@ -167,7 +167,7 @@
 
 
 <body>
-<div class="popup-card" >
+<div class="popup-card" id="popupSlot" >
     <div class="popup-content" onclick="closePopup(this)" id="popupCard">
         <img src="images/albin/rtx4060ti.png">
         <span>TEKNIK</span>
@@ -269,11 +269,14 @@
 
     <script>
         function flipCard(card) {
-            if (!card.classList.contains('flipped')) {
+            if (card.classList.contains('flipped')) {
                 var popupCard = document.getElementById("popupCard");
+                var popupSlot = document.getElementById("popupSlot");
                 popupCard.style.display = "block"; // Show the popup card
+                popupSlot.style.zIndex = 9999;
+                popupCard
 
-                console.log('flipped')
+                console.log(popupCard)
             }
             card.classList.toggle('flipped');
         }
