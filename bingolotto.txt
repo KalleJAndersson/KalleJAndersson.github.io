@@ -24,8 +24,8 @@ Mat och Kök: card-r
 Upplevelser: card-s
 - Resa till Kroatien (med förädrar)
 - Lund
--
--
+- bio
+- hoby gif
 
 
 Kläder: card-g
