@@ -3,19 +3,19 @@
 Teknik: card-b
 - RTX 4060 ti - 5000:-
 - RTX 4060: 4000:-
-- Fidget spinner
+- Ficklampa
 - 2st AA batterier
 
 
 Inredning:  card-p
+- Vitrinskåpet Blåliden
 - Hyllan EKET från IKEA: 1000:-
--
 - Självhäftande möbeltassar
-- doftljus
+- Doftljus med toner av barr och mossa
 
 
 Mat och Kök: card-r
-- Philips HD9257 Airfryer XL Series 3000 -- 2300
+- Philips HD9257 Airfryer XL Series 3000 -- 2300:-
 - Bosch VitaPower Blender 1000:-
 - Slickepotten Bakglad från IKEA
 - 10 pack färgglada påsklämmor från IKEA
@@ -24,15 +24,15 @@ Mat och Kök: card-r
 Upplevelser: card-s
 - Resa till Kroatien (med förädrar)
 -
-- bio
-- hoby gif
+- Bio
+- Gratis inträde till Hoby Gifs sista bortamatch
 
 
 Kläder: card-g
 - Zalando värt 1000:-
-- Naturkompaniet 1000:-
+- Naturkompaniet värt 1000:-
 - 8-pack Galgen Bumerang från IKEA
-- tre par strumpor från Adidas
+- Tre par strumpor från Adidas
 
 
-NÅNTING: card-y
+Hobby: card-y
