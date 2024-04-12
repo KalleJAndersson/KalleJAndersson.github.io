@@ -1,41 +1,41 @@
 
 
-Teknik: card-b
-- RTX 4060 ti - 5000:-
-- RTX 4060: 4000:-
-- Ficklampa
-- 2st AA batterier
-
-
-Inredning:  card-p
+Rosa - Inredning:
 - Vitrinskåpet Blåliden 1100
 - Hyllan EKET från IKEA: 1000:-
 - Självhäftande möbeltassar
 - Doftljus med toner av barr och mossa
 
 
-Mat och Kök: card-r
+Röd - Mat och Kök:
 - Philips HD9257 Airfryer XL Series 3000 -- 2300:-
 - Bosch VitaPower Blender 1000:-
 - Slickepotten Bakglad från IKEA
 - 10 pack färgglada påsklämmor från IKEA
 
 
-Upplevelser: card-s
+Blå - Upplevelser:
 - Resa till Kroatien (med förädrar)
 - Vägga kaptensfat med kusinerna 500 per person
 - Biobiljett
 - Gratis inträde till Hoby Gifs sista bortamatch
 
 
-Kläder: card-g
-- Zalando värt 500:-
+Svart - Teknik:
+- RTX 4060 ti - 5000:-
+- RTX 4060: 4000:-
+- Ficklampa
+- 2st AA batterier
+
+
+Grön - Kläder:
 - Naturkompaniet värt 1000:-
+- Zalando värt 500:-
 - 8-pack Galgen Bumerang från IKEA
 - Tre par strumpor från Adidas
 
 
-Pluggakuten: card-y   ?
+Gul - Pluggakuten:
 - Foodora 500
 - Kaffe för en termin
 - GraphGear 500: 100kr
@@ -56,3 +56,24 @@ Kalle
 Filip
 Elias
 Emanuel
+
+
+
+
+2, 6, 10, 14, 18, 22
+2100
+
+3, 7, 11, 15, 19, 23
+3400
+
+
+4, 8, 12, 16, 20, 24
+7200
+
+
+11, 7, 22, 18, 3, 9
+3500
+
+
+16, 2, 14, 20, 8, 24
+2400

@@ -47,7 +47,6 @@
             transition: transform 0.3s; /* Add transition for smooth flip effect */
             transform-style: preserve-3d;
             perspective: 1000px;
-
         }
 
         .card-b:hover, .card-y:hover, .card-s:hover, .card-p:hover, .card-g:hover, .card-r:hover {
@@ -59,6 +58,7 @@
             max-width: 85%;
             max-height: 85%;
             position: absolute;
+
         }
 
         .card-b.flipped img, .card-y.flipped img, .card-s.flipped img, .card-p.flipped img, .card-g.flipped img, .card-r.flipped img {
@@ -66,6 +66,11 @@
             max-width: 85%;
             max-height: 85%;
             position: absolute;
+            transform: rotateY(180deg); /* Initial flipped state */
+        }
+
+        .card-b.flipped img, .card-b img {
+            transform: rotateY(180deg);
         }
 
         .card-b.flipped {
