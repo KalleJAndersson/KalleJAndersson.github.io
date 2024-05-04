@@ -41,7 +41,7 @@
 .carousel {
     display: flex;
     flex-direction: column;
-    animation: carouselAnimation 10s linear infinite;
+    animation: carouselAnimation 40s linear infinite;
     /* Adjust animation duration as needed */
 }
 
