@@ -34,7 +34,7 @@
             height: 100vh;
         }
 
-        .card-b, .card-y, .card-s, .card-p, .card-g, .card-r {
+        .card-g {
             display: flex; /* Use flexbox */
             flex-direction: column;
             justify-content: center; /* Center items vertically */
@@ -49,11 +49,11 @@
             perspective: 1000px;
         }
 
-        .card-b:hover, .card-y:hover, .card-s:hover, .card-p:hover, .card-g:hover, .card-r:hover {
+        .card-g:hover{
             transform: scale(1.05);
         }
 
-        .card-b img, .card-y img, .card-s img, .card-p img, .card-g img, .card-r img {
+        .card-g img{
             display: none;
             max-width: 85%;
             max-height: 85%;
@@ -61,35 +61,15 @@
 
         }
 
-        .card-b.flipped img, .card-y.flipped img, .card-s.flipped img, .card-p.flipped img, .card-g.flipped img, .card-r.flipped img {
+        .card-g.flipped img {
             display: block;
             max-width: 85%;
             max-height: 85%;
             position: absolute;
         }
 
-        .card-b.flipped {
-            background: linear-gradient(to bottom right, rgb(11, 15, 15), rgb(88, 88, 94));
-        }
-
-        .card-r.flipped {
-            background: linear-gradient(to bottom right, rgb(182, 24, 24), rgb(235, 124, 124));
-        }
-
-        .card-s.flipped {
-            background: linear-gradient(to bottom right, rgb(10, 209, 209), rgb(226, 226, 233));
-        }
-
         .card-g.flipped {
             background: linear-gradient(to bottom right, rgb(23, 172, 60), rgb(158, 206, 172));
-        }
-
-        .card-p.flipped {
-            background: linear-gradient(to bottom right, rgb(169, 39, 196), rgb(187, 187, 233));
-        }
-
-        .card-y.flipped {
-            background: linear-gradient(to bottom right, rgb(255, 218, 0), rgb(214, 206, 129));
         }
 
        .numbers {
@@ -98,7 +78,7 @@
             color: white;
         }
 
-        .card-b.flipped span, .card-y.flipped span, .card-s.flipped span, .card-p.flipped span, .card-g.flipped span, .card-r.flipped span {
+        .card-g.flipped span {
             display: none; /* Hide the number when the card is flipped */
         }
 
@@ -645,9 +625,6 @@
                     <img src="images/xmasbingo/limesurprise.png" id="priceimage">
                 </div>
                 <div class="p-image">
-                    <img src="images/xmasbingo/limesurprise.png" id="priceimage">
-                </div>
-                <div class="p-image">
                     <img src="images/xmasbingo/toblerone.png" id="priceimage">
                 </div>
                 <div class="p-image">
@@ -681,9 +658,6 @@
                     <img src="images/xmasbingo/limesurprise.png" id="priceimage">
                 </div>
                 <div class="p-image">
-                    <img src="images/xmasbingo/limesurprise.png" id="priceimage">
-                </div>
-                <div class="p-image">
                     <img src="images/xmasbingo/toblerone.png" id="priceimage">
                 </div>
                 <div class="p-image">
@@ -712,9 +686,6 @@
                 </div>
                 <div class="p-image">
                     <img src="images/xmasbingo/kinder.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/xmasbingo/limesurprise.png" id="priceimage">
                 </div>
                 <div class="p-image">
                     <img src="images/xmasbingo/limesurprise.png" id="priceimage">
@@ -753,9 +724,6 @@
                     <img src="images/xmasbingo/limesurprise.png" id="priceimage">
                 </div>
                 <div class="p-image">
-                    <img src="images/xmasbingo/limesurprise.png" id="priceimage">
-                </div>
-                <div class="p-image">
                     <img src="images/xmasbingo/toblerone.png" id="priceimage">
                 </div>
                 <div class="p-image">
@@ -784,9 +752,6 @@
                 </div>
                 <div class="p-image">
                     <img src="images/xmasbingo/kinder.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/xmasbingo/limesurprise.png" id="priceimage">
                 </div>
                 <div class="p-image">
                     <img src="images/xmasbingo/limesurprise.png" id="priceimage">
