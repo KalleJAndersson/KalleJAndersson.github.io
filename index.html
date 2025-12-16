@@ -497,6 +497,30 @@
                     <img src="images/albin/foodora.png" id="priceimage">
                 </div>
             </div>
+        <script>
+            // Generate carousel items dynamically
+            const carouselItems = [
+                'rtx4060ti.png', 'kroatien.JPG', 'eket.png', 'nk.png', 'bosch.png',
+                'rtx4060.png', 'zalle.png', 'kaffe.png', 'philips.png', 'vitrin.png',
+                'fisk.png', 'foodora.png'
+            ];
+            
+            const carousel = document.querySelector('.carousel');
+            carouselItems.forEach(item => {
+                const pImage = document.createElement('div');
+                pImage.className = 'p-image';
+                pImage.innerHTML = `<img src="images/albin/${item}" class="priceimage">`;
+                carousel.appendChild(pImage);
+            });
+            
+            // Repeat carousel items 5 times
+            const items = carousel.querySelectorAll('.p-image');
+            items.forEach(item => {
+                for (let i = 0; i < 4; i++) {
+                    carousel.appendChild(item.cloneNode(true));
+                }
+            });
+        </script>
         </aside>
     <div class="container">
 
@@ -526,332 +550,6 @@
         <div class="card-g" onclick="flipCard(this)"><span class="numbers">23</span><img src="images/albin/philips.png" alt="Image 23"></div>
         <div class="card-g" onclick="flipCard(this)"><span class="numbers">24</span><img src="images/albin/nocco.png" alt="Image 24"></div>
     </div>
-        <aside class="aside">
-            <div class="carousel">
-                <div class="p-image">
-                    <img src="images/albin/slirre.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/batteries.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/lamp.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/galgen.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/tassar.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/sock.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/pasklamma.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/gifhoby.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/nocco.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/bio.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/doft.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/graph.png" id="priceimage">
-                </div><div class="p-image">
-                    <img src="images/albin/slirre.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/batteries.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/lamp.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/galgen.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/tassar.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/sock.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/pasklamma.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/gifhoby.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/nocco.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/bio.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/doft.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/graph.png" id="priceimage">
-                </div><div class="p-image">
-                    <img src="images/albin/slirre.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/batteries.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/lamp.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/galgen.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/tassar.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/sock.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/pasklamma.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/gifhoby.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/nocco.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/bio.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/doft.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/graph.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/slirre.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/batteries.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/lamp.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/galgen.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/tassar.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/sock.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/pasklamma.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/gifhoby.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/nocco.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/bio.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/doft.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/graph.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/slirre.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/batteries.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/lamp.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/galgen.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/tassar.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/sock.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/pasklamma.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/gifhoby.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/nocco.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/bio.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/doft.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/graph.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/slirre.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/batteries.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/lamp.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/galgen.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/tassar.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/sock.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/pasklamma.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/gifhoby.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/nocco.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/bio.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/doft.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/graph.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/slirre.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/batteries.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/lamp.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/galgen.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/tassar.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/sock.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/pasklamma.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/gifhoby.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/nocco.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/bio.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/doft.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/graph.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/slirre.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/batteries.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/lamp.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/galgen.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/tassar.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/sock.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/pasklamma.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/gifhoby.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/nocco.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/bio.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/doft.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/graph.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/slirre.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/batteries.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/lamp.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/galgen.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/tassar.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/sock.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/pasklamma.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/gifhoby.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/nocco.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/bio.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/doft.png" id="priceimage">
-                </div>
-                <div class="p-image">
-                    <img src="images/albin/graph.png" id="priceimage">
-                </div>
-            </div>
-        </aside>
     </div>
 
     </div>
