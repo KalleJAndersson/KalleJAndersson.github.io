@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Inventering Långsjöryd älgskyddsområde</title>
+  <title>Långsjöryd älgskyddsområde</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
@@ -75,6 +75,66 @@
       margin: 8px 0 0;
       color: var(--muted);
       font-size: 0.94rem;
+    }
+
+    .insight-shell {
+      background: var(--surface);
+      border: 1px solid rgba(32, 48, 41, 0.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 12px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .summary-card {
+      background: #f4efe4;
+      border: 1px solid rgba(32, 48, 41, 0.12);
+      border-radius: 12px;
+      padding: 8px;
+    }
+
+    .summary-label {
+      margin: 0;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+
+    .summary-value {
+      margin: 4px 0 0;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .featured-card {
+      background: linear-gradient(120deg, #e6f0e1 0%, #f8f1e8 100%);
+      border: 1px solid rgba(32, 48, 41, 0.12);
+      border-radius: 12px;
+      padding: 10px;
+    }
+
+    .featured-title {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .featured-text {
+      margin: 6px 0 0;
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: var(--ink);
     }
 
     .map-shell {
@@ -196,6 +256,71 @@
       gap: 6px;
     }
 
+    .chart-shell {
+      background: var(--surface);
+      border: 1px solid rgba(32, 48, 41, 0.12);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 10px;
+    }
+
+    .chart-title {
+      margin: 0;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+
+    .chart-subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .chart-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .chart-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 26px;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chart-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .chart-track {
+      position: relative;
+      height: 12px;
+      border-radius: 999px;
+      background: #e7e0d2;
+      overflow: hidden;
+    }
+
+    .chart-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #b44f2e 0%, #d67a46 100%);
+    }
+
+    .chart-value {
+      font-size: 0.78rem;
+      color: var(--ink);
+      font-weight: 700;
+      text-align: right;
+    }
+
     .leaflet-popup-content {
       margin: 10px 12px;
       min-width: 180px;
@@ -219,6 +344,22 @@
       color: var(--ink);
     }
 
+    .popup-kicker {
+      margin: 0 0 6px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #6b5e46;
+      font-weight: 700;
+    }
+
+    .popup-wow {
+      margin: 0 0 6px;
+      color: #23392f;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
     .leaflet-control-attribution {
       font-size: 11px;
     }
@@ -235,12 +376,18 @@
       }
 
       .title-wrap,
+      .insight-shell,
       .map-shell,
       .form-shell,
-      .legend {
+      .legend,
+      .chart-shell {
         max-width: 960px;
         width: 100%;
         margin-inline: auto;
+      }
+
+      .summary-card {
+        padding: 10px;
       }
 
       .button-row {
@@ -263,8 +410,29 @@
 <body>
   <main class="page">
     <section class="title-wrap">
-      <h1>Långsjöryd älgskyddsområde sommar 2026</h1>
+      <h1>Inventering Långsjöryd älgskyddsområde</h1>
       <p class="subtitle">Tryck på en markör för att se detaljerad information från registrerad observation.</p>
+    </section>
+
+    <section class="insight-shell" aria-label="Snabbsammanfattning">
+      <div class="summary-strip">
+        <article class="summary-card">
+          <p class="summary-label">Observationer</p>
+          <p class="summary-value" id="summaryCount">0</p>
+        </article>
+        <article class="summary-card">
+          <p class="summary-label">Senaste</p>
+          <p class="summary-value" id="summaryLatest">-</p>
+        </article>
+        <article class="summary-card">
+          <p class="summary-label">Vanligast</p>
+          <p class="summary-value" id="summaryCommon">-</p>
+        </article>
+      </div>
+      <article class="featured-card">
+        <p class="featured-title">Dagens glimt ur skogen</p>
+        <p class="featured-text" id="featuredText">Laddar observation...</p>
+      </article>
     </section>
 
     <section class="map-shell">
@@ -299,6 +467,12 @@
     <section class="legend">
       <p class="legend-title">Registrerade observationer</p>
       <ul id="pinList"></ul>
+    </section>
+
+    <section class="chart-shell" aria-label="Tidsdiagram">
+      <p class="chart-title">Tidsdiagram</p>
+      <p class="chart-subtitle" id="timeChartSummary">Laddar tidsdata...</p>
+      <div class="chart-list" id="timeChartBars"></div>
     </section>
   </main>
 
@@ -457,6 +631,12 @@
     const shareButton = document.getElementById("shareObservations");
     const shareStatus = document.getElementById("shareStatus");
     const pinList = document.getElementById("pinList");
+    const summaryCount = document.getElementById("summaryCount");
+    const summaryLatest = document.getElementById("summaryLatest");
+    const summaryCommon = document.getElementById("summaryCommon");
+    const featuredText = document.getElementById("featuredText");
+    const timeChartSummary = document.getElementById("timeChartSummary");
+    const timeChartBars = document.getElementById("timeChartBars");
 
     function setDefaultObservationTime() {
       if (!observationTimeInput) {
@@ -466,6 +646,135 @@
       const timezoneOffsetMs = now.getTimezoneOffset() * 60000;
       const localIso = new Date(now.getTime() - timezoneOffsetMs).toISOString().slice(0, 16);
       observationTimeInput.value = localIso;
+    }
+
+    function getObservationType(pin) {
+      const source = `${pin.description} ${pin.address}`.toLowerCase();
+      if (source.includes("kalv")) {
+        return "kalv";
+      }
+      if (source.includes("kviga")) {
+        return "kviga";
+      }
+      if (source.includes("ensam")) {
+        return "ensam";
+      }
+      return "observation";
+    }
+
+    function parsePinDate(pin) {
+      const iso = pin.time.replace(" ", "T");
+      const parsed = new Date(iso);
+      return Number.isNaN(parsed.getTime()) ? null : parsed;
+    }
+
+    function relativeTimeLabel(pin) {
+      const date = parsePinDate(pin);
+      if (!date) {
+        return "Tid okänd";
+      }
+      const now = new Date();
+      const diffMs = now.getTime() - date.getTime();
+      const diffDays = Math.floor(diffMs / 86400000);
+      if (diffDays <= 0) {
+        return "Idag";
+      }
+      if (diffDays === 1) {
+        return "Igår";
+      }
+      if (diffDays <= 7) {
+        return `För ${diffDays} dagar sedan`;
+      }
+      return date.toLocaleDateString("sv-SE");
+    }
+
+    function wowLine(pin) {
+      const text = pin.description.trim();
+      if (!text) {
+        return "Skogens aktivitet noterad.";
+      }
+      return text;
+    }
+
+    function updateInsights(pins) {
+      summaryCount.textContent = String(pins.length);
+      if (pins.length === 0) {
+        summaryLatest.textContent = "-";
+        summaryCommon.textContent = "-";
+        featuredText.textContent = "Inga observationer registrerade just nu.";
+        return;
+      }
+
+      const sorted = [...pins].sort((a, b) => {
+        const aDate = parsePinDate(a);
+        const bDate = parsePinDate(b);
+        const aMs = aDate ? aDate.getTime() : 0;
+        const bMs = bDate ? bDate.getTime() : 0;
+        return bMs - aMs;
+      });
+
+      const latest = sorted[0];
+      summaryLatest.textContent = latest.time;
+
+      const typeCounts = {
+        kviga: 0,
+        kalv: 0,
+        ensam: 0,
+        observation: 0
+      };
+      pins.forEach((pin) => {
+        typeCounts[getObservationType(pin)] += 1;
+      });
+
+      let topType = "observation";
+      Object.keys(typeCounts).forEach((key) => {
+        if (typeCounts[key] > typeCounts[topType]) {
+          topType = key;
+        }
+      });
+      summaryCommon.textContent = `${topType.charAt(0).toUpperCase()}${topType.slice(1)}`;
+
+      const featured = sorted[Math.floor(Math.random() * sorted.length)];
+      featuredText.textContent = `${relativeTimeLabel(featured)}: ${wowLine(featured)}`;
+    }
+
+    function renderTimeChart(pins) {
+      if (!timeChartSummary || !timeChartBars) {
+        return;
+      }
+
+      const grouped = new Map();
+
+      pins.forEach((pin) => {
+        const date = parsePinDate(pin);
+        const key = date ? date.toISOString().slice(0, 10) : String(pin.time).slice(0, 10);
+        grouped.set(key, (grouped.get(key) || 0) + 1);
+      });
+
+      const points = Array.from(grouped.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+
+      if (points.length === 0) {
+        timeChartSummary.textContent = "Inga observationer att visualisera.";
+        timeChartBars.innerHTML = "";
+        return;
+      }
+
+      const maxCount = Math.max(...points.map((entry) => entry[1]));
+      const total = points.reduce((sum, entry) => sum + entry[1], 0);
+      timeChartSummary.textContent = `${total} observationer fördelade över ${points.length} dagar.`;
+
+      timeChartBars.innerHTML = "";
+      points.forEach(([day, count]) => {
+        const widthPercent = maxCount > 0 ? Math.max(10, Math.round((count / maxCount) * 100)) : 0;
+        const row = document.createElement("div");
+        row.className = "chart-row";
+        row.innerHTML = `
+          <span class="chart-label">${escapeHtml(day)}</span>
+          <div class="chart-track"><div class="chart-fill" style="width: ${widthPercent}%"></div></div>
+          <span class="chart-value">${count}</span>
+        `;
+        timeChartBars.appendChild(row);
+      });
     }
 
     async function reverseGeocode(lat, lng) {
@@ -504,10 +813,10 @@
         }).addTo(markerGroup);
 
         const popupHtml = `
-          <h2 class="popup-title">Observation</h2>
-          <p class="popup-row"><strong>Adress:</strong> ${escapeHtml(pin.address)}</p>
-          <p class="popup-row"><strong>Tid:</strong> ${escapeHtml(pin.time)}</p>
-          <p class="popup-row"><strong>Beskrivning:</strong> ${escapeHtml(pin.description)}</p>
+          <p class="popup-kicker">${escapeHtml(getObservationType(pin))} • ${escapeHtml(relativeTimeLabel(pin))}</p>
+          <h2 class="popup-title">Observation - ${escapeHtml(pin.time)}</h2>
+          <p class="popup-wow">${escapeHtml(wowLine(pin))}</p>
+          <p class="popup-row">${escapeHtml(pin.address)}</p>
         `;
 
         marker.bindPopup(popupHtml, {
@@ -516,7 +825,7 @@
         });
 
         const item = document.createElement("li");
-        item.textContent = `${pin.address} (${pin.time})`;
+        item.textContent = `${pin.time} • ${pin.address}`;
         pinList.appendChild(item);
 
         bounds.extend(pin.coords);
@@ -526,7 +835,7 @@
         icon: houseIcon
       }).addTo(markerGroup);
       houseMarker.bindPopup(`
-        <h2 class="popup-title">Hus</h2>
+        <h2 class="popup-title">Högkvarter</h2>
         <p class="popup-row"><strong>Position:</strong> 56.383259, 15.159735</p>
       `);
       bounds.extend(houseCoords);
@@ -537,8 +846,11 @@
           animate: true
         });
       } else {
-        map.setView([56.2, 15.27], 11);
+        map.setView(houseCoords, 11);
       }
+
+      updateInsights(moosePins);
+      renderTimeChart(moosePins);
     }
 
     map.on("click", async (event) => {
