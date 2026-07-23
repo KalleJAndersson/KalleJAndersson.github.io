@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Inventering av älg sommar 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  >
+  <style>
+    :root {
+      --bg-sand: #ede7dd;
+      --bg-sage: #c8d8c3;
+      --surface: rgba(249, 246, 240, 0.9);
+      --ink: #203029;
+      --muted: #4e6458;
+      --accent: #b44f2e;
+      --shadow: 0 14px 34px rgba(21, 38, 31, 0.16);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 85% 8%, rgba(180, 79, 46, 0.18), transparent 34%),
+        radial-gradient(circle at 18% 88%, rgba(83, 122, 101, 0.18), transparent 30%),
+        linear-gradient(160deg, var(--bg-sand) 0%, var(--bg-sage) 100%);
+      min-height: 100%;
+    }
+
+    .page {
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 14px;
+      min-height: 100%;
+      padding: 14px;
+      animation: fade-in 480ms ease-out;
+    }
+
+    .title-wrap {
+      background: var(--surface);
+      border: 1px solid rgba(32, 48, 41, 0.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px 14px;
+      backdrop-filter: blur(2px);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Fraunces", Georgia, serif;
+      font-size: clamp(1.4rem, 5.6vw, 2.2rem);
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+    }
+
+    .subtitle {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .map-shell {
+      background: var(--surface);
+      border: 1px solid rgba(32, 48, 41, 0.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 10px;
+      overflow: hidden;
+    }
+
+    #map {
+      width: 100%;
+      height: min(64vh, 560px);
+      min-height: 340px;
+      border-radius: 13px;
+    }
+
+    .legend {
+      background: var(--surface);
+      border: 1px solid rgba(32, 48, 41, 0.12);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .legend-title {
+      margin: 0 0 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+
+    .legend ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      display: grid;
+      gap: 6px;
+    }
+
+    .leaflet-popup-content {
+      margin: 10px 12px;
+      min-width: 180px;
+      font-size: 0.92rem;
+      line-height: 1.35;
+    }
+
+    .popup-title {
+      margin: 0 0 6px;
+      font-size: 0.98rem;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .popup-row {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .popup-row strong {
+      color: var(--ink);
+    }
+
+    .leaflet-control-attribution {
+      font-size: 11px;
+    }
+
+    @media (min-width: 760px) {
+      .page {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 24px;
+        gap: 18px;
+      }
+
+      #map {
+        height: min(68vh, 640px);
+      }
+
+      .title-wrap,
+      .map-shell,
+      .legend {
+        max-width: 960px;
+        width: 100%;
+        margin-inline: auto;
+      }
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="title-wrap">
+      <h1>Inventering av älg sommar 2026</h1>
+      <p class="subtitle">Tryck p&aring; en mark&ouml;r f&ouml;r att se registrerad observation.</p>
+    </section>
+
+    <section class="map-shell">
+      <div id="map" aria-label="Karta &ouml;ver &auml;lgobservationer"></div>
+    </section>
+
+    <section class="legend">
+      <p class="legend-title">Registrerade punkter</p>
+      <ul id="pinList"></ul>
+    </section>
+  </main>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script>
+    const moosePins = [
+      {
+        address: "L\u00e5ngasj\u00f6v\u00e4gen 73, Ronneby kommun",
+        time: "2026-06-14 06:45",
+        description: "Ko med kalv observerad i skogsbrynet norr om tomten.",
+        coords: [56.2109, 15.2496]
+      },
+      {
+        address: "Listerbyv\u00e4gen 12, Ronneby kommun",
+        time: "2026-06-28 21:10",
+        description: "En vuxen \u00e4lg passerade \u00f6ver \u00e5kermarken i lugnt tempo.",
+        coords: [56.1733, 15.2769]
+      },
+      {
+        address: "Svenstorp 4, Ronneby kommun",
+        time: "2026-07-05 05:52",
+        description: "Sp\u00e5r och f\u00e4rsk spillning dokumenterad vid grusv\u00e4g.",
+        coords: [56.2378, 15.2071]
+      }
+    ];
+
+    const map = L.map("map", {
+      zoomControl: true,
+      preferCanvas: true
+    });
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap"
+    }).addTo(map);
+
+    const bounds = L.latLngBounds();
+    const pinList = document.getElementById("pinList");
+
+    moosePins.forEach((pin) => {
+      const marker = L.marker(pin.coords).addTo(map);
+
+      const popupHtml = `
+        <h2 class="popup-title">Observation</h2>
+        <p class="popup-row"><strong>Adress:</strong> ${pin.address}</p>
+        <p class="popup-row"><strong>Tid:</strong> ${pin.time}</p>
+        <p class="popup-row"><strong>Beskrivning:</strong> ${pin.description}</p>
+      `;
+
+      marker.bindPopup(popupHtml, {
+        autoPanPaddingTopLeft: [24, 24],
+        autoPanPaddingBottomRight: [24, 24]
+      });
+
+      const item = document.createElement("li");
+      item.textContent = `${pin.address} (${pin.time})`;
+      pinList.appendChild(item);
+
+      bounds.extend(pin.coords);
+    });
+
+    if (moosePins.length > 0) {
+      map.fitBounds(bounds.pad(0.2), {
+        maxZoom: 14,
+        animate: true
+      });
+    } else {
+      map.setView([56.2, 15.27], 11);
+    }
+  </script>
+</body>
+</html>
