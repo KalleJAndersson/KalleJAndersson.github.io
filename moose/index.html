@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Inventering av älg sommar 2026</title>
+  <title>Inventering Långsjöryd älgskyddsområde</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
@@ -156,6 +156,10 @@
       gap: 8px;
     }
 
+    .button-row + .button-row {
+      margin-top: 6px;
+    }
+
     button {
       border: none;
       border-radius: 999px;
@@ -259,7 +263,7 @@
 <body>
   <main class="page">
     <section class="title-wrap">
-      <h1>Inventering av älg sommar 2026</h1>
+      <h1>Inventering Långsjöryd älgskyddsområde</h1>
       <p class="subtitle">Tryck p&aring; en mark&ouml;r f&ouml;r att se registrerad observation.</p>
     </section>
 
@@ -283,6 +287,10 @@
         <div class="button-row">
           <button class="btn-primary" type="submit">Spara observation</button>
         </div>
+        <div class="button-row">
+          <button class="btn-secondary" type="button" id="shareObservations">Kopiera delningsl&auml;nk</button>
+        </div>
+        <p id="shareStatus" class="coord-note">Delning fungerar utan databas via l&auml;nk.</p>
       </form>
     </section>
 
@@ -349,6 +357,50 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(pins));
     }
 
+    function normalizeSharedPins(pins) {
+      if (!Array.isArray(pins)) {
+        return [];
+      }
+
+      return pins.filter((pin) => (
+        pin &&
+        typeof pin.address === "string" &&
+        typeof pin.time === "string" &&
+        typeof pin.description === "string" &&
+        Array.isArray(pin.coords) &&
+        pin.coords.length === 2 &&
+        Number.isFinite(pin.coords[0]) &&
+        Number.isFinite(pin.coords[1])
+      ));
+    }
+
+    function parseSharedPinsFromHash() {
+      try {
+        const hash = window.location.hash;
+        if (!hash.startsWith("#obs=")) {
+          return [];
+        }
+
+        const encoded = hash.slice(5);
+        if (!encoded) {
+          return [];
+        }
+
+        const json = decodeURIComponent(escape(atob(encoded)));
+        const parsed = JSON.parse(json);
+        return normalizeSharedPins(parsed);
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function createShareLink(pins) {
+      const sharedPins = normalizeSharedPins(pins);
+      const json = JSON.stringify(sharedPins);
+      const encoded = btoa(unescape(encodeURIComponent(json)));
+      return `${window.location.origin}${window.location.pathname}#obs=${encoded}`;
+    }
+
     function escapeHtml(value) {
       return value
         .replaceAll("&", "&amp;")
@@ -379,6 +431,8 @@
     const observationTimeInput = document.getElementById("obsTime");
     const coordStatus = document.getElementById("coordStatus");
     const addressStatus = document.getElementById("addressStatus");
+    const shareButton = document.getElementById("shareObservations");
+    const shareStatus = document.getElementById("shareStatus");
     const pinList = document.getElementById("pinList");
 
     function setDefaultObservationTime() {
@@ -511,6 +565,25 @@
       if (draftMarker) {
         draftMarker.remove();
         draftMarker = null;
+      }
+    });
+
+    const sharedPinsFromLink = parseSharedPinsFromHash();
+    if (sharedPinsFromLink.length > 0) {
+      customPins = sharedPinsFromLink;
+      saveCustomPins(customPins);
+      moosePins = [...defaultPins, ...customPins];
+      shareStatus.textContent = "Observationer laddade fr&aring;n delningsl&auml;nk.";
+    }
+
+    shareButton.addEventListener("click", async () => {
+      const shareLink = createShareLink(customPins);
+
+      try {
+        await navigator.clipboard.writeText(shareLink);
+        shareStatus.textContent = "Delningsl&auml;nk kopierad. Skicka den till din v&auml;n.";
+      } catch (error) {
+        shareStatus.textContent = `Kunde inte kopiera automatiskt. Anv&auml;nd denna l&auml;nk: ${shareLink}`;
       }
     });
 
