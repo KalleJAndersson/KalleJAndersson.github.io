@@ -271,6 +271,7 @@
       <div id="map" aria-label="Karta &ouml;ver &auml;lgobservationer"></div>
     </section>
 
+    <!--
     <section class="form-shell">
       <h2 class="form-title">L&auml;gg till observation</h2>
       <form id="observationForm">
@@ -293,6 +294,7 @@
         <p id="shareStatus" class="coord-note">Delning fungerar utan databas via l&auml;nk.</p>
       </form>
     </section>
+    -->
 
     <section class="legend">
       <p class="legend-title">Registrerade punkter</p>
@@ -309,22 +311,28 @@
     const STORAGE_KEY = "mooseObservationsV1";
     const defaultPins = [
       {
-        address: "L\u00e5ngasj\u00f6v\u00e4gen 73, Ronneby kommun",
-        time: "2026-06-14 06:45",
-        description: "Ko med kalv observerad i skogsbrynet norr om tomten.",
-        coords: [56.2109, 15.2496]
+        address: "Gökadalsvägen, Ronneby kommun",
+        time: "2026-07-18 09:43",
+        description: "Ensam kviga höger sida av vägen.",
+        coords: [56.411119, 15.183847]
       },
       {
-        address: "Listerbyv\u00e4gen 12, Ronneby kommun",
-        time: "2026-06-28 21:10",
-        description: "En vuxen \u00e4lg passerade \u00f6ver \u00e5kermarken i lugnt tempo.",
-        coords: [56.1733, 15.2769]
+        address: "Östra Hult, Ronneby kommun",
+        time: "2026-07-18 10:06",
+        description: "Ensam kviga i skogskanten. Kom cyklandes norrifrån och den gick österut.",
+        coords: [56.389426, 15.25296]
       },
       {
-        address: "Svenstorp 4, Ronneby kommun",
-        time: "2026-07-05 05:52",
-        description: "Sp\u00e5r och f\u00e4rsk spillning dokumenterad vid grusv\u00e4g.",
-        coords: [56.2378, 15.2071]
+        address: "Hallabro nära Hallagölen, Ronneby kommun",
+        time: "2026-07-19 20:23",
+        description: "Pytteliten fjolårskalv nere på hygget höger sida av vägen. Valpiga öron förvånande blick.",
+        coords: [56.394475, 15.113145]
+      },
+    {
+        address: "Hobyvägen, 372 77 Backaryd, Sweden",
+        time: "2026-07-23 09:21",
+        description: "Ensam älg korsar vägen i östergående riktning. Förvann snabbt in i skogen.",
+        coords: [56.313896, 15.129967]
       }
     ];
 
@@ -436,6 +444,9 @@
     const pinList = document.getElementById("pinList");
 
     function setDefaultObservationTime() {
+      if (!observationTimeInput) {
+        return;
+      }
       const now = new Date();
       const timezoneOffsetMs = now.getTimezoneOffset() * 60000;
       const localIso = new Date(now.getTime() - timezoneOffsetMs).toISOString().slice(0, 16);
@@ -522,70 +533,92 @@
         }).addTo(map);
       }
 
-      coordStatus.textContent = `Vald position: ${selectedCoords[0]}, ${selectedCoords[1]}`;
-      addressStatus.textContent = "H\u00e4mtar adress fr\u00e5n koordinater...";
+      if (coordStatus) {
+        coordStatus.textContent = `Vald position: ${selectedCoords[0]}, ${selectedCoords[1]}`;
+      }
+      if (addressStatus) {
+        addressStatus.textContent = "H\u00e4mtar adress fr\u00e5n koordinater...";
+      }
 
       const fetchedAddress = await reverseGeocode(selectedCoords[0], selectedCoords[1]);
       selectedAddress = fetchedAddress || `Koordinater: ${selectedCoords[0]}, ${selectedCoords[1]}`;
-      addressStatus.textContent = `Adress: ${selectedAddress}`;
-    });
-
-    observationForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      if (!selectedCoords) {
-        coordStatus.textContent = "V\u00e4lj en position p\u00e5 kartan innan du sparar.";
-        return;
-      }
-
-      const formData = new FormData(observationForm);
-      const newPin = {
-        address: selectedAddress || `Koordinater: ${selectedCoords[0]}, ${selectedCoords[1]}`,
-        time: String(formData.get("time") || "").trim().replace("T", " "),
-        description: String(formData.get("description") || "").trim(),
-        coords: selectedCoords
-      };
-
-      if (!newPin.time || !newPin.description) {
-        return;
-      }
-
-      customPins.push(newPin);
-      saveCustomPins(customPins);
-      moosePins = [...defaultPins, ...customPins];
-      renderObservations();
-
-      observationForm.reset();
-      setDefaultObservationTime();
-      selectedCoords = null;
-      selectedAddress = "";
-      coordStatus.textContent = "Observation sparad. Tryck p\u00e5 kartan f\u00f6r en ny position.";
-      addressStatus.textContent = "Adress skapas automatiskt fr\u00e5n vald position.";
-
-      if (draftMarker) {
-        draftMarker.remove();
-        draftMarker = null;
+      if (addressStatus) {
+        addressStatus.textContent = `Adress: ${selectedAddress}`;
       }
     });
+
+    if (observationForm) {
+      observationForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        if (!selectedCoords) {
+          if (coordStatus) {
+            coordStatus.textContent = "V\u00e4lj en position p\u00e5 kartan innan du sparar.";
+          }
+          return;
+        }
+
+        const formData = new FormData(observationForm);
+        const newPin = {
+          address: selectedAddress || `Koordinater: ${selectedCoords[0]}, ${selectedCoords[1]}`,
+          time: String(formData.get("time") || "").trim().replace("T", " "),
+          description: String(formData.get("description") || "").trim(),
+          coords: selectedCoords
+        };
+
+        if (!newPin.time || !newPin.description) {
+          return;
+        }
+
+        customPins.push(newPin);
+        saveCustomPins(customPins);
+        moosePins = [...defaultPins, ...customPins];
+        renderObservations();
+
+        observationForm.reset();
+        setDefaultObservationTime();
+        selectedCoords = null;
+        selectedAddress = "";
+        if (coordStatus) {
+          coordStatus.textContent = "Observation sparad. Tryck p\u00e5 kartan f\u00f6r en ny position.";
+        }
+        if (addressStatus) {
+          addressStatus.textContent = "Adress skapas automatiskt fr\u00e5n vald position.";
+        }
+
+        if (draftMarker) {
+          draftMarker.remove();
+          draftMarker = null;
+        }
+      });
+    }
 
     const sharedPinsFromLink = parseSharedPinsFromHash();
     if (sharedPinsFromLink.length > 0) {
       customPins = sharedPinsFromLink;
       saveCustomPins(customPins);
       moosePins = [...defaultPins, ...customPins];
-      shareStatus.textContent = "Observationer laddade fr&aring;n delningsl&auml;nk.";
+      if (shareStatus) {
+        shareStatus.textContent = "Observationer laddade fr&aring;n delningsl&auml;nk.";
+      }
     }
 
-    shareButton.addEventListener("click", async () => {
-      const shareLink = createShareLink(customPins);
+    if (shareButton) {
+      shareButton.addEventListener("click", async () => {
+        const shareLink = createShareLink(customPins);
 
-      try {
-        await navigator.clipboard.writeText(shareLink);
-        shareStatus.textContent = "Delningsl&auml;nk kopierad. Skicka den till din v&auml;n.";
-      } catch (error) {
-        shareStatus.textContent = `Kunde inte kopiera automatiskt. Anv&auml;nd denna l&auml;nk: ${shareLink}`;
-      }
-    });
+        try {
+          await navigator.clipboard.writeText(shareLink);
+          if (shareStatus) {
+            shareStatus.textContent = "Delningsl&auml;nk kopierad. Skicka den till din v&auml;n.";
+          }
+        } catch (error) {
+          if (shareStatus) {
+            shareStatus.textContent = `Kunde inte kopiera automatiskt. Anv&auml;nd denna l&auml;nk: ${shareLink}`;
+          }
+        }
+      });
+    }
 
     setDefaultObservationTime();
     renderObservations();
