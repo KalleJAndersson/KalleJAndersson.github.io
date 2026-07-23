@@ -101,6 +101,81 @@
       box-shadow: var(--shadow);
     }
 
+    .form-shell {
+      background: var(--surface);
+      border: 1px solid rgba(32, 48, 41, 0.12);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 10px;
+    }
+
+    .form-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .field-wrap {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field-wrap label {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .field-wrap input,
+    .field-wrap textarea {
+      width: 100%;
+      border: 1px solid rgba(32, 48, 41, 0.2);
+      border-radius: 10px;
+      padding: 10px;
+      font: inherit;
+      color: var(--ink);
+      background: #ffffff;
+    }
+
+    .field-wrap textarea {
+      min-height: 88px;
+      resize: vertical;
+    }
+
+    .coord-note {
+      margin: 0;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .button-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 11px 14px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: #f3f2ef;
+    }
+
+    .btn-secondary {
+      background: #e7eee5;
+      color: var(--ink);
+      border: 1px solid rgba(32, 48, 41, 0.2);
+    }
+
     .legend-title {
       margin: 0 0 8px;
       font-weight: 700;
@@ -157,10 +232,15 @@
 
       .title-wrap,
       .map-shell,
+      .form-shell,
       .legend {
         max-width: 960px;
         width: 100%;
         margin-inline: auto;
+      }
+
+      .button-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
@@ -187,6 +267,25 @@
       <div id="map" aria-label="Karta &ouml;ver &auml;lgobservationer"></div>
     </section>
 
+    <section class="form-shell">
+      <h2 class="form-title">L&auml;gg till observation</h2>
+      <form id="observationForm">
+        <div class="field-wrap">
+          <label for="obsTime">Tid</label>
+          <input id="obsTime" name="time" type="datetime-local" required>
+        </div>
+        <div class="field-wrap">
+          <label for="obsDescription">Beskrivning</label>
+          <textarea id="obsDescription" name="description" required placeholder="Beskriv vad som observerades"></textarea>
+        </div>
+        <p id="coordStatus" class="coord-note">Tryck p&aring; kartan f&ouml;r att v&auml;lja position.</p>
+        <p id="addressStatus" class="coord-note">Adress skapas automatiskt fr&aring;n vald position.</p>
+        <div class="button-row">
+          <button class="btn-primary" type="submit">Spara observation</button>
+        </div>
+      </form>
+    </section>
+
     <section class="legend">
       <p class="legend-title">Registrerade punkter</p>
       <ul id="pinList"></ul>
@@ -199,7 +298,8 @@
     crossorigin=""
   ></script>
   <script>
-    const moosePins = [
+    const STORAGE_KEY = "mooseObservationsV1";
+    const defaultPins = [
       {
         address: "L\u00e5ngasj\u00f6v\u00e4gen 73, Ronneby kommun",
         time: "2026-06-14 06:45",
@@ -220,6 +320,51 @@
       }
     ];
 
+    function loadCustomPins() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          return [];
+        }
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed)) {
+          return [];
+        }
+        return parsed.filter((pin) => (
+          pin &&
+          typeof pin.address === "string" &&
+          typeof pin.time === "string" &&
+          typeof pin.description === "string" &&
+          Array.isArray(pin.coords) &&
+          pin.coords.length === 2 &&
+          Number.isFinite(pin.coords[0]) &&
+          Number.isFinite(pin.coords[1])
+        ));
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveCustomPins(pins) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(pins));
+    }
+
+    function escapeHtml(value) {
+      return value
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    let customPins = loadCustomPins();
+    let moosePins = [...defaultPins, ...customPins];
+    let markerGroup = null;
+    let selectedCoords = null;
+    let selectedAddress = "";
+    let draftMarker = null;
+
     const map = L.map("map", {
       zoomControl: true,
       preferCanvas: true
@@ -230,39 +375,147 @@
       attribution: "&copy; OpenStreetMap"
     }).addTo(map);
 
-    const bounds = L.latLngBounds();
+    const observationForm = document.getElementById("observationForm");
+    const observationTimeInput = document.getElementById("obsTime");
+    const coordStatus = document.getElementById("coordStatus");
+    const addressStatus = document.getElementById("addressStatus");
     const pinList = document.getElementById("pinList");
 
-    moosePins.forEach((pin) => {
-      const marker = L.marker(pin.coords).addTo(map);
+    function setDefaultObservationTime() {
+      const now = new Date();
+      const timezoneOffsetMs = now.getTimezoneOffset() * 60000;
+      const localIso = new Date(now.getTime() - timezoneOffsetMs).toISOString().slice(0, 16);
+      observationTimeInput.value = localIso;
+    }
 
-      const popupHtml = `
-        <h2 class="popup-title">Observation</h2>
-        <p class="popup-row"><strong>Adress:</strong> ${pin.address}</p>
-        <p class="popup-row"><strong>Tid:</strong> ${pin.time}</p>
-        <p class="popup-row"><strong>Beskrivning:</strong> ${pin.description}</p>
-      `;
+    async function reverseGeocode(lat, lng) {
+      const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`;
 
-      marker.bindPopup(popupHtml, {
-        autoPanPaddingTopLeft: [24, 24],
-        autoPanPaddingBottomRight: [24, 24]
+      try {
+        const response = await fetch(url, {
+          headers: {
+            "Accept": "application/json"
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error("Reverse geocode failed");
+        }
+
+        const data = await response.json();
+        return data.display_name || "";
+      } catch (error) {
+        return "";
+      }
+    }
+
+    function renderObservations() {
+      if (markerGroup) {
+        markerGroup.remove();
+      }
+      markerGroup = L.featureGroup().addTo(map);
+      pinList.innerHTML = "";
+
+      const bounds = L.latLngBounds();
+
+      moosePins.forEach((pin) => {
+        const marker = L.marker(pin.coords).addTo(markerGroup);
+
+        const popupHtml = `
+          <h2 class="popup-title">Observation</h2>
+          <p class="popup-row"><strong>Adress:</strong> ${escapeHtml(pin.address)}</p>
+          <p class="popup-row"><strong>Tid:</strong> ${escapeHtml(pin.time)}</p>
+          <p class="popup-row"><strong>Beskrivning:</strong> ${escapeHtml(pin.description)}</p>
+        `;
+
+        marker.bindPopup(popupHtml, {
+          autoPanPaddingTopLeft: [24, 24],
+          autoPanPaddingBottomRight: [24, 24]
+        });
+
+        const item = document.createElement("li");
+        item.textContent = `${pin.address} (${pin.time})`;
+        pinList.appendChild(item);
+
+        bounds.extend(pin.coords);
       });
 
-      const item = document.createElement("li");
-      item.textContent = `${pin.address} (${pin.time})`;
-      pinList.appendChild(item);
+      if (moosePins.length > 0) {
+        map.fitBounds(bounds.pad(0.2), {
+          maxZoom: 14,
+          animate: true
+        });
+      } else {
+        map.setView([56.2, 15.27], 11);
+      }
+    }
 
-      bounds.extend(pin.coords);
+    map.on("click", async (event) => {
+      selectedCoords = [
+        Number(event.latlng.lat.toFixed(6)),
+        Number(event.latlng.lng.toFixed(6))
+      ];
+
+      if (draftMarker) {
+        draftMarker.setLatLng(selectedCoords);
+      } else {
+        draftMarker = L.circleMarker(selectedCoords, {
+          radius: 8,
+          color: "#b44f2e",
+          fillColor: "#b44f2e",
+          fillOpacity: 0.25,
+          weight: 2
+        }).addTo(map);
+      }
+
+      coordStatus.textContent = `Vald position: ${selectedCoords[0]}, ${selectedCoords[1]}`;
+      addressStatus.textContent = "H\u00e4mtar adress fr\u00e5n koordinater...";
+
+      const fetchedAddress = await reverseGeocode(selectedCoords[0], selectedCoords[1]);
+      selectedAddress = fetchedAddress || `Koordinater: ${selectedCoords[0]}, ${selectedCoords[1]}`;
+      addressStatus.textContent = `Adress: ${selectedAddress}`;
     });
 
-    if (moosePins.length > 0) {
-      map.fitBounds(bounds.pad(0.2), {
-        maxZoom: 14,
-        animate: true
-      });
-    } else {
-      map.setView([56.2, 15.27], 11);
-    }
+    observationForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!selectedCoords) {
+        coordStatus.textContent = "V\u00e4lj en position p\u00e5 kartan innan du sparar.";
+        return;
+      }
+
+      const formData = new FormData(observationForm);
+      const newPin = {
+        address: selectedAddress || `Koordinater: ${selectedCoords[0]}, ${selectedCoords[1]}`,
+        time: String(formData.get("time") || "").trim().replace("T", " "),
+        description: String(formData.get("description") || "").trim(),
+        coords: selectedCoords
+      };
+
+      if (!newPin.time || !newPin.description) {
+        return;
+      }
+
+      customPins.push(newPin);
+      saveCustomPins(customPins);
+      moosePins = [...defaultPins, ...customPins];
+      renderObservations();
+
+      observationForm.reset();
+      setDefaultObservationTime();
+      selectedCoords = null;
+      selectedAddress = "";
+      coordStatus.textContent = "Observation sparad. Tryck p\u00e5 kartan f\u00f6r en ny position.";
+      addressStatus.textContent = "Adress skapas automatiskt fr\u00e5n vald position.";
+
+      if (draftMarker) {
+        draftMarker.remove();
+        draftMarker = null;
+      }
+    });
+
+    setDefaultObservationTime();
+    renderObservations();
   </script>
 </body>
 </html>
