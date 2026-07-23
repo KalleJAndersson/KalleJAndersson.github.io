@@ -263,8 +263,8 @@
 <body>
   <main class="page">
     <section class="title-wrap">
-      <h1>Inventering Långsjöryd älgskyddsområde</h1>
-      <p class="subtitle">Tryck p&aring; en mark&ouml;r f&ouml;r att se registrerad observation.</p>
+      <h1>Långsjöryd älgskyddsområde sommar 2026</h1>
+      <p class="subtitle">Tryck på en markör för att se detaljerad information från registrerad observation.</p>
     </section>
 
     <section class="map-shell">
@@ -297,7 +297,7 @@
     -->
 
     <section class="legend">
-      <p class="legend-title">Registrerade punkter</p>
+      <p class="legend-title">Registrerade observationer</p>
       <ul id="pinList"></ul>
     </section>
   </main>
@@ -331,7 +331,7 @@
     {
         address: "Hobyvägen, 372 77 Backaryd, Sweden",
         time: "2026-07-23 09:21",
-        description: "Ensam älg korsar vägen i östergående riktning. Förvann snabbt in i skogen.",
+        description: "Ensam älg korsar vägen i östgående riktning. Förvann snabbt in i skogen.",
         coords: [56.313896, 15.129967]
       }
     ];
@@ -418,8 +418,8 @@
         .replaceAll("'", "&#39;");
     }
 
-    let customPins = loadCustomPins();
-    let moosePins = [...defaultPins, ...customPins];
+    let customPins = [];
+    let moosePins = [...defaultPins];
     let markerGroup = null;
     let selectedCoords = null;
     let selectedAddress = "";
@@ -542,6 +542,10 @@
     }
 
     map.on("click", async (event) => {
+      if (!observationForm) {
+        return;
+      }
+
       selectedCoords = [
         Number(event.latlng.lat.toFixed(6)),
         Number(event.latlng.lng.toFixed(6))
@@ -623,7 +627,6 @@
     if (sharedPinsFromLink.length > 0) {
       customPins = sharedPinsFromLink;
       saveCustomPins(customPins);
-      moosePins = [...defaultPins, ...customPins];
       if (shareStatus) {
         shareStatus.textContent = "Observationer laddade fr&aring;n delningsl&auml;nk.";
       }
