@@ -137,6 +137,36 @@
       color: var(--ink);
     }
 
+    .countdown-card {
+      background: linear-gradient(135deg, #203029 0%, #3e5b4c 100%);
+      border: 1px solid rgba(32, 48, 41, 0.16);
+      border-radius: 12px;
+      padding: 10px;
+      color: #f4f2ec;
+    }
+
+    .countdown-label {
+      margin: 0;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.9;
+      font-weight: 700;
+    }
+
+    .countdown-hours {
+      margin: 6px 0 0;
+      font-size: clamp(1.2rem, 5vw, 1.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .countdown-detail {
+      margin: 6px 0 0;
+      font-size: 0.84rem;
+      opacity: 0.95;
+    }
+
     .map-shell {
       background: var(--surface);
       border: 1px solid rgba(32, 48, 41, 0.12);
@@ -433,6 +463,10 @@
         <p class="featured-title">Dagens glimt ur skogen</p>
         <p class="featured-text" id="featuredText">Laddar observation...</p>
       </article>
+      <article class="countdown-card" aria-live="polite">
+        <p class="countdown-label">Kvar till Älgjakt (8 oktober)</p>
+        <p class="countdown-detail" id="huntCountdownDetail">Laddar nedräkning...</p>
+      </article>
     </section>
 
     <section class="map-shell">
@@ -635,6 +669,7 @@
     const summaryLatest = document.getElementById("summaryLatest");
     const summaryCommon = document.getElementById("summaryCommon");
     const featuredText = document.getElementById("featuredText");
+    const huntCountdownDetail = document.getElementById("huntCountdownDetail");
     const timeChartSummary = document.getElementById("timeChartSummary");
     const timeChartBars = document.getElementById("timeChartBars");
 
@@ -694,6 +729,52 @@
         return "Skogens aktivitet noterad.";
       }
       return text;
+    }
+
+    function toRadians(value) {
+      return value * (Math.PI / 180);
+    }
+
+    function distanceFromHouseKm(coords) {
+      const earthRadiusKm = 6371;
+      const lat1 = toRadians(houseCoords[0]);
+      const lon1 = toRadians(houseCoords[1]);
+      const lat2 = toRadians(coords[0]);
+      const lon2 = toRadians(coords[1]);
+
+      const deltaLat = lat2 - lat1;
+      const deltaLon = lon2 - lon1;
+      const a = Math.sin(deltaLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(deltaLon / 2) ** 2;
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+      return earthRadiusKm * c;
+    }
+
+    function getNextHuntStart(referenceDate) {
+      const year = referenceDate.getFullYear();
+      let target = new Date(year, 9, 8, 0, 0, 0, 0);
+      if (referenceDate >= target) {
+        target = new Date(year + 1, 9, 8, 0, 0, 0, 0);
+      }
+      return target;
+    }
+
+    function updateHuntCountdown() {
+      if (!huntCountdownDetail) {
+        return;
+      }
+
+      const now = new Date();
+      const target = getNextHuntStart(now);
+      const diffMs = Math.max(0, target.getTime() - now.getTime());
+      const totalSeconds = Math.floor(diffMs / 1000);
+      const totalHours = Math.floor(totalSeconds / 3600);
+      const days = Math.floor(totalHours / 24);
+      const remHours = totalHours % 24;
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      huntCountdownDetail.textContent = `${days} dagar ${String(remHours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")} kvar`;
     }
 
     function updateInsights(pins) {
@@ -817,6 +898,7 @@
           <h2 class="popup-title">Observation - ${escapeHtml(pin.time)}</h2>
           <p class="popup-wow">${escapeHtml(wowLine(pin))}</p>
           <p class="popup-row">${escapeHtml(pin.address)}</p>
+          <p class="popup-row">Avstånd fågelvägen från högkvarter: ${distanceFromHouseKm(pin.coords).toFixed(1).replace(".", ",")} km</p>
         `;
 
         marker.bindPopup(popupHtml, {
@@ -962,6 +1044,8 @@
     }
 
     setDefaultObservationTime();
+    updateHuntCountdown();
+    setInterval(updateHuntCountdown, 1000);
     renderObservations();
   </script>
 </body>
