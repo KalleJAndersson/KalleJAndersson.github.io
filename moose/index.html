@@ -435,6 +435,21 @@
       attribution: "&copy; OpenStreetMap"
     }).addTo(map);
 
+    const mooseIcon = L.icon({
+      iconUrl: "https://cdn11.bigcommerce.com/s-hii7479o/images/stencil/original/products/9508/25633/Moose__01253.1523570178.png?c=2",
+      iconSize: [42, 42],
+      iconAnchor: [21, 33],
+      popupAnchor: [0, -30]
+    });
+
+    const houseIcon = L.icon({
+      iconUrl: "https://static.vecteezy.com/system/resources/thumbnails/011/886/113/small/house-village-city-atl-png.png",
+      iconSize: [34, 34],
+      iconAnchor: [17, 30],
+      popupAnchor: [0, -26]
+    });
+    const houseCoords = [56.383259, 15.159735];
+
     const observationForm = document.getElementById("observationForm");
     const observationTimeInput = document.getElementById("obsTime");
     const coordStatus = document.getElementById("coordStatus");
@@ -484,7 +499,9 @@
       const bounds = L.latLngBounds();
 
       moosePins.forEach((pin) => {
-        const marker = L.marker(pin.coords).addTo(markerGroup);
+        const marker = L.marker(pin.coords, {
+          icon: mooseIcon
+        }).addTo(markerGroup);
 
         const popupHtml = `
           <h2 class="popup-title">Observation</h2>
@@ -504,6 +521,15 @@
 
         bounds.extend(pin.coords);
       });
+
+      const houseMarker = L.marker(houseCoords, {
+        icon: houseIcon
+      }).addTo(markerGroup);
+      houseMarker.bindPopup(`
+        <h2 class="popup-title">Hus</h2>
+        <p class="popup-row"><strong>Position:</strong> 56.383259, 15.159735</p>
+      `);
+      bounds.extend(houseCoords);
 
       if (moosePins.length > 0) {
         map.fitBounds(bounds.pad(0.2), {
