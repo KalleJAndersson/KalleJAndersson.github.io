@@ -77,14 +77,23 @@
       font-size: 0.94rem;
     }
 
+    .map-instruction {
+      margin: 4px 2px 14px;
+    }
+
     .insight-shell {
       background: var(--surface);
       border: 1px solid rgba(32, 48, 41, 0.12);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 12px;
+      padding: 14px;
       display: grid;
-      gap: 10px;
+      gap: 12px;
+    }
+
+    .main-title {
+      margin: 0;
+      padding: 2px 2px 4px;
     }
 
     .summary-strip {
@@ -113,6 +122,7 @@
       font-weight: 700;
       font-size: 1rem;
       color: var(--ink);
+      text-align: center;
     }
 
     .featured-card {
@@ -439,12 +449,8 @@
 </head>
 <body>
   <main class="page">
-    <section class="title-wrap">
-      <h1>Inventering Långsjöryd älgskyddsområde</h1>
-      <p class="subtitle">Tryck på en markör för att se detaljerad information från registrerad observation.</p>
-    </section>
-
     <section class="insight-shell" aria-label="Snabbsammanfattning">
+      <h1 class="main-title">Inventering Långsjöryd älgskyddsområde</h1>
       <div class="summary-strip">
         <article class="summary-card">
           <p class="summary-label">Observationer</p>
@@ -464,12 +470,13 @@
         <p class="featured-text" id="featuredText">Laddar observation...</p>
       </article>
       <article class="countdown-card" aria-live="polite">
-        <p class="countdown-label">Kvar till Älgjakt (8 oktober)</p>
+        <p class="countdown-label">Kvar till Älgjakt</p>
         <p class="countdown-detail" id="huntCountdownDetail">Laddar nedräkning...</p>
       </article>
     </section>
 
     <section class="map-shell">
+      <p class="subtitle map-instruction">Tryck på en markör för att se detaljerad information från registrerad observation.</p>
       <div id="map" aria-label="Karta &ouml;ver &auml;lgobservationer"></div>
     </section>
 
@@ -703,6 +710,16 @@
       return Number.isNaN(parsed.getTime()) ? null : parsed;
     }
 
+    function formatDateDdMm(value) {
+      const parsed = new Date(String(value).replace(" ", "T"));
+      if (Number.isNaN(parsed.getTime())) {
+        return String(value);
+      }
+      const day = String(parsed.getDate()).padStart(2, "0");
+      const month = String(parsed.getMonth() + 1).padStart(2, "0");
+      return `${day}/${month}`;
+    }
+
     function relativeTimeLabel(pin) {
       const date = parsePinDate(pin);
       if (!date) {
@@ -795,7 +812,7 @@
       });
 
       const latest = sorted[0];
-      summaryLatest.textContent = latest.time;
+      summaryLatest.textContent = formatDateDdMm(latest.time);
 
       const typeCounts = {
         kviga: 0,
