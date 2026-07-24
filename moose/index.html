@@ -481,9 +481,8 @@
       <div id="map" aria-label="Karta &ouml;ver &auml;lgobservationer"></div>
     </section>
 
-    <!--
     <section class="form-shell">
-      <h2 class="form-title">L&auml;gg till observation</h2>
+      <h2 class="form-title">Registrera observation</h2>
       <form id="observationForm">
         <div class="field-wrap">
           <label for="obsTime">Tid</label>
@@ -496,15 +495,12 @@
         <p id="coordStatus" class="coord-note">Tryck p&aring; kartan f&ouml;r att v&auml;lja position.</p>
         <p id="addressStatus" class="coord-note">Adress skapas automatiskt fr&aring;n vald position.</p>
         <div class="button-row">
-          <button class="btn-primary" type="submit">Spara observation</button>
+          <button class="btn-primary" type="submit">Registrera observation</button>
         </div>
         <div class="button-row">
-          <button class="btn-secondary" type="button" id="shareObservations">Kopiera delningsl&auml;nk</button>
         </div>
-        <p id="shareStatus" class="coord-note">Delning fungerar utan databas via l&auml;nk.</p>
       </form>
     </section>
-    -->
 
     <section class="legend">
       <p class="legend-title">Registrerade observationer</p>
@@ -524,69 +520,17 @@
     crossorigin=""
   ></script>
   <script>
-    const STORAGE_KEY = "mooseObservationsV1";
-    const defaultPins = [
-      {
-        address: "Gökadalsvägen, Ronneby kommun",
-        time: "2026-07-18 09:43",
-        description: "Ensam kviga höger sida av vägen.",
-        coords: [56.411119, 15.183847]
-      },
-      {
-        address: "Östra Hult, Ronneby kommun",
-        time: "2026-07-18 10:06",
-        description: "Ensam kviga i skogskanten. Kom cyklandes norrifrån och den gick österut.",
-        coords: [56.389426, 15.25296]
-      },
-      {
-        address: "Hallabro nära Hallagölen, Ronneby kommun",
-        time: "2026-07-19 20:23",
-        description: "Pytteliten fjolårskalv nere på hygget höger sida av vägen. Valpiga öron förvånande blick.",
-        coords: [56.394475, 15.113145]
-      },
-    {
-        address: "Hobyvägen, 372 77 Backaryd",
-        time: "2026-07-23 09:21",
-        description: "Ensam älg korsar vägen i östgående riktning. Förvann snabbt in i skogen.",
-        coords: [56.313896, 15.129967]
-      }
-    ];
+    const runtimeApiConfig = {
+      url: "https://demo-crm-wp.demo.limecrm.cloud/demo-crm-wp/api/v1/limeobject/observation/?_limit=50",
+      apiKey: "34051588151744A24F455DDF783BC03E12708A85E97167ADF90206E578AC28A92127AF8426C681EF8BD6"
+    };
 
-    function loadCustomPins() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) {
-          return [];
-        }
-        const parsed = JSON.parse(raw);
-        if (!Array.isArray(parsed)) {
-          return [];
-        }
-        return parsed.filter((pin) => (
-          pin &&
-          typeof pin.address === "string" &&
-          typeof pin.time === "string" &&
-          typeof pin.description === "string" &&
-          Array.isArray(pin.coords) &&
-          pin.coords.length === 2 &&
-          Number.isFinite(pin.coords[0]) &&
-          Number.isFinite(pin.coords[1])
-        ));
-      } catch (error) {
-        return [];
-      }
-    }
-
-    function saveCustomPins(pins) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(pins));
-    }
-
-    function normalizeSharedPins(pins) {
-      if (!Array.isArray(pins)) {
+    function normalizeObservationPins(items) {
+      if (!Array.isArray(items)) {
         return [];
       }
 
-      return pins.filter((pin) => (
+      return items.filter((pin) => (
         pin &&
         typeof pin.address === "string" &&
         typeof pin.time === "string" &&
@@ -598,31 +542,108 @@
       ));
     }
 
-    function parseSharedPinsFromHash() {
-      try {
-        const hash = window.location.hash;
-        if (!hash.startsWith("#obs=")) {
-          return [];
-        }
-
-        const encoded = hash.slice(5);
-        if (!encoded) {
-          return [];
-        }
-
-        const json = decodeURIComponent(escape(atob(encoded)));
-        const parsed = JSON.parse(json);
-        return normalizeSharedPins(parsed);
-      } catch (error) {
-        return [];
+    function normalizeApiObservation(item) {
+      if (!item || typeof item !== "object") {
+        return null;
       }
+
+      const latitude = Number(item.latitude);
+      const longitude = Number(item.longitude);
+      const description = typeof item.description === "string" ? item.description.trim() : "";
+      const address = typeof item.adress === "string" ? item.adress.trim() : "";
+      const dateValue = typeof item.date === "string" ? item.date : "";
+
+      if (!Number.isFinite(latitude) || !Number.isFinite(longitude) || !description || !address || !dateValue) {
+        return null;
+      }
+
+      const parsedDate = new Date(dateValue);
+      const localTime = Number.isNaN(parsedDate.getTime())
+        ? dateValue
+        : `${parsedDate.getFullYear()}-${String(parsedDate.getMonth() + 1).padStart(2, "0")}-${String(parsedDate.getDate()).padStart(2, "0")} ${String(parsedDate.getHours()).padStart(2, "0")}:${String(parsedDate.getMinutes()).padStart(2, "0")}`;
+
+      return {
+        address,
+        time: localTime,
+        description,
+        coords: [latitude, longitude]
+      };
     }
 
-    function createShareLink(pins) {
-      const sharedPins = normalizeSharedPins(pins);
-      const json = JSON.stringify(sharedPins);
-      const encoded = btoa(unescape(encodeURIComponent(json)));
-      return `${window.location.origin}${window.location.pathname}#obs=${encoded}`;
+    function buildApiHeaders() {
+      if (!runtimeApiConfig || !runtimeApiConfig.apiKey) {
+        return null;
+      }
+
+      return {
+        "Accept": "application/hal+json",
+        "Content-Type": "application/json",
+        "X-API-KEY": runtimeApiConfig.apiKey
+      };
+    }
+
+    function getApiUrl() {
+      return runtimeApiConfig.url;
+    }
+
+    async function fetchObservationsFromApi() {
+      const headers = buildApiHeaders();
+      if (!headers) {
+        return [];
+      }
+
+      const response = await fetch(getApiUrl(), {
+        method: "GET",
+        headers
+      });
+
+      if (!response.ok) {
+        throw new Error(`Observation fetch failed: ${response.status}`);
+      }
+
+      const payload = await response.json();
+      const records = Array.isArray(payload) ? payload : (Array.isArray(payload.objects) ? payload.objects : []);
+      return records.map(normalizeApiObservation).filter(Boolean);
+    }
+
+    function toApiDateString(localDateTime) {
+      const parsed = new Date(localDateTime);
+      if (Number.isNaN(parsed.getTime())) {
+        return localDateTime;
+      }
+
+      return parsed.toISOString();
+    }
+
+    async function createObservationInApi(pin) {
+      const headers = buildApiHeaders();
+      if (!headers) {
+        throw new Error("API config missing");
+      }
+
+      const payload = {
+        description: pin.description,
+        typeofobservation: {
+          key: "moose"
+        },
+        date: toApiDateString(pin.time.replace(" ", "T")),
+        latitude: pin.coords[0],
+        longitude: pin.coords[1],
+        adress: pin.address
+      };
+
+      const response = await fetch(getApiUrl(), {
+        method: "POST",
+        headers,
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`Observation save failed: ${response.status}`);
+      }
+
+      const created = await response.json();
+      return normalizeApiObservation(created) || pin;
     }
 
     function escapeHtml(value) {
@@ -635,7 +656,7 @@
     }
 
     let customPins = [];
-    let moosePins = [...defaultPins];
+    let moosePins = [];
     let markerGroup = null;
     let selectedCoords = null;
     let selectedAddress = "";
@@ -670,8 +691,6 @@
     const observationTimeInput = document.getElementById("obsTime");
     const coordStatus = document.getElementById("coordStatus");
     const addressStatus = document.getElementById("addressStatus");
-    const shareButton = document.getElementById("shareObservations");
-    const shareStatus = document.getElementById("shareStatus");
     const pinList = document.getElementById("pinList");
     const summaryCount = document.getElementById("summaryCount");
     const summaryLatest = document.getElementById("summaryLatest");
@@ -990,7 +1009,7 @@
     });
 
     if (observationForm) {
-      observationForm.addEventListener("submit", (event) => {
+      observationForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         if (!selectedCoords) {
@@ -1012,10 +1031,17 @@
           return;
         }
 
-        customPins.push(newPin);
-        saveCustomPins(customPins);
-        moosePins = [...defaultPins, ...customPins];
-        renderObservations();
+        try {
+          const createdPin = await createObservationInApi(newPin);
+          customPins.push(createdPin);
+          moosePins = normalizeObservationPins([...moosePins, createdPin]);
+          renderObservations();
+        } catch (error) {
+          if (coordStatus) {
+            coordStatus.textContent = "Kunde inte spara observationen till API.";
+          }
+          return;
+        }
 
         observationForm.reset();
         setDefaultObservationTime();
@@ -1035,36 +1061,25 @@
       });
     }
 
-    const sharedPinsFromLink = parseSharedPinsFromHash();
-    if (sharedPinsFromLink.length > 0) {
-      customPins = sharedPinsFromLink;
-      saveCustomPins(customPins);
-      if (shareStatus) {
-        shareStatus.textContent = "Observationer laddade fr&aring;n delningsl&auml;nk.";
-      }
-    }
-
-    if (shareButton) {
-      shareButton.addEventListener("click", async () => {
-        const shareLink = createShareLink(customPins);
-
-        try {
-          await navigator.clipboard.writeText(shareLink);
-          if (shareStatus) {
-            shareStatus.textContent = "Delningsl&auml;nk kopierad. Skicka den till din v&auml;n.";
-          }
-        } catch (error) {
-          if (shareStatus) {
-            shareStatus.textContent = `Kunde inte kopiera automatiskt. Anv&auml;nd denna l&auml;nk: ${shareLink}`;
-          }
-        }
-      });
-    }
-
     setDefaultObservationTime();
     updateHuntCountdown();
     setInterval(updateHuntCountdown, 1000);
-    renderObservations();
+
+    async function initializeObservations() {
+      try {
+        const apiPins = await fetchObservationsFromApi();
+        moosePins = normalizeObservationPins(apiPins);
+      } catch (error) {
+        moosePins = [];
+        if (timeChartSummary) {
+          timeChartSummary.textContent = "Kunde inte ladda observationer från API.";
+        }
+      }
+
+      renderObservations();
+    }
+
+    initializeObservations();
   </script>
 </body>
 </html>
