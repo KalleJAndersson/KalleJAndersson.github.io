@@ -521,7 +521,7 @@
   ></script>
   <script>
     const runtimeApiConfig = {
-      url: "https://demo-crm-wp.demo.limecrm.cloud/demo-crm-wp/api/v1/limeobject/observation/?_limit=50",
+      url: "https://demo-crm-wp.demo.limecrm.cloud/demo-crm-wp/api/v1/limeobject/observation/",
       apiKey: "34051588151744A24F455DDF783BC03E12708A85E97167ADF90206E578AC28A92127AF8426C681EF8BD6"
     };
 
@@ -586,6 +586,15 @@
       return runtimeApiConfig.url;
     }
 
+    async function readErrorResponse(response) {
+      try {
+        const text = await response.text();
+        return text || "";
+      } catch (error) {
+        return "";
+      }
+    }
+
     async function fetchObservationsFromApi() {
       const headers = buildApiHeaders();
       if (!headers) {
@@ -598,11 +607,23 @@
       });
 
       if (!response.ok) {
+        const errorBody = await readErrorResponse(response);
+        console.error("Observation fetch failed", {
+          status: response.status,
+          statusText: response.statusText,
+          body: errorBody
+        });
         throw new Error(`Observation fetch failed: ${response.status}`);
       }
 
       const payload = await response.json();
-      const records = Array.isArray(payload) ? payload : (Array.isArray(payload.objects) ? payload.objects : []);
+      const records = Array.isArray(payload)
+        ? payload
+        : (Array.isArray(payload.objects)
+          ? payload.objects
+          : (payload._embedded && Array.isArray(payload._embedded.limeobjects)
+            ? payload._embedded.limeobjects
+            : []));
       return records.map(normalizeApiObservation).filter(Boolean);
     }
 
@@ -639,6 +660,13 @@
       });
 
       if (!response.ok) {
+        const errorBody = await readErrorResponse(response);
+        console.error("Observation save failed", {
+          status: response.status,
+          statusText: response.statusText,
+          body: errorBody,
+          payload
+        });
         throw new Error(`Observation save failed: ${response.status}`);
       }
 
