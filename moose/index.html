@@ -606,36 +606,56 @@
       }
     }
 
+    function logApiFailure(context, details) {
+      console.group(`API ${context} failed`);
+      Object.entries(details).forEach(([key, value]) => {
+        console.error(key, value);
+      });
+      console.groupEnd();
+    }
+
     async function fetchObservationsFromApi() {
       const headers = buildApiHeaders();
       if (!headers) {
         return [];
       }
 
-      const response = await fetch(getApiUrl(), {
-        method: "GET",
-        headers
-      });
-
-      if (!response.ok) {
-        const errorBody = await readErrorResponse(response);
-        console.error("Observation fetch failed", {
-          status: response.status,
-          statusText: response.statusText,
-          body: errorBody
+      try {
+        const response = await fetch(getApiUrl(), {
+          method: "GET",
+          headers
         });
-        throw new Error(`Observation fetch failed: ${response.status}`);
-      }
 
-      const payload = await response.json();
-      const records = Array.isArray(payload)
-        ? payload
-        : (Array.isArray(payload.objects)
-          ? payload.objects
-          : (payload._embedded && Array.isArray(payload._embedded.limeobjects)
-            ? payload._embedded.limeobjects
-            : []));
-      return records.map(normalizeApiObservation).filter(Boolean);
+        if (!response.ok) {
+          const errorBody = await readErrorResponse(response);
+          logApiFailure("GET", {
+            url: getApiUrl(),
+            status: response.status,
+            statusText: response.statusText,
+            responseType: response.type,
+            responseBody: errorBody,
+            requestHeaders: headers
+          });
+          throw new Error(`Observation fetch failed: ${response.status}`);
+        }
+
+        const payload = await response.json();
+        const records = Array.isArray(payload)
+          ? payload
+          : (Array.isArray(payload.objects)
+            ? payload.objects
+            : (payload._embedded && Array.isArray(payload._embedded.limeobjects)
+              ? payload._embedded.limeobjects
+              : []));
+        return records.map(normalizeApiObservation).filter(Boolean);
+      } catch (error) {
+        logApiFailure("GET network", {
+          url: getApiUrl(),
+          message: error instanceof Error ? error.message : String(error),
+          requestHeaders: headers
+        });
+        throw error;
+      }
     }
 
     function toApiDateString(localDateTime) {
@@ -664,25 +684,39 @@
         adress: pin.address
       };
 
-      const response = await fetch(getApiUrl(), {
-        method: "POST",
-        headers,
-        body: JSON.stringify(payload)
-      });
 
-      if (!response.ok) {
-        const errorBody = await readErrorResponse(response);
-        console.error("Observation save failed", {
-          status: response.status,
-          statusText: response.statusText,
-          body: errorBody,
+      try {
+        const response = await fetch(getApiUrl(), {
+          method: "POST",
+          headers,
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          const errorBody = await readErrorResponse(response);
+          logApiFailure("POST", {
+            url: getApiUrl(),
+            status: response.status,
+            statusText: response.statusText,
+            responseType: response.type,
+            responseBody: errorBody,
+            requestHeaders: headers,
+            payload
+          });
+          throw new Error(`Observation save failed: ${response.status}`);
+        }
+
+        const created = await response.json();
+        return normalizeApiObservation(created) || pin;
+      } catch (error) {
+        logApiFailure("POST network", {
+          url: getApiUrl(),
+          message: error instanceof Error ? error.message : String(error),
+          requestHeaders: headers,
           payload
         });
-        throw new Error(`Observation save failed: ${response.status}`);
+        throw error;
       }
-
-      const created = await response.json();
-      return normalizeApiObservation(created) || pin;
     }
 
     function escapeHtml(value) {
