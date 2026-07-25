@@ -607,11 +607,34 @@
     }
 
     function logApiFailure(context, details) {
-      console.group(`API ${context} failed`);
-      Object.entries(details).forEach(([key, value]) => {
-        console.error(key, value);
-      });
-      console.groupEnd();
+      try {
+        const title = `API ${context} failed`;
+        if (console && typeof console.group === "function") {
+          console.group(title);
+        } else if (console && typeof console.error === "function") {
+          console.error(title);
+        }
+
+        if (details && typeof details === "object") {
+          for (const key in details) {
+            if (!Object.prototype.hasOwnProperty.call(details, key)) {
+              continue;
+            }
+
+            if (console && typeof console.error === "function") {
+              console.error(key, details[key]);
+            }
+          }
+        }
+
+        if (console && typeof console.groupEnd === "function") {
+          console.groupEnd();
+        }
+      } catch (loggingError) {
+        if (console && typeof console.error === "function") {
+          console.error("API logging failed", loggingError);
+        }
+      }
     }
 
     async function fetchObservationsFromApi() {
