@@ -521,7 +521,7 @@
   ></script>
   <script>
     const runtimeApiConfig = {
-      url: "https://demo-crm-wp.demo.limecrm.cloud/demo-crm-wp/api/v1/limeobject/observation/",
+      url: "https://demo-crm-wp.demo.limecrm.cloud/demo-crm-wp/api/v1/limeobject/observation/?_limit=50",
       apiKey: "34051588151744A24F455DDF783BC03E12708A85E97167ADF90206E578AC28A92127AF8426C681EF8BD6"
     };
 
@@ -577,8 +577,19 @@
 
       return {
         "Accept": "application/hal+json",
-        "Content-Type": "application/json",
         "X-API-KEY": runtimeApiConfig.apiKey
+      };
+    }
+
+    function buildApiPostHeaders() {
+      const headers = buildApiHeaders();
+      if (!headers) {
+        return null;
+      }
+
+      return {
+        ...headers,
+        "Content-Type": "application/json"
       };
     }
 
@@ -637,7 +648,7 @@
     }
 
     async function createObservationInApi(pin) {
-      const headers = buildApiHeaders();
+      const headers = buildApiPostHeaders();
       if (!headers) {
         throw new Error("API config missing");
       }
